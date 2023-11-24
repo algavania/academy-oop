@@ -31,7 +31,7 @@ public class User {
         this.photoUrl = photoUrl;
         this.balance = balance;
     }
-
+   
     public String getUsername() {
         return username;
     }

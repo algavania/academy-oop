@@ -5,6 +5,7 @@
 package com.oop.academy.application.service;
 
 import com.oop.academy.models.Category;
+import com.oop.academy.models.Course;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class DatabaseService {
 
     private static List<Category> categories;
+    private static List<Course> courses;
 
     public static List<Category> getCategories() {
         if (categories == null) {
@@ -22,4 +24,12 @@ public class DatabaseService {
         }
         return categories;
     }
+    public static List<Course> getCourses() {
+        if (courses == null) {
+            courses = new ArrayList();
+        }
+        return courses;
+    }
+    
+    
 }
