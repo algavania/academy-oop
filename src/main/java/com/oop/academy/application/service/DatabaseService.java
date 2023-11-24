@@ -5,6 +5,7 @@
 package com.oop.academy.application.service;
 
 import com.oop.academy.models.Category;
+import com.oop.academy.models.User;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @author MSI
  */
 public class DatabaseService {
-
+    private static List<User> users;
     private static List<Category> categories;
 
     public static List<Category> getCategories() {
@@ -21,5 +22,12 @@ public class DatabaseService {
             categories = new ArrayList();
         }
         return categories;
+    }
+    
+    public static List<User> getUsers() {
+        if (users == null) {
+            users = new ArrayList();
+        }
+        return users;
     }
 }
