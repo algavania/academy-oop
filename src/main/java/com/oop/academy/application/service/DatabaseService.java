@@ -14,6 +14,7 @@ import java.util.List;
  * @author MSI
  */
 public class DatabaseService {
+    private int currentUser;
     private static List<User> users;
     private static List<Category> categories;
 
@@ -30,4 +31,14 @@ public class DatabaseService {
         }
         return users;
     }
+
+    public int getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(int currentUser) {
+        this.currentUser = currentUser;
+    }
+    
+    
 }
