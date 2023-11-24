@@ -22,8 +22,8 @@ public class Submission {
         this.description = description;
         this.created_at = created_at;
     }
-
     
+
     public int getId() {
         return id;
     }
