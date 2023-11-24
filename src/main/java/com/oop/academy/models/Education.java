@@ -15,6 +15,14 @@ public class Education {
     private int gpa;
     private String certificateUrl;
 
+    public Education(String name, int attendPeriod, String degree, int gpa, String certificateUrl) {
+        this.name = name;
+        this.attendPeriod = attendPeriod;
+        this.degree = degree;
+        this.gpa = gpa;
+        this.certificateUrl = certificateUrl;
+    }
+
     public String getName() {
         return name;
     }
