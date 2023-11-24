@@ -22,4 +22,16 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
+    
+    @Override
+    public boolean equals(Object objenct) {
+        Category category;
+        try {
+            category = (Category) objenct;
+        } catch(Exception e) {
+            return false;
+        }
+        
+        return (category.getName().equals(this.name));
+    }
 }
