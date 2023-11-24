@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\dashboard\UserDashboardView.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\MainFrame.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\models\CourseContent.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\models\Student.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\application\repositories\category\BaseCategoryRepository.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\models\StudentSubmission.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\course\CoursesView.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\models\Education.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\models\User.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\components\TextComponent.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\models\Course.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\application\repositories\category\CategoryRepository.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\models\Submission.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\authentication\LoginView.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\models\Teacher.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\application\service\DatabaseService.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\models\Category.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\course\CourseCard.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\dashboard\AdminDashboardView.java
+=======
 E:\java\academy-oop\src\main\java\com\oop\academy\models\Course.java
 E:\java\academy-oop\src\main\java\com\oop\academy\models\Submission.java
 E:\java\academy-oop\src\main\java\com\oop\academy\presentation\dashboard\UserDashboardView.java
@@ -16,3 +37,4 @@ E:\java\academy-oop\src\main\java\com\oop\academy\models\StudentSubmission.java
 E:\java\academy-oop\src\main\java\com\oop\academy\presentation\MainFrame.java
 E:\java\academy-oop\src\main\java\com\oop\academy\models\CourseContent.java
 E:\java\academy-oop\src\main\java\com\oop\academy\models\Student.java
+>>>>>>> fee68eb95747bee602a831aaef839f759706b21b

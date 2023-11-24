@@ -5,20 +5,16 @@
 package com.oop.academy.presentation;
 
 import com.oop.academy.application.repositories.category.CategoryRepository;
-import com.oop.academy.presentation.dashboard.CategoryManagementView;
 
 /**
  *
  * @author mfazi
  */
-
 public class InjectionContainer {
+
+    public static CategoryRepository categoryRepository;
     
-    public static MainFrame mainFrame = new MainFrame();
-    
-    //repositorys
-    public static CategoryRepository categoryRepository = new CategoryRepository();
-    
-    //views
-    public static CategoryManagementView categoryManagementView = new CategoryManagementView(mainFrame, categoryRepository);
+    public void init() {
+        categoryRepository = new CategoryRepository();
+    }
 }
