@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  *
- * @author asus
+ * @author mfazi
  */
 public class Student extends User{
     
