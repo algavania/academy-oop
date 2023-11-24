@@ -34,12 +34,30 @@ public class CategoryRepository implements BaseCategoryRepository {
 
     @Override
     public void updateCategory(Category category, Category newCategory) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (!categories.remove(category)) {
+            throw new Exception("Kategori tidak ditemukan");
+        }
+        
+        categories.add(newCategory);
     }
 
     @Override
-    public void deleteCategory(Category category) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void deleteCategory(Category category) throws Exception {
+        categories.remove(category);
     }
 
+    @Override
+    public List<Category> getAllCategory() {
+        return categories;
+    }
+    
+    @Override
+    public Category getByName(String name) throws Exception {
+        for (Category data : categories) {
+            if (data.getName().equalsIgnoreCase(name)) {
+                return data;
+            }
+        }
+        throw new Exception("Kategori tidak ditemukan");
+    }
 }

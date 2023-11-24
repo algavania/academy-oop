@@ -20,7 +20,9 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        showView(new CoursesView());
+        InjectionContainer injectionContainer = new InjectionContainer();
+        injectionContainer.init();
+        showView(new LoginView(this));
     }
 
     public final void showView(JPanel view) {

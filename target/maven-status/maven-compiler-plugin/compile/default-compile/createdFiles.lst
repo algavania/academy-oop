@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 com\oop\academy\models\Category.class
 com\oop\academy\models\Submission.class
 com\oop\academy\models\User.class
@@ -18,3 +19,32 @@ com\oop\academy\models\Course.class
 com\oop\academy\presentation\course\CourseCard.class
 com\oop\academy\application\repositories\category\BaseCategoryRepository.class
 com\oop\academy\models\Teacher.class
+=======
+com\oop\academy\application\service\DatabaseService.class
+com\oop\academy\presentation\dashboard\CategoryManagementView$6.class
+com\oop\academy\presentation\dashboard\CategoryManagementView$1.class
+com\oop\academy\presentation\MainFrame.class
+com\oop\academy\models\StudentSubmission.class
+com\oop\academy\presentation\InjectionContainer.class
+com\oop\academy\presentation\dashboard\CategoryManagementView$4.class
+com\oop\academy\application\repositories\category\CategoryRepository.class
+com\oop\academy\models\CourseContent.class
+com\oop\academy\presentation\authentication\LoginView.class
+com\oop\academy\presentation\dashboard\CategoryManagementView.class
+com\oop\academy\models\Teacher.class
+com\oop\academy\models\Category.class
+com\oop\academy\models\Submission.class
+com\oop\academy\models\User.class
+com\oop\academy\models\Education.class
+com\oop\academy\presentation\dashboard\CategoryManagementView$2.class
+com\oop\academy\presentation\dashboard\AdminDashboardView.class
+com\oop\academy\presentation\dashboard\CategoryManagementView$7.class
+com\oop\academy\models\Student.class
+com\oop\academy\presentation\dashboard\CategoryManagementView$3.class
+com\oop\academy\presentation\dashboard\UserDashboardView.class
+com\oop\academy\presentation\dashboard\CategoryManagementView$8.class
+com\oop\academy\presentation\dashboard\CategoryManagementView$5.class
+com\oop\academy\presentation\MainFrame$1.class
+com\oop\academy\models\Course.class
+com\oop\academy\application\repositories\category\BaseCategoryRepository.class
+>>>>>>> fee68eb95747bee602a831aaef839f759706b21b
