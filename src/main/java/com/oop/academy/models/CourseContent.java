@@ -4,6 +4,7 @@
  */
 package com.oop.academy.models;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -14,8 +15,8 @@ public class CourseContent {
     private Course course; 
     private String name; 
     private String content; 
-    private Date createdAt; 
-    private Date updatedAt;
+    private LocalDateTime createdAt; 
+    private LocalDateTime updatedAt;
 
     public Course getCourse() {
         return course;
@@ -41,19 +42,19 @@ public class CourseContent {
         this.content = content;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedAt() {
+        this.createdAt = LocalDateTime.now();
     }
 
-    public Date getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdatedAt() {
+        this.updatedAt = LocalDateTime.now();
     }
 }

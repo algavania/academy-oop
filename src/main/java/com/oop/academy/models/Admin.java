@@ -8,12 +8,14 @@ import java.util.Date;
 
 /**
  *
- * @author mfazi
+ * @author mamir
  */
-public class Student extends User{
-    
-    public Student(String username, String name, String gender, Date birthdate, String email, String password, String photoUrl, double balance) {
+
+public class Admin extends User{
+
+    public Admin(String username, String name, String gender, Date birthdate, String email, String password, String photoUrl, double balance) {
         super(username, name, gender, birthdate, email, password, photoUrl, balance);
     }
+
     
 }
