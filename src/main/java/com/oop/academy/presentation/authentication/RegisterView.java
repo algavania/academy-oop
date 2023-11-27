@@ -244,6 +244,8 @@ public class RegisterView extends javax.swing.JPanel {
                     "Berhasil",
                     JOptionPane.INFORMATION_MESSAGE
             );
+            mainFrame.showView(new LoginView(mainFrame));
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(
                     mainFrame,
