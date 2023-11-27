@@ -1,16 +1,16 @@
 package com.oop.academy.presentation.authentication;
 
+import com.oop.academy.InjectionContainer;
+import com.oop.academy.application.repositories.authentication.AuthRepository;
 import com.oop.academy.models.User;
-import static com.oop.academy.presentation.InjectionContainer.authRepository;
 import com.oop.academy.presentation.MainFrame;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class RegisterView extends javax.swing.JPanel {
 
     private final MainFrame mainFrame;
+    private final AuthRepository authRepository = InjectionContainer.authRepository;
 
     public RegisterView(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
@@ -29,7 +29,7 @@ public class RegisterView extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         btnRegister = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        btnLogin = new javax.swing.JLabel();
+        lblLogin = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         inputFullname = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -67,13 +67,9 @@ public class RegisterView extends javax.swing.JPanel {
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("User Name   :");
 
-        inputUsername.setForeground(new java.awt.Color(0, 0, 0));
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Gender         :");
 
         btnRegister.setBackground(new java.awt.Color(102, 102, 255));
@@ -87,29 +83,23 @@ public class RegisterView extends javax.swing.JPanel {
         });
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("sudah punya akun?");
 
-        btnLogin.setForeground(new java.awt.Color(51, 102, 255));
-        btnLogin.setText("Login");
-        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblLogin.setForeground(new java.awt.Color(51, 102, 255));
+        lblLogin.setText("Login");
+        lblLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLoginMouseClicked(evt);
+                lblLoginMouseClicked(evt);
             }
         });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Full Name    :");
 
-        inputFullname.setForeground(new java.awt.Color(0, 0, 0));
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Birthdate     :");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Email           :");
 
         inputEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -122,10 +112,8 @@ public class RegisterView extends javax.swing.JPanel {
         comboGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-laki", "Perempuan" }));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("password    :");
 
-        showPassword.setForeground(new java.awt.Color(0, 0, 0));
         showPassword.setText("Show Password");
         showPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +135,7 @@ public class RegisterView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLogin)))
+                        .addComponent(lblLogin)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(79, Short.MAX_VALUE)
@@ -218,14 +206,18 @@ public class RegisterView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(btnLogin))
+                    .addComponent(lblLogin))
                 .addGap(37, 37, 37))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
+    private void goToLogin() {
         mainFrame.showView(new LoginView(mainFrame));
-    }//GEN-LAST:event_btnLoginMouseClicked
+    }
+
+    private void lblLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginMouseClicked
+        goToLogin();
+    }//GEN-LAST:event_lblLoginMouseClicked
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         String username = inputUsername.getText();
@@ -233,20 +225,14 @@ public class RegisterView extends javax.swing.JPanel {
         String gender = comboGender.getName();
         Date birthdate = dateChooser.getDate();
         String email = inputEmail.getText();
-        String password = inputPassword.getText();
+        String password = String.valueOf(inputPassword.getPassword());
+        System.out.println("birthdate " + birthdate.toString());
 
         try {
-            authRepository.Register(new User(username, name, gender, birthdate,
+            authRepository.register(new User(username, name, gender, birthdate,
                     email, password));
-            JOptionPane.showMessageDialog(
-                    mainFrame,
-                    "berhasil register",
-                    "Berhasil",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-            mainFrame.showView(new LoginView(mainFrame));
 
-        } catch (Exception ex) {
+        } catch (Exception ex){
             JOptionPane.showMessageDialog(
                     mainFrame,
                     ex.getMessage(),
@@ -254,8 +240,13 @@ public class RegisterView extends javax.swing.JPanel {
                     JOptionPane.INFORMATION_MESSAGE
             );
         }
-
-
+        JOptionPane.showMessageDialog(
+                mainFrame,
+                "berhasil register",
+                "Berhasil",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+        goToLogin();
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void showPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordActionPerformed
@@ -271,7 +262,6 @@ public class RegisterView extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnLogin;
     private javax.swing.JButton btnRegister;
     private javax.swing.JComboBox<String> comboGender;
     private com.toedter.calendar.JDateChooser dateChooser;
@@ -289,6 +279,7 @@ public class RegisterView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblLogin;
     private javax.swing.JCheckBox showPassword;
     // End of variables declaration//GEN-END:variables
 }

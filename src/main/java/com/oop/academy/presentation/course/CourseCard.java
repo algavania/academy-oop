@@ -4,6 +4,9 @@
  */
 package com.oop.academy.presentation.course;
 
+import com.oop.academy.Currency;
+import com.oop.academy.models.Course;
+
 /**
  *
  * @author MSI
@@ -12,9 +15,14 @@ public class CourseCard extends javax.swing.JPanel {
 
     /**
      * Creates new form CourseCard
+     * @param course
      */
-    public CourseCard() {
+    public CourseCard(Course course) {
         initComponents();
+        lblCategory.setText(course.getCategory().getName());
+        lblPrice.setText(Currency.convertToRupiah(course.getPrice()));
+        lblTeacherName.setText(course.getTeacher().getName());
+        taName.setText(course.getName());
     }
 
     /**
@@ -27,28 +35,28 @@ public class CourseCard extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        textComponent1 = new com.oop.academy.presentation.components.TextComponent();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        taName = new com.oop.academy.presentation.components.TextComponent();
+        lblCategory = new javax.swing.JLabel();
+        lblTeacherName = new javax.swing.JLabel();
+        lblPrice = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(290, 165));
         setPreferredSize(new java.awt.Dimension(290, 165));
 
-        textComponent1.setBackground(new java.awt.Color(255, 255, 255));
-        textComponent1.setColumns(20);
-        textComponent1.setRows(5);
-        textComponent1.setText("Belajar Pemrogramman OOP dengan Java");
-        textComponent1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jScrollPane1.setViewportView(textComponent1);
+        taName.setBackground(new java.awt.Color(255, 255, 255));
+        taName.setColumns(20);
+        taName.setRows(5);
+        taName.setText("Belajar Pemrogramman OOP dengan Java");
+        taName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jScrollPane1.setViewportView(taName);
 
-        jLabel1.setText("Programming");
+        lblCategory.setText("Programming");
 
-        jLabel2.setText("John Doe");
+        lblTeacherName.setText("John Doe");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Rp90.000");
+        lblPrice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPrice.setText("Rp90.000");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -61,36 +69,36 @@ public class CourseCard extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(lblCategory)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(lblTeacherName)
+                            .addComponent(lblPrice))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblCategory)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(lblTeacherName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(lblPrice)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private com.oop.academy.presentation.components.TextComponent textComponent1;
+    private javax.swing.JLabel lblCategory;
+    private javax.swing.JLabel lblPrice;
+    private javax.swing.JLabel lblTeacherName;
+    private com.oop.academy.presentation.components.TextComponent taName;
     // End of variables declaration//GEN-END:variables
 }

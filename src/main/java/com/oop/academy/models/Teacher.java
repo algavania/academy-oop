@@ -5,17 +5,22 @@
 package com.oop.academy.models;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
  *
  * @author mamir
  */
-public class Teacher {
+public class Teacher extends Student {
     private List<Education> educations;
     private String coverLetter;
     private String personalWebsiteUrl;
     private List<Course> courses;
+
+    public Teacher(String username, String name, String gender, Date birthdate, String email, String password, String photoUrl, double balance) {
+        super(username, name, gender, birthdate, email, password, photoUrl, balance);
+    }
 
     public List<Education> getEducations() {
         return educations;

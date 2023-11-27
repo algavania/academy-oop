@@ -1,5 +1,6 @@
 com\oop\academy\presentation\dashboard\submission\UpdateSubmission.class
 com\oop\academy\application\service\DatabaseService.class
+com\oop\academy\InjectionContainer.class
 com\oop\academy\presentation\dashboard\CategoryManagementView$1.class
 com\oop\academy\models\StudentSubmission.class
 com\oop\academy\presentation\dashboard\course\AddCourseContentView.class
@@ -8,9 +9,11 @@ com\oop\academy\presentation\dashboard\CategoryManagementView$4.class
 com\oop\academy\application\repositories\category\CategoryRepository.class
 com\oop\academy\application\repositories\authentication\BaseAuthRepository.class
 com\oop\academy\presentation\dashboard\course\MaterialDetail$2.class
+com\oop\academy\Currency.class
 com\oop\academy\presentation\course\CoursesView.class
 com\oop\academy\presentation\authentication\LoginView$1.class
 com\oop\academy\presentation\authentication\RegisterView$3.class
+com\oop\academy\presentation\course\DetailCourseView.class
 com\oop\academy\application\repositories\course\BaseCourseRepository.class
 com\oop\academy\models\Category.class
 com\oop\academy\models\User.class
@@ -37,7 +40,6 @@ com\oop\academy\presentation\dashboard\test$2.class
 com\oop\academy\presentation\MainFrame.class
 com\oop\academy\presentation\authentication\RegisterView$2.class
 com\oop\academy\presentation\dashboard\course\UpdateCourseView$1.class
-com\oop\academy\presentation\InjectionContainer.class
 com\oop\academy\presentation\authentication\LoginView$3.class
 com\oop\academy\presentation\dashboard\test$6.class
 com\oop\academy\presentation\dashboard\course\UpdateCourseView.class
@@ -57,7 +59,6 @@ com\oop\academy\application\repositories\authentication\AuthRepository.class
 com\oop\academy\presentation\dashboard\course\MyCourseView.class
 com\oop\academy\presentation\dashboard\course\UpdateCourseView$2.class
 com\oop\academy\presentation\dashboard\test$5.class
-com\oop\academy\presentation\dashboard\AdminDashboardView.class
 com\oop\academy\presentation\dashboard\CategoryManagementView$7.class
 com\oop\academy\presentation\authentication\RegisterView.class
 com\oop\academy\models\Student.class

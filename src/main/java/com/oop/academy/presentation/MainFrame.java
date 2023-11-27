@@ -4,8 +4,8 @@
  */
 package com.oop.academy.presentation;
 
+import com.oop.academy.InjectionContainer;
 import com.oop.academy.presentation.authentication.LoginView;
-import com.oop.academy.presentation.course.CoursesView;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 

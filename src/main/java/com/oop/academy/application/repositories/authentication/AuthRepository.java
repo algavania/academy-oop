@@ -18,7 +18,7 @@ public class AuthRepository implements BaseAuthRepository {
     private final List<User> users = DatabaseService.getUsers();
 
     @Override
-    public void Register(User user) throws Exception {
+    public void register(User user) throws Exception {
         boolean isUserNameExist = false;
         for (User data : users) {
             isUserNameExist = data.getUsername().equalsIgnoreCase(user.getUsername());
@@ -30,21 +30,18 @@ public class AuthRepository implements BaseAuthRepository {
             throw new Exception("username sudah dipakai, silakan pilih nama lain.");
         } else {
             users.add(user);
-            throw new Exception("berhasil mendaftar");
 
         }
     }
 
     @Override
-    public int Login(String username, String password) throws Exception {
-        int i = 0;
+    public User login(String username, String password) throws Exception {
         for (User data : users) {
             if (data.getUsername().equals(username)
                     && data.getPassword().equals(password)) {
-
-                return i;
+                DatabaseService.currentUser = data;
+                return data;
             }
-            i++;
         }
         throw new Exception("data tidak ditemukan, coba lagi!");
 

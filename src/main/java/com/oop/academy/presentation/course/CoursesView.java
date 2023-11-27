@@ -1,20 +1,62 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package com.oop.academy.presentation.course;
+
+import com.oop.academy.models.Category;
+import com.oop.academy.models.Course;
+import com.oop.academy.models.Teacher;
+import com.oop.academy.presentation.MainFrame;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author MSI
  */
-public class CoursesView extends javax.swing.JPanel {
+public class CoursesView extends javax.swing.JInternalFrame {
+
+    List<Course> courses = new ArrayList();
 
     /**
      * Creates new form CoursesView
+     *
+     * @param mainFrame
      */
-    public CoursesView() {
+    public CoursesView(MainFrame mainFrame) {
         initComponents();
+        Course course = new Course();
+        Date date = new Date();
+        Teacher teacher = new Teacher("john", "John Doe", "Laki-laki", date, "john@gmail.com", "password", "", 50000);
+        course.setCategory(new Category("Programming"));
+        course.setName("Belajar Pemrogramman");
+        course.setTeacher(teacher);
+        course.setCreatedAt();
+        course.setPrice(50000);
+        courses.add(course);
+        courses.add(course);
+        courses.add(course);
+        courses.add(course);
+        courses.add(course);
+        courses.add(course);
+        
+        int courseSize = courses.size();
+
+        if (courseSize > 0) {
+            double result = (double) courseSize / 2.0;
+            int rows = (int) Math.round(result);
+            if (rows == 0) {
+                rows = 1;
+            }
+            this.cardPanels.setLayout(new GridLayout(rows, 2, 8, 8));
+            for (int i = 0; i < courseSize; i++) {
+                CourseCard courseCard = new CourseCard(course);
+                this.cardPanels.add(courseCard);
+            }
+        }
     }
 
     /**
@@ -26,28 +68,57 @@ public class CoursesView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        courseCard1 = new com.oop.academy.presentation.course.CourseCard();
+        lblIntroUser = new javax.swing.JLabel();
+        cardPanels = new javax.swing.JPanel();
+        lblBalance = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        lblIntroUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblIntroUser.setText("Halo, User!");
+
+        javax.swing.GroupLayout cardPanelsLayout = new javax.swing.GroupLayout(cardPanels);
+        cardPanels.setLayout(cardPanelsLayout);
+        cardPanelsLayout.setHorizontalGroup(
+            cardPanelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 797, Short.MAX_VALUE)
+        );
+        cardPanelsLayout.setVerticalGroup(
+            cardPanelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 362, Short.MAX_VALUE)
+        );
+
+        lblBalance.setText("Saldo: Rp50.000,00");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(courseCard1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(296, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblBalance)
+                    .addComponent(lblIntroUser)
+                    .addComponent(cardPanels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(courseCard1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(lblIntroUser)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblBalance)
+                .addGap(18, 18, 18)
+                .addComponent(cardPanels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.oop.academy.presentation.course.CourseCard courseCard1;
+    private javax.swing.JPanel cardPanels;
+    private javax.swing.JLabel lblBalance;
+    private javax.swing.JLabel lblIntroUser;
     // End of variables declaration//GEN-END:variables
 }
