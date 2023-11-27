@@ -11,18 +11,11 @@ import java.util.Date;
  * @author mamir
  */
 public class Submission {
+
     private int id;
     private String name;
     private String description;
     private Date created_at;
-
-    public Submission(int id, String name, String description, Date created_at) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.created_at = created_at;
-    }
-    
 
     public int getId() {
         return id;
