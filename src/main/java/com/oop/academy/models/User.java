@@ -21,15 +21,15 @@ public class User {
     private String photoUrl;
     private double balance;
 
-    public User(String username, String name, String gender, Date birthdate, String email, String password, String photoUrl, double balance) {
+    //for register purpose
+    public User(String username, String name, String gender, Date birthdate, 
+            String email, String password) {
         this.username = username;
         this.name = name;
         this.gender = gender;
         this.birthdate = birthdate;
         this.email = email;
         this.password = password;
-        this.photoUrl = photoUrl;
-        this.balance = balance;
     }
    
     public String getUsername() {
