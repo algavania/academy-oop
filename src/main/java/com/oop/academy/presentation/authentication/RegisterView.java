@@ -69,6 +69,12 @@ public class RegisterView extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("User Name   :");
 
+        inputUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputUsernameKeyTyped(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Gender         :");
 
@@ -232,7 +238,7 @@ public class RegisterView extends javax.swing.JPanel {
             authRepository.register(new User(username, name, gender, birthdate,
                     email, password));
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(
                     mainFrame,
                     ex.getMessage(),
@@ -259,6 +265,15 @@ public class RegisterView extends javax.swing.JPanel {
 
     private void inputEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputEmailActionPerformed
     }//GEN-LAST:event_inputEmailActionPerformed
+
+    private void inputUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputUsernameKeyTyped
+        char c = evt.getKeyChar();
+
+        // Allow only alphabets and numbers, no space
+        if (!(Character.isLetter(c) || Character.isDigit(c))) {
+            evt.consume();  // Ignore the event
+        }
+    }//GEN-LAST:event_inputUsernameKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
