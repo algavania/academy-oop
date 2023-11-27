@@ -5,6 +5,7 @@
 package com.oop.academy.application.repositories.category;
 
 import com.oop.academy.models.Category;
+import java.util.List;
 
 /**
  *
@@ -13,5 +14,7 @@ import com.oop.academy.models.Category;
 interface BaseCategoryRepository {
     public void addCategory(Category category) throws Exception;
     public void updateCategory(Category category, Category newCategory) throws Exception;
-    public void deleteCategory(Category category);
+    public void deleteCategory(Category category) throws Exception;
+    public List<Category> getAllCategory();
+    public Category getByName(String name) throws Exception;
 }
