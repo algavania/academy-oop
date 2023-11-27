@@ -20,6 +20,8 @@ public class User {
     private String password;
     private String photoUrl;
     private double balance;
+    
+    public User() {}
 
     public User(String username, String name, String gender, Date birthdate, String email, String password, String photoUrl, double balance) {
         this.username = username;

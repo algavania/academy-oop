@@ -4,6 +4,7 @@
  */
 package com.oop.academy.presentation;
 
+import com.oop.academy.InjectionContainer;
 import com.oop.academy.presentation.authentication.LoginView;
 import com.oop.academy.presentation.course.CoursesView;
 import java.awt.BorderLayout;
@@ -22,7 +23,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         InjectionContainer injectionContainer = new InjectionContainer();
         injectionContainer.init();
-        showView(new LoginView(this));
+        showView(new CoursesView(this));
     }
 
     public final void showView(JPanel view) {
