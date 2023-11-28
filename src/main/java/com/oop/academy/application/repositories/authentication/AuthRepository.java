@@ -30,6 +30,8 @@ public class AuthRepository implements BaseAuthRepository {
             throw new Exception("username sudah dipakai, silakan pilih nama lain.");
         } else {
             users.add(user);
+            throw new Exception("berhasil mendaftar");
+
         }
     }
 
@@ -44,7 +46,7 @@ public class AuthRepository implements BaseAuthRepository {
             }
             i++;
         }
-        throw new Exception("not found");
+        throw new Exception("data tidak ditemukan, coba lagi!");
 
     }
 

@@ -9,6 +9,8 @@ com\oop\academy\application\repositories\category\CategoryRepository.class
 com\oop\academy\application\repositories\authentication\BaseAuthRepository.class
 com\oop\academy\presentation\dashboard\course\MaterialDetail$2.class
 com\oop\academy\presentation\course\CoursesView.class
+com\oop\academy\presentation\authentication\LoginView$1.class
+com\oop\academy\presentation\authentication\RegisterView$3.class
 com\oop\academy\application\repositories\course\BaseCourseRepository.class
 com\oop\academy\models\Category.class
 com\oop\academy\models\User.class
@@ -33,8 +35,10 @@ com\oop\academy\presentation\dashboard\CategoryManagementView$6.class
 com\oop\academy\presentation\dashboard\course\AddCourseContentView$2.class
 com\oop\academy\presentation\dashboard\test$2.class
 com\oop\academy\presentation\MainFrame.class
+com\oop\academy\presentation\authentication\RegisterView$2.class
 com\oop\academy\presentation\dashboard\course\UpdateCourseView$1.class
 com\oop\academy\presentation\InjectionContainer.class
+com\oop\academy\presentation\authentication\LoginView$3.class
 com\oop\academy\presentation\dashboard\test$6.class
 com\oop\academy\presentation\dashboard\course\UpdateCourseView.class
 com\oop\academy\presentation\dashboard\course\AddCourseView$2.class
@@ -47,6 +51,7 @@ com\oop\academy\presentation\dashboard\UserDashboardView$2.class
 com\oop\academy\models\Teacher.class
 com\oop\academy\models\Admin.class
 com\oop\academy\models\Submission.class
+com\oop\academy\presentation\authentication\RegisterView$1.class
 com\oop\academy\presentation\dashboard\test$3.class
 com\oop\academy\application\repositories\authentication\AuthRepository.class
 com\oop\academy\presentation\dashboard\course\MyCourseView.class
@@ -57,9 +62,11 @@ com\oop\academy\presentation\dashboard\CategoryManagementView$7.class
 com\oop\academy\presentation\authentication\RegisterView.class
 com\oop\academy\models\Student.class
 com\oop\academy\presentation\components\TextComponent.class
+com\oop\academy\presentation\authentication\RegisterView$4.class
 com\oop\academy\presentation\dashboard\CategoryManagementView$3.class
 com\oop\academy\presentation\dashboard\UserDashboardView.class
 com\oop\academy\presentation\dashboard\test.class
+com\oop\academy\presentation\authentication\LoginView$2.class
 com\oop\academy\presentation\dashboard\UserDashboardView$1.class
 com\oop\academy\presentation\dashboard\submission\AddSubmissionView.class
 com\oop\academy\presentation\dashboard\course\MaterialDetail$1.class
