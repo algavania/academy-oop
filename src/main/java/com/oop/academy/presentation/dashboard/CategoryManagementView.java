@@ -1,6 +1,6 @@
 package com.oop.academy.presentation.dashboard;
 
-import com.oop.academy.application.repositories.category.CategoryRepository;
+import com.oop.academy.InjectionContainer;
 import com.oop.academy.models.Category;
 import com.oop.academy.presentation.MainFrame;
 import javax.swing.JOptionPane;
@@ -10,15 +10,12 @@ public class CategoryManagementView extends javax.swing.JPanel {
 
     private final MainFrame mainFrame;
     private final DefaultTableModel tableContent;
-    private final CategoryRepository categoryRepository;
 
-    public CategoryManagementView(MainFrame mainFrame, CategoryRepository categoryRepository) {
+    public CategoryManagementView(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         tableContent = new DefaultTableModel(new Object[][]{}, new String[]{
             "No", "Category"
         });
-        
-        this.categoryRepository = categoryRepository;
 
         renderTable();
         initComponents();
@@ -30,7 +27,7 @@ public class CategoryManagementView extends javax.swing.JPanel {
         tableContent.setRowCount(0);
 
         int i = 1;
-        for (Category category: categoryRepository.getAllCategory()) {
+        for (Category category: InjectionContainer.categoryRepository.getAllCategory()) {
             this.tableContent.addRow(new Object[]{
                 i,
                 category.getName(),
@@ -187,7 +184,7 @@ public class CategoryManagementView extends javax.swing.JPanel {
         
         if (btnAdd.getText().equals("Add")) {
             try {
-                categoryRepository.addCategory(new Category(newCategoryName));
+                InjectionContainer.categoryRepository.addCategory(new Category(newCategoryName));
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(
                     mainFrame,
@@ -201,8 +198,8 @@ public class CategoryManagementView extends javax.swing.JPanel {
         String categoryName = (String) tableContent.getValueAt(selectedRow, 1);
         
         try {
-                Category category = categoryRepository.getByName(categoryName);
-                categoryRepository.updateCategory(category, new Category(newCategoryName));
+                Category category = InjectionContainer.categoryRepository.getByName(categoryName);
+                InjectionContainer.categoryRepository.updateCategory(category, new Category(newCategoryName));
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(
                     mainFrame,
@@ -224,7 +221,7 @@ public class CategoryManagementView extends javax.swing.JPanel {
             String categoryName = (String) tableContent.getValueAt(selectedRow, 1);
             System.out.println(categoryName);
             try {
-                categoryRepository.deleteCategory(categoryRepository.getByName(categoryName));
+                InjectionContainer.categoryRepository.deleteCategory(InjectionContainer.categoryRepository.getByName(categoryName));
             } catch(Exception e) {
                 System.out.println(e.getMessage());
             }
