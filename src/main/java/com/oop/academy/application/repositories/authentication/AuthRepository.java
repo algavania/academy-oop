@@ -30,7 +30,6 @@ public class AuthRepository implements BaseAuthRepository {
             throw new Exception("username sudah dipakai, silakan pilih nama lain.");
         } else {
             users.add(user);
-            throw new Exception("berhasil mendaftar");
 
         }
     }
@@ -40,6 +39,7 @@ public class AuthRepository implements BaseAuthRepository {
         for (User data : users) {
             if (data.getUsername().equals(username)
                     && data.getPassword().equals(password)) {
+                DatabaseService.currentUser = data;
                 return data;
             }
         }

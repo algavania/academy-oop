@@ -40,6 +40,7 @@ com\oop\academy\presentation\dashboard\test$2.class
 com\oop\academy\presentation\MainFrame.class
 com\oop\academy\presentation\authentication\RegisterView$2.class
 com\oop\academy\presentation\dashboard\course\UpdateCourseView$1.class
+com\oop\academy\presentation\authentication\RegisterView$5.class
 com\oop\academy\presentation\authentication\LoginView$3.class
 com\oop\academy\presentation\dashboard\test$6.class
 com\oop\academy\presentation\dashboard\course\UpdateCourseView.class
@@ -59,7 +60,6 @@ com\oop\academy\application\repositories\authentication\AuthRepository.class
 com\oop\academy\presentation\dashboard\course\MyCourseView.class
 com\oop\academy\presentation\dashboard\course\UpdateCourseView$2.class
 com\oop\academy\presentation\dashboard\test$5.class
-com\oop\academy\presentation\dashboard\AdminDashboardView.class
 com\oop\academy\presentation\dashboard\CategoryManagementView$7.class
 com\oop\academy\presentation\authentication\RegisterView.class
 com\oop\academy\models\Student.class
