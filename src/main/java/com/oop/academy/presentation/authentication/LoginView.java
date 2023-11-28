@@ -174,7 +174,7 @@ public class LoginView extends javax.swing.JPanel {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String username = inputUsername.getText();
-        String password = inputPassword.getText();;
+        String password = String.valueOf(inputPassword.getPassword());
 
         try {
             authRepository.login(username, password);
