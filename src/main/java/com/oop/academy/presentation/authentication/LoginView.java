@@ -178,7 +178,7 @@ public class LoginView extends javax.swing.JPanel {
 
         try {
             authRepository.login(username, password);
-            mainFrame.showView(new UserDashboardView(mainFrame));
+            mainFrame.showView(new UserDashboardView(mainFrame, null));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(
                     mainFrame,
