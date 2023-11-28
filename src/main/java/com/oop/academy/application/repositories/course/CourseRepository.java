@@ -22,13 +22,16 @@ public class CourseRepository {
     {
         courses.add(course);
     }
-    public void updateCourse(Course course,int indeks)
-    {
-        courses.set(indeks, course);
+    public void updateCourse(Course course, Course newCourse) throws Exception {
+        if (!courses.remove(course)) {
+            throw new Exception("Course tidak ditemukan");
+        }
+        
+        courses.add(newCourse);
     }
-    public void deleteCourse(int indeks)
+    public void deleteCourse(Course course)
     {
-        courses.remove(indeks);
+        courses.remove(course);
     }
    
    
