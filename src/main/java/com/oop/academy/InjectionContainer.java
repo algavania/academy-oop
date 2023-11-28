@@ -4,6 +4,7 @@
  */
 package com.oop.academy;
 
+import com.oop.academy.application.repositories.authentication.AuthRepository;
 import com.oop.academy.application.repositories.category.CategoryRepository;
 
 /**
@@ -13,8 +14,10 @@ import com.oop.academy.application.repositories.category.CategoryRepository;
 public class InjectionContainer {
 
     public static CategoryRepository categoryRepository;
-    
+    public static AuthRepository authRepository;
+
     public void init() {
         categoryRepository = new CategoryRepository();
+        authRepository = new AuthRepository();
     }
 }

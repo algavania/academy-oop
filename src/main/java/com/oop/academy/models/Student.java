@@ -11,9 +11,7 @@ import java.util.Date;
  */
 public class Student extends User{
     
-    public Student(String username, String name, String gender, Date birthdate, 
-            String email, String password, String photoUrl, double balance) {
-        super(username, name, gender, birthdate, email, password, photoUrl, 
-                balance);
+    public Student(String username, String name, String gender, Date birthdate, String email, String password, String photoUrl, double balance) {
+        super(username, name, gender, birthdate, email, password);
     }    
 }

@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package com.oop.academy.presentation.course;
 
@@ -8,9 +8,7 @@ import com.oop.academy.models.Category;
 import com.oop.academy.models.Course;
 import com.oop.academy.models.Teacher;
 import com.oop.academy.presentation.MainFrame;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +17,7 @@ import java.util.List;
  *
  * @author MSI
  */
-public class CoursesView extends javax.swing.JPanel {
+public class CoursesView extends javax.swing.JInternalFrame {
 
     List<Course> courses = new ArrayList();
 
@@ -81,17 +79,17 @@ public class CoursesView extends javax.swing.JPanel {
         cardPanels.setLayout(cardPanelsLayout);
         cardPanelsLayout.setHorizontalGroup(
             cardPanelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 559, Short.MAX_VALUE)
+            .addGap(0, 797, Short.MAX_VALUE)
         );
         cardPanelsLayout.setVerticalGroup(
             cardPanelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 262, Short.MAX_VALUE)
+            .addGap(0, 362, Short.MAX_VALUE)
         );
 
         lblBalance.setText("Saldo: Rp50.000,00");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -100,7 +98,7 @@ public class CoursesView extends javax.swing.JPanel {
                     .addComponent(lblBalance)
                     .addComponent(lblIntroUser)
                     .addComponent(cardPanels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,10 +107,12 @@ public class CoursesView extends javax.swing.JPanel {
                 .addComponent(lblIntroUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblBalance)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(cardPanels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
