@@ -1,16 +1,16 @@
 package com.oop.academy.presentation.authentication;
 
+import com.oop.academy.InjectionContainer;
+import com.oop.academy.application.repositories.authentication.AuthRepository;
 import com.oop.academy.models.User;
-import static com.oop.academy.presentation.InjectionContainer.authRepository;
 import com.oop.academy.presentation.MainFrame;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class RegisterView extends javax.swing.JPanel {
 
     private final MainFrame mainFrame;
+    private final AuthRepository authRepository = InjectionContainer.authRepository;
 
     public RegisterView(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
@@ -87,7 +87,6 @@ public class RegisterView extends javax.swing.JPanel {
         });
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("sudah punya akun?");
 
         btnLogin.setForeground(new java.awt.Color(51, 102, 255));
@@ -223,8 +222,12 @@ public class RegisterView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
+    private void goToLogin() {
         mainFrame.showView(new LoginView(mainFrame));
+    }
+
+    private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
+        goToLogin();
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
@@ -233,10 +236,11 @@ public class RegisterView extends javax.swing.JPanel {
         String gender = comboGender.getName();
         Date birthdate = dateChooser.getDate();
         String email = inputEmail.getText();
-        String password = inputPassword.getText();
+        String password = String.valueOf(inputPassword.getPassword());
+        System.out.println("birthdate " + birthdate.toString());
 
         try {
-            authRepository.Register(new User(username, name, gender, birthdate,
+            authRepository.register(new User(username, name, gender, birthdate,
                     email, password));
             JOptionPane.showMessageDialog(
                     mainFrame,
@@ -244,6 +248,7 @@ public class RegisterView extends javax.swing.JPanel {
                     "Berhasil",
                     JOptionPane.INFORMATION_MESSAGE
             );
+            goToLogin();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(
                     mainFrame,
@@ -251,9 +256,8 @@ public class RegisterView extends javax.swing.JPanel {
                     "Error",
                     JOptionPane.INFORMATION_MESSAGE
             );
+
         }
-
-
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void showPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordActionPerformed

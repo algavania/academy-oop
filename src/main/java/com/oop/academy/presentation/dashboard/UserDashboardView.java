@@ -4,31 +4,39 @@
  */
 package com.oop.academy.presentation.dashboard;
 
-import com.oop.academy.presentation.dashboard.course.*;
+import com.oop.academy.presentation.MainFrame;
+import com.oop.academy.presentation.course.CoursesView;
+
 /**
  *
  * @author mapam
  */
 public class UserDashboardView extends javax.swing.JPanel {
-    String x = "Teacher";
+
+    String x = "User";
+    MainFrame mainFrame;
+
     /**
      * Creates new form UserDashboard
+     *
+     * @param mainFrame
      */
-    public UserDashboardView() {
+    public UserDashboardView(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
         initComponents();
-        
-        if(x == "Teacher"){
+
+        if (x.equalsIgnoreCase("Teacher")) {
             LoginLabel.setText("Login sebagai Teacher.");
             Menu1.setText("My Lecture");
             Menu2.setText("Add Course");
             Menu3.setText("");
             Menu4.setText("");
             Menu5.setText("");
-        }else{
+        } else {
             LoginLabel.setText("Login sebagai Student.");
-            Menu1.setText("Profile");
+            Menu1.setText("Home");
             Menu2.setText("My Course");
-            Menu3.setText("");
+            Menu3.setText("Profile");
             Menu4.setText("");
             Menu5.setText("");
         }
@@ -95,7 +103,7 @@ public class UserDashboardView extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(AcademyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LoginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LoginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -187,7 +195,7 @@ public class UserDashboardView extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(LogoutButton)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +219,7 @@ public class UserDashboardView extends javax.swing.JPanel {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
+            .addGap(0, 741, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,8 +232,8 @@ public class UserDashboardView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -240,7 +248,7 @@ public class UserDashboardView extends javax.swing.JPanel {
 
     private void Menu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu1MouseClicked
         // TODO add your handling code here:
-        AddCourseView addCourse = new AddCourseView();
+        CoursesView addCourse = new CoursesView(mainFrame);
         jDesktopPane1.removeAll();
         jDesktopPane1.add(addCourse).setVisible(true);
     }//GEN-LAST:event_Menu1MouseClicked
@@ -281,7 +289,7 @@ public class UserDashboardView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AcademyLabel;
     private javax.swing.JLabel LoginLabel;

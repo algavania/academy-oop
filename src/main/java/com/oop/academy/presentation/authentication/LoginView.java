@@ -4,11 +4,10 @@
  */
 package com.oop.academy.presentation.authentication;
 
+import com.oop.academy.InjectionContainer;
 import com.oop.academy.application.repositories.authentication.AuthRepository;
-import static com.oop.academy.presentation.InjectionContainer.authRepository;
 import com.oop.academy.presentation.MainFrame;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.oop.academy.presentation.dashboard.UserDashboardView;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +17,7 @@ import javax.swing.JOptionPane;
 public class LoginView extends javax.swing.JPanel {
 
     private final MainFrame mainFrame;
+    private final AuthRepository authRepository = InjectionContainer.authRepository;
 
     public LoginView(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
@@ -75,13 +75,11 @@ public class LoginView extends javax.swing.JPanel {
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("UserName :");
 
         inputUsername.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Password   :");
 
         btnLogin.setBackground(new java.awt.Color(102, 102, 255));
@@ -95,7 +93,6 @@ public class LoginView extends javax.swing.JPanel {
         });
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("belum punya akun?");
 
         jLabel5.setForeground(new java.awt.Color(51, 102, 255));
@@ -180,13 +177,8 @@ public class LoginView extends javax.swing.JPanel {
         String password = inputPassword.getText();;
 
         try {
-            authRepository.Login(username, password);
-            JOptionPane.showMessageDialog(
-                    mainFrame,
-                    "berhasil login",
-                    "Berhasil",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
+            authRepository.login(username, password);
+            mainFrame.showView(new UserDashboardView(mainFrame));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(
                     mainFrame,

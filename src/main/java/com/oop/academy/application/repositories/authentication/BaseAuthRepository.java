@@ -11,6 +11,6 @@ import com.oop.academy.models.User;
  * @author mamir
  */
 public interface BaseAuthRepository {
-    public void Register(User user) throws Exception;
-    public int Login(String username, String password) throws Exception;
+    public void register(User user) throws Exception;
+    public User login(String username, String password) throws Exception;
 }
