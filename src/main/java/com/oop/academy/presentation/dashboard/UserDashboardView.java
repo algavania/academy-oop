@@ -5,13 +5,14 @@
 package com.oop.academy.presentation.dashboard;
 
 import com.oop.academy.application.service.DatabaseService;
-import static com.oop.academy.application.service.DatabaseService.currentUser;
 import com.oop.academy.models.Admin;
 import com.oop.academy.models.Teacher;
 import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.authentication.LoginView;
 import com.oop.academy.presentation.course.CoursesView;
+import com.oop.academy.presentation.profile.ProfileView;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -25,19 +26,20 @@ public class UserDashboardView extends javax.swing.JPanel {
      * Creates new form UserDashboard
      *
      * @param mainFrame
+     * @param initialFrame
      */
-    public UserDashboardView(MainFrame mainFrame) {
+    public UserDashboardView(MainFrame mainFrame, JInternalFrame initialFrame) {
         this.mainFrame = mainFrame;
-        initComponents();        
+        initComponents();
         User currentUser = DatabaseService.currentUser;
-        if (currentUser instanceof Admin){
+        if (currentUser instanceof Admin) {
             LoginLabel.setText("Login sebagai Admin.");
             Menu1.setText("Teacher List");
             Menu2.setText("Student List");
             Menu3.setText("Courses List");
             Menu4.setText("Approval");
             Menu5.setVisible(false);
-        } else if(currentUser instanceof Teacher) {
+        } else if (currentUser instanceof Teacher) {
             LoginLabel.setText("Login sebagai Teacher.");
             Menu1.setText("My Lecture");
             Menu2.setText("Add Course");
@@ -52,6 +54,14 @@ public class UserDashboardView extends javax.swing.JPanel {
             Menu4.setVisible(false);
             Menu5.setVisible(false);
         }
+        if (initialFrame != null) {
+            changeInternalFrame(initialFrame);
+        }
+    }
+
+    private void changeInternalFrame(JInternalFrame view) {
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(view).setVisible(true);
     }
 
     /**
@@ -192,7 +202,7 @@ public class UserDashboardView extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(LogoutButton)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,11 +213,11 @@ public class UserDashboardView extends javax.swing.JPanel {
                 .addComponent(Menu2)
                 .addGap(18, 18, 18)
                 .addComponent(Menu3)
-                .addGap(18, 18, 18)
+                .addGap(0, 0, 0)
                 .addComponent(Menu4)
                 .addGap(18, 18, 18)
                 .addComponent(Menu5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE)
                 .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -216,11 +226,11 @@ public class UserDashboardView extends javax.swing.JPanel {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 741, Short.MAX_VALUE)
+            .addGap(0, 873, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 537, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -245,20 +255,12 @@ public class UserDashboardView extends javax.swing.JPanel {
 
     private void Menu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu1MouseClicked
         // TODO add your handling code here:
-        if (currentUser instanceof Admin){
-            
-        } else if(currentUser instanceof Teacher) {
-            CoursesView courseView = new CoursesView(mainFrame);
-            jDesktopPane1.removeAll();
-            jDesktopPane1.add(courseView).setVisible(true);
-        } else {
-            
-        }
 
     }//GEN-LAST:event_Menu1MouseClicked
 
     private void Menu1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu1MousePressed
         // TODO add your handling code here:
+        changeInternalFrame(new CoursesView(mainFrame));
         MenuLabel.setText("Home");
     }//GEN-LAST:event_Menu1MousePressed
 
@@ -277,6 +279,7 @@ public class UserDashboardView extends javax.swing.JPanel {
     private void Menu3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu3MousePressed
         // TODO add your handling code here:
         MenuLabel.setText("Profile");
+        changeInternalFrame(new ProfileView(mainFrame));
     }//GEN-LAST:event_Menu3MousePressed
 
     private void Menu4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu4MousePressed
@@ -292,7 +295,7 @@ public class UserDashboardView extends javax.swing.JPanel {
     private void LogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutButtonActionPerformed
         // TODO add your handling code here:
         DatabaseService.currentUser = null;
-        mainFrame.showView(new LoginView(mainFrame));        
+        mainFrame.showView(new LoginView(mainFrame));
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
 
