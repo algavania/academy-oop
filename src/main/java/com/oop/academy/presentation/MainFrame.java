@@ -5,11 +5,8 @@
 package com.oop.academy.presentation;
 
 import com.oop.academy.InjectionContainer;
-import com.oop.academy.models.User;
 import com.oop.academy.presentation.authentication.LoginView;
-import com.oop.academy.presentation.dashboard.UserManagementView;
 import java.awt.BorderLayout;
-import java.util.Date;
 import javax.swing.JPanel;
 
 /**
@@ -25,8 +22,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         InjectionContainer injectionContainer = new InjectionContainer();
         injectionContainer.init();
-        InjectionContainer.userReposiotory.add(new User("yantokucul", "yanto", "cowok", new Date(), "yanto@gmail.com", "12345678"));
-        showView(new UserManagementView(this));
+        showView(new LoginView(this));
     }
 
     public final void showView(JPanel view) {
