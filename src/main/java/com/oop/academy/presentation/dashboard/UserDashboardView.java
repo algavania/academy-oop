@@ -28,16 +28,16 @@ public class UserDashboardView extends javax.swing.JPanel {
      */
     public UserDashboardView(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
-        initComponents();        
+        initComponents();
         User currentUser = DatabaseService.currentUser;
-        if (currentUser instanceof Admin){
+        if (currentUser instanceof Admin) {
             LoginLabel.setText("Login sebagai Admin.");
             Menu1.setText("Teacher List");
             Menu2.setText("Student List");
             Menu3.setText("Courses List");
             Menu4.setText("Approval");
             Menu5.setVisible(false);
-        } else if(currentUser instanceof Teacher) {
+        } else if (currentUser instanceof Teacher) {
             LoginLabel.setText("Login sebagai Teacher.");
             Menu1.setText("My Lecture");
             Menu2.setText("Add Course");
@@ -245,15 +245,10 @@ public class UserDashboardView extends javax.swing.JPanel {
 
     private void Menu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu1MouseClicked
         // TODO add your handling code here:
-        if (currentUser instanceof Admin){
-            
-        } else if(currentUser instanceof Teacher) {
-            CoursesView courseView = new CoursesView(mainFrame);
-            jDesktopPane1.removeAll();
-            jDesktopPane1.add(courseView).setVisible(true);
-        } else {
-            
-        }
+        CoursesView courseView = new CoursesView(mainFrame);
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(courseView).setVisible(true);
+
 
     }//GEN-LAST:event_Menu1MouseClicked
 
@@ -292,7 +287,7 @@ public class UserDashboardView extends javax.swing.JPanel {
     private void LogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutButtonActionPerformed
         // TODO add your handling code here:
         DatabaseService.currentUser = null;
-        mainFrame.showView(new LoginView(mainFrame));        
+        mainFrame.showView(new LoginView(mainFrame));
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
 
