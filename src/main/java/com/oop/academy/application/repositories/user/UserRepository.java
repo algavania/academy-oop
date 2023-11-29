@@ -41,4 +41,9 @@ public class UserRepository implements BaseUserRepository{
             throw new Exception("User tidak ditemukan");
         }
     }
+
+    @Override
+    public void topUp(int balance) {
+        DatabaseService.currentUser.setBalance(DatabaseService.currentUser.getBalance() + balance);
+    }
 }

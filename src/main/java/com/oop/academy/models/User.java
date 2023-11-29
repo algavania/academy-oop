@@ -19,7 +19,7 @@ public class User {
     private String email;
     private String password;
     private String photoUrl;
-    private double balance;
+    private int balance;
     
     public User() {}
 
@@ -90,11 +90,11 @@ public class User {
         this.photoUrl = photoUrl;
     }
 
-    public double getBalance() {
+    public int getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(int balance) {
         this.balance = balance;
     }
 

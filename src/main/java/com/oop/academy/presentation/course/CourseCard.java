@@ -4,7 +4,7 @@
  */
 package com.oop.academy.presentation.course;
 
-import com.oop.academy.Currency;
+import com.oop.academy.CurrencyHelper;
 import com.oop.academy.models.Course;
 
 /**
@@ -20,7 +20,7 @@ public class CourseCard extends javax.swing.JPanel {
     public CourseCard(Course course) {
         initComponents();
         lblCategory.setText(course.getCategory().getName());
-        lblPrice.setText(Currency.convertToRupiah(course.getPrice()));
+        lblPrice.setText(CurrencyHelper.convertToRupiah(course.getPrice()));
         lblTeacherName.setText(course.getTeacher().getName());
         taName.setText(course.getName());
     }

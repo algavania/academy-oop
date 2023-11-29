@@ -48,6 +48,7 @@ public class CoursesView extends javax.swing.JInternalFrame {
             }
         }
         
+        lblIntroUser.setText("Halo, "+DatabaseService.currentUser.getName());
         btnAddCourse.setVisible(DatabaseService.currentUser instanceof Teacher);
     }
 
@@ -62,7 +63,6 @@ public class CoursesView extends javax.swing.JInternalFrame {
 
         lblIntroUser = new javax.swing.JLabel();
         cardPanels = new javax.swing.JPanel();
-        lblBalance = new javax.swing.JLabel();
         btnAddCourse = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(873, 537));
@@ -81,8 +81,6 @@ public class CoursesView extends javax.swing.JInternalFrame {
             .addGap(0, 397, Short.MAX_VALUE)
         );
 
-        lblBalance.setText("Saldo: Rp50.000,00");
-
         btnAddCourse.setText("Tambah Course");
         btnAddCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,9 +97,6 @@ public class CoursesView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cardPanels, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblBalance)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblIntroUser)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 643, Short.MAX_VALUE)
                         .addComponent(btnAddCourse)))
@@ -114,9 +109,7 @@ public class CoursesView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddCourse)
                     .addComponent(lblIntroUser))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblBalance)
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
                 .addComponent(cardPanels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -133,7 +126,6 @@ public class CoursesView extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCourse;
     private javax.swing.JPanel cardPanels;
-    private javax.swing.JLabel lblBalance;
     private javax.swing.JLabel lblIntroUser;
     // End of variables declaration//GEN-END:variables
 }

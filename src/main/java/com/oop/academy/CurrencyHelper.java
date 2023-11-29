@@ -11,7 +11,7 @@ import java.text.DecimalFormatSymbols;
  *
  * @author MSI
  */
-public class Currency {
+public class CurrencyHelper {
     public static String convertToRupiah(int number) {
         DecimalFormat rupiah = (DecimalFormat) DecimalFormat.getCurrencyInstance();
         DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
