@@ -23,11 +23,13 @@ public class CourseRepository {
         courses.add(course);
     }
     public void updateCourse(Course course, Course newCourse) throws Exception {
-        if (!courses.remove(course)) {
-            throw new Exception("Course tidak ditemukan");
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i) == course) {
+                courses.set(i, newCourse);
+                return;
+            }
         }
-        
-        courses.add(newCourse);
+        throw new Exception("Course tidak ditemukan");
     }
     public void deleteCourse(Course course)
     {

@@ -34,7 +34,7 @@ public class AddCourseContentView extends javax.swing.JInternalFrame {
         SubmitButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        KategoriList = new javax.swing.JList<>();
+        categoryList = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         DeskripsiField = new javax.swing.JTextArea();
 
@@ -62,12 +62,12 @@ public class AddCourseContentView extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setText("                                                                    TAMBAH KELAS");
 
-        KategoriList.setModel(new javax.swing.AbstractListModel<String>() {
+        categoryList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(KategoriList);
+        jScrollPane1.setViewportView(categoryList);
 
         DeskripsiField.setColumns(20);
         DeskripsiField.setRows(5);
@@ -142,9 +142,9 @@ public class AddCourseContentView extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea DeskripsiField;
-    private javax.swing.JList<String> KategoriList;
     private javax.swing.JTextField NameField;
     private javax.swing.JButton SubmitButton;
+    private javax.swing.JList<String> categoryList;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

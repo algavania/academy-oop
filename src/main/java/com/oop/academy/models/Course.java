@@ -17,7 +17,6 @@ import javax.swing.ImageIcon;
 public class Course {
     private String name;
     private int price;
-    private String image;
     private List<Student> listStudent;
     private Teacher teacher;
     private Category category;
@@ -27,9 +26,9 @@ public class Course {
     
     public Course()
     {
-        this.listStudent = new ArrayList<Student>();
-        this.listCourseContent = new ArrayList<CourseContent>();
-        this.listStudentSubmission = new ArrayList<StudentSubmission>();
+        this.listStudent = new ArrayList<>();
+        this.listCourseContent = new ArrayList<>();
+        this.listStudentSubmission = new ArrayList<>();
     }
     
     public void setTeacher(Teacher teacher)
@@ -54,14 +53,6 @@ public class Course {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public List<Student> getListStudent() {

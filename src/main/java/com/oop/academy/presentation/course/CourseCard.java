@@ -41,8 +41,8 @@ public class CourseCard extends javax.swing.JPanel {
         lblPrice = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(290, 165));
-        setPreferredSize(new java.awt.Dimension(290, 165));
+        setMaximumSize(new java.awt.Dimension(230, 165));
+        setPreferredSize(new java.awt.Dimension(340, 165));
 
         taName.setBackground(new java.awt.Color(255, 255, 255));
         taName.setColumns(20);

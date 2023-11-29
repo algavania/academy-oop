@@ -1,5 +1,6 @@
 com\oop\academy\presentation\dashboard\admin\CategoryManagementView$4.class
 com\oop\academy\presentation\profile\ProfileView$2.class
+com\oop\academy\NumericDocumentFilter.class
 com\oop\academy\presentation\dashboard\admin\OldUserManagementView$3.class
 com\oop\academy\presentation\dashboard\admin\OldCategoryManagementView$7.class
 com\oop\academy\presentation\dashboard\admin\UserManagementView$2.class
@@ -20,6 +21,7 @@ com\oop\academy\models\User.class
 com\oop\academy\presentation\dashboard\admin\UserManagementView$11.class
 com\oop\academy\presentation\dashboard\admin\OldCategoryManagementView$1.class
 com\oop\academy\presentation\dashboard\course\MaterialDetail$3.class
+com\oop\academy\presentation\course\AddCourseView$4.class
 com\oop\academy\presentation\course\AddCourseView$1.class
 com\oop\academy\presentation\dashboard\admin\OldCategoryManagementView$2.class
 com\oop\academy\presentation\MainFrame.class
