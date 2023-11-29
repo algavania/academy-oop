@@ -78,6 +78,8 @@ public class CoursesView extends javax.swing.JInternalFrame {
         lblBalance = new javax.swing.JLabel();
         btnAddCourse = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(760, 496));
+
         lblIntroUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblIntroUser.setText("Halo, User!");
 
@@ -85,7 +87,7 @@ public class CoursesView extends javax.swing.JInternalFrame {
         cardPanels.setLayout(cardPanelsLayout);
         cardPanelsLayout.setHorizontalGroup(
             cardPanelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 797, Short.MAX_VALUE)
+            .addGap(0, 695, Short.MAX_VALUE)
         );
         cardPanelsLayout.setVerticalGroup(
             cardPanelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +108,7 @@ public class CoursesView extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblBalance)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)

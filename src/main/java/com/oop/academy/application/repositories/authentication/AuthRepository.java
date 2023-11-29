@@ -7,7 +7,6 @@ package com.oop.academy.application.repositories.authentication;
 import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.models.User;
 import java.util.List;
-import com.oop.academy.application.repositories.authentication.BaseAuthRepository;
 
 /**
  *
@@ -30,8 +29,6 @@ public class AuthRepository implements BaseAuthRepository {
             throw new Exception("username sudah dipakai, silakan pilih nama lain.");
         } else {
             users.add(user);
-            throw new Exception("berhasil mendaftar");
-
         }
     }
 
@@ -45,7 +42,10 @@ public class AuthRepository implements BaseAuthRepository {
             }
         }
         throw new Exception("data tidak ditemukan, coba lagi!");
-
     }
-
+    
+    @Override
+    public void logout() {
+        DatabaseService.currentUser = null;
+    }
 }
