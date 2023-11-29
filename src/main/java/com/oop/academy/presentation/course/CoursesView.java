@@ -4,6 +4,7 @@
  */
 package com.oop.academy.presentation.course;
 
+import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.models.Category;
 import com.oop.academy.models.Course;
 import com.oop.academy.models.Teacher;
@@ -20,6 +21,7 @@ import java.util.List;
 public class CoursesView extends javax.swing.JInternalFrame {
 
     List<Course> courses = new ArrayList();
+    private MainFrame mainFrame;
 
     /**
      * Creates new form CoursesView
@@ -27,6 +29,7 @@ public class CoursesView extends javax.swing.JInternalFrame {
      * @param mainFrame
      */
     public CoursesView(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
         initComponents();
         Course course = new Course();
         Date date = new Date();
@@ -57,6 +60,8 @@ public class CoursesView extends javax.swing.JInternalFrame {
                 this.cardPanels.add(courseCard);
             }
         }
+        
+        btnAddCourse.setVisible(DatabaseService.currentUser instanceof Teacher);
     }
 
     /**
@@ -71,6 +76,7 @@ public class CoursesView extends javax.swing.JInternalFrame {
         lblIntroUser = new javax.swing.JLabel();
         cardPanels = new javax.swing.JPanel();
         lblBalance = new javax.swing.JLabel();
+        btnAddCourse = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(760, 496));
 
@@ -90,35 +96,54 @@ public class CoursesView extends javax.swing.JInternalFrame {
 
         lblBalance.setText("Saldo: Rp50.000,00");
 
+        btnAddCourse.setText("Tambah Course");
+        btnAddCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddCourseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblBalance)
-                    .addComponent(lblIntroUser)
-                    .addComponent(cardPanels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(lblIntroUser)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAddCourse))
+                        .addComponent(cardPanels, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(lblIntroUser)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIntroUser)
+                    .addComponent(btnAddCourse))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblBalance)
                 .addGap(18, 18, 18)
                 .addComponent(cardPanels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAddCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCourseActionPerformed
+        mainFrame.showView(new AddCourseView(mainFrame));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddCourseActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddCourse;
     private javax.swing.JPanel cardPanels;
     private javax.swing.JLabel lblBalance;
     private javax.swing.JLabel lblIntroUser;

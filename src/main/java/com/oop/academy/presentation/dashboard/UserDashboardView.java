@@ -11,6 +11,8 @@ import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.authentication.LoginView;
 import com.oop.academy.presentation.course.CoursesView;
+import com.oop.academy.presentation.dashboard.admin.CategoryManagementView;
+import com.oop.academy.presentation.dashboard.admin.UserManagementView;
 import com.oop.academy.presentation.profile.ProfileView;
 import javax.swing.JInternalFrame;
 
@@ -32,11 +34,11 @@ public class UserDashboardView extends javax.swing.JPanel {
     public UserDashboardView(MainFrame mainFrame, JInternalFrame initialFrame) {
         this.mainFrame = mainFrame;
         initComponents();
-        currentUser  = DatabaseService.currentUser;
+        currentUser = DatabaseService.currentUser;
         if (currentUser instanceof Admin) {
             LoginLabel.setText("Login sebagai Admin.");
-            Menu1.setText("Teacher List");
-            Menu2.setText("Student List");
+            Menu1.setText("User Management");
+            Menu2.setText("Category Management");
             Menu3.setText("Courses List");
             Menu4.setText("Approval");
             Menu5.setVisible(false);
@@ -266,8 +268,9 @@ public class UserDashboardView extends javax.swing.JPanel {
     private void Menu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu1MouseClicked
         // TODO add your handling code here:
         if (currentUser instanceof Admin) {
-            MenuLabel.setText("Teacher List");
-        } else if (currentUser instanceof Teacher){
+            MenuLabel.setText("User Management");
+            changeInternalFrame(new UserManagementView(mainFrame));
+        } else if (currentUser instanceof Teacher) {
             MenuLabel.setText("My Lecture");
         } else {
             changeInternalFrame(new CoursesView(mainFrame));
@@ -283,9 +286,9 @@ public class UserDashboardView extends javax.swing.JPanel {
     private void Menu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu2MouseClicked
         // TODO add your handling code here:
         if (currentUser instanceof Admin) {
-            MenuLabel.setText("Student List");
-        } else if (currentUser instanceof Teacher){
-            MenuLabel.setText("Add Course");
+            MenuLabel.setText("Category Management");
+            changeInternalFrame(new CategoryManagementView(mainFrame));
+        } else if (currentUser instanceof Teacher) {
         } else {
             MenuLabel.setText("My Course");
         }
@@ -317,7 +320,7 @@ public class UserDashboardView extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (currentUser instanceof Admin) {
             MenuLabel.setText("Courses List");
-        } else if (currentUser instanceof Teacher){
+        } else if (currentUser instanceof Teacher) {
             MenuLabel.setText("");
         } else {
             MenuLabel.setText("Profile");
@@ -328,7 +331,7 @@ public class UserDashboardView extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (currentUser instanceof Admin) {
             MenuLabel.setText("Approval");
-        } else if (currentUser instanceof Teacher){
+        } else if (currentUser instanceof Teacher) {
             MenuLabel.setText("");
         } else {
             MenuLabel.setText("");
@@ -339,7 +342,7 @@ public class UserDashboardView extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (currentUser instanceof Admin) {
             MenuLabel.setText("");
-        } else if (currentUser instanceof Teacher){
+        } else if (currentUser instanceof Teacher) {
             MenuLabel.setText("");
         } else {
             MenuLabel.setText("");

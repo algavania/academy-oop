@@ -6,8 +6,8 @@ package com.oop.academy.presentation.components;
 
 import com.oop.academy.InjectionContainer;
 import com.oop.academy.presentation.MainFrame;
-import com.oop.academy.presentation.dashboard.admin.CategoryManagementView;
-import com.oop.academy.presentation.dashboard.admin.UserManagementView;
+import com.oop.academy.presentation.dashboard.admin.OldCategoryManagementView;
+import com.oop.academy.presentation.dashboard.admin.OldUserManagementView;
 import com.oop.academy.presentation.authentication.LoginView;
 
 /**
@@ -116,11 +116,11 @@ public class AdminDashboardSidebar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        mainFrame.showView(new UserManagementView(mainFrame));
+        mainFrame.showView(new OldUserManagementView(mainFrame));
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        mainFrame.showView(new CategoryManagementView(mainFrame));
+        mainFrame.showView(new OldCategoryManagementView(mainFrame));
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
