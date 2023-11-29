@@ -34,15 +34,8 @@ public class DatabaseService {
     public static List<User> getUsers() {
         if (users == null) {
             users = new ArrayList();
-            users.add(new Teacher("teacher", "Pak Maha", 
-                    "Laki-Laki", new Date(), "teacher@email.com",
-                    "teacher", "teacherUrl", 1000));
-            users.add(new Admin("admin", "Mas Maha", 
-                    "Laki-Laki", new Date(),"admin@email.com",
-                    "admin", "adminPhoto", 10000));
-            users.add(new Student("student", "Adik Maha", 
-                    "Laki-Laki", new Date(), "student@email.com", 
-                    "student", "studentUrl", 10000));
+            seederUsers();
+            seederCategories();
         }
         return users;
     }
@@ -54,5 +47,29 @@ public class DatabaseService {
         return courses;
     }
     
+    private static void seederUsers(){
+        users.add(new Teacher("teacher", "Pak Maha", 
+               "Laki-Laki", new Date(), "teacher@email.com",
+             "teacher", "teacherUrl", 1000));
+        users.add(new Admin("admin", "Mas Maha", 
+               "Laki-Laki", new Date(),"admin@email.com",
+             "admin", "adminPhoto", 10000));
+        users.add(new Student("student", "Adik Maha", 
+               "Laki-Laki", new Date(), "student@email.com", 
+             "student", "studentUrl", 10000));            
+    }
+    
+    private static void seederCategories() {
+        String[] categoryNames = { "Mobile Development", 
+            "Front End Development", "Back End Development", 
+            "Agile Development", "Networking", "Database Management", 
+            "Artificial Intelligence", "Cybersecurity", "Game Development", 
+            "DevOps"
+        };
+
+        for (String categoryName : categoryNames) {
+            categories.add(new Category(categoryName));
+        }
+    }
     
 }
