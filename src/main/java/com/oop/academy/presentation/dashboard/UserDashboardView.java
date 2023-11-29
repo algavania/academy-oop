@@ -5,13 +5,16 @@
 package com.oop.academy.presentation.dashboard;
 
 import com.oop.academy.application.service.DatabaseService;
-import static com.oop.academy.application.service.DatabaseService.currentUser;
 import com.oop.academy.models.Admin;
 import com.oop.academy.models.Teacher;
 import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.authentication.LoginView;
 import com.oop.academy.presentation.course.CoursesView;
+import com.oop.academy.presentation.dashboard.admin.CategoryManagementView;
+import com.oop.academy.presentation.dashboard.admin.UserManagementView;
+import com.oop.academy.presentation.profile.ProfileView;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -20,24 +23,26 @@ import com.oop.academy.presentation.course.CoursesView;
 public class UserDashboardView extends javax.swing.JPanel {
 
     MainFrame mainFrame;
+    User currentUser;
 
     /**
      * Creates new form UserDashboard
      *
      * @param mainFrame
+     * @param initialFrame
      */
-    public UserDashboardView(MainFrame mainFrame) {
+    public UserDashboardView(MainFrame mainFrame, JInternalFrame initialFrame) {
         this.mainFrame = mainFrame;
-        initComponents();        
-        User currentUser = DatabaseService.currentUser;
-        if (currentUser instanceof Admin){
+        initComponents();
+        currentUser = DatabaseService.currentUser;
+        if (currentUser instanceof Admin) {
             LoginLabel.setText("Login sebagai Admin.");
-            Menu1.setText("Teacher List");
-            Menu2.setText("Student List");
+            Menu1.setText("User Management");
+            Menu2.setText("Category Management");
             Menu3.setText("Courses List");
             Menu4.setText("Approval");
             Menu5.setVisible(false);
-        } else if(currentUser instanceof Teacher) {
+        } else if (currentUser instanceof Teacher) {
             LoginLabel.setText("Login sebagai Teacher.");
             Menu1.setText("My Lecture");
             Menu2.setText("Add Course");
@@ -52,6 +57,14 @@ public class UserDashboardView extends javax.swing.JPanel {
             Menu4.setVisible(false);
             Menu5.setVisible(false);
         }
+        if (initialFrame != null) {
+            changeInternalFrame(initialFrame);
+        }
+    }
+
+    private void changeInternalFrame(JInternalFrame view) {
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(view).setVisible(true);
     }
 
     /**
@@ -148,6 +161,9 @@ public class UserDashboardView extends javax.swing.JPanel {
         Menu3.setText(" Menu 3");
         Menu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Menu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Menu3MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 Menu3MousePressed(evt);
             }
@@ -157,6 +173,9 @@ public class UserDashboardView extends javax.swing.JPanel {
         Menu4.setText(" Menu 4");
         Menu4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Menu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Menu4MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 Menu4MousePressed(evt);
             }
@@ -166,6 +185,9 @@ public class UserDashboardView extends javax.swing.JPanel {
         Menu5.setText(" Menu 5");
         Menu5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Menu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Menu5MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 Menu5MousePressed(evt);
             }
@@ -192,7 +214,7 @@ public class UserDashboardView extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(LogoutButton)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,7 +229,7 @@ public class UserDashboardView extends javax.swing.JPanel {
                 .addComponent(Menu4)
                 .addGap(18, 18, 18)
                 .addComponent(Menu5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -216,11 +238,11 @@ public class UserDashboardView extends javax.swing.JPanel {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 741, Short.MAX_VALUE)
+            .addGap(0, 873, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 537, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -245,55 +267,87 @@ public class UserDashboardView extends javax.swing.JPanel {
 
     private void Menu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu1MouseClicked
         // TODO add your handling code here:
-        if (currentUser instanceof Admin){
-            
-        } else if(currentUser instanceof Teacher) {
-            CoursesView courseView = new CoursesView(mainFrame);
-            jDesktopPane1.removeAll();
-            jDesktopPane1.add(courseView).setVisible(true);
+        if (currentUser instanceof Admin) {
+            MenuLabel.setText("User Management");
+            changeInternalFrame(new UserManagementView(mainFrame));
+        } else if (currentUser instanceof Teacher) {
+            MenuLabel.setText("My Lecture");
         } else {
-            
+            changeInternalFrame(new CoursesView(mainFrame));
+            MenuLabel.setText("Home");
         }
-
     }//GEN-LAST:event_Menu1MouseClicked
 
     private void Menu1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu1MousePressed
         // TODO add your handling code here:
-        MenuLabel.setText("Home");
+//        changeInternalFrame(new CoursesView(mainFrame));
     }//GEN-LAST:event_Menu1MousePressed
 
     private void Menu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu2MouseClicked
         // TODO add your handling code here:
-//        test2 updateCourse = new test2();
-//        jDesktopPane1.removeAll();
-//        jDesktopPane1.add(updateCourse).setVisible(true);
+        if (currentUser instanceof Admin) {
+            MenuLabel.setText("Category Management");
+            changeInternalFrame(new CategoryManagementView(mainFrame));
+        } else if (currentUser instanceof Teacher) {
+        } else {
+            MenuLabel.setText("My Course");
+        }
     }//GEN-LAST:event_Menu2MouseClicked
 
     private void Menu2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu2MousePressed
         // TODO add your handling code here:
-        MenuLabel.setText("My Course");
     }//GEN-LAST:event_Menu2MousePressed
 
     private void Menu3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu3MousePressed
         // TODO add your handling code here:
-        MenuLabel.setText("Profile");
     }//GEN-LAST:event_Menu3MousePressed
 
     private void Menu4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu4MousePressed
         // TODO add your handling code here:
-        MenuLabel.setText("Menu 4");
     }//GEN-LAST:event_Menu4MousePressed
 
     private void Menu5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu5MousePressed
         // TODO add your handling code here:
-        MenuLabel.setText("Menu 5");
     }//GEN-LAST:event_Menu5MousePressed
 
     private void LogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutButtonActionPerformed
         // TODO add your handling code here:
         DatabaseService.currentUser = null;
-        mainFrame.showView(new LoginView(mainFrame));        
+        mainFrame.showView(new LoginView(mainFrame));
     }//GEN-LAST:event_LogoutButtonActionPerformed
+
+    private void Menu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu3MouseClicked
+        // TODO add your handling code here:
+        if (currentUser instanceof Admin) {
+            MenuLabel.setText("Courses List");
+        } else if (currentUser instanceof Teacher) {
+            MenuLabel.setText("");
+        } else {
+            MenuLabel.setText("Profile");
+        }
+    }//GEN-LAST:event_Menu3MouseClicked
+
+    private void Menu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu4MouseClicked
+        // TODO add your handling code here:
+        if (currentUser instanceof Admin) {
+            MenuLabel.setText("Approval");
+        } else if (currentUser instanceof Teacher) {
+            MenuLabel.setText("");
+        } else {
+            MenuLabel.setText("");
+        }
+    }//GEN-LAST:event_Menu4MouseClicked
+
+    private void Menu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu5MouseClicked
+        // TODO add your handling code here:
+        if (currentUser instanceof Admin) {
+            MenuLabel.setText("");
+        } else if (currentUser instanceof Teacher) {
+            MenuLabel.setText("");
+        } else {
+            MenuLabel.setText("");
+        }
+    }//GEN-LAST:event_Menu5MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
