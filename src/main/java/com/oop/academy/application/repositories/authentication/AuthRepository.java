@@ -34,11 +34,11 @@ public class AuthRepository implements BaseAuthRepository {
 
     @Override
     public User login(String username, String password) throws Exception {
-        for (User data : users) {
-            if (data.getUsername().equals(username)
-                    && data.getPassword().equals(password)) {
-                DatabaseService.currentUser = data;
-                return data;
+        for (User user : users) {
+            if (user.getUsername().equals(username)
+                    && user.getPassword().equals(password)) {
+                DatabaseService.currentUser = user;
+                return user;
             }
         }
         throw new Exception("data tidak ditemukan, coba lagi!");

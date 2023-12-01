@@ -12,10 +12,11 @@ public class Education {
     private String name;
     private int attendPeriod;
     private String degree;
-    private int gpa;
+    private float gpa;
     private String certificateUrl;
 
-    public Education(String name, int attendPeriod, String degree, int gpa, String certificateUrl) {
+    public Education(String name, int attendPeriod, String degree, float gpa, 
+            String certificateUrl) {
         this.name = name;
         this.attendPeriod = attendPeriod;
         this.degree = degree;
@@ -47,7 +48,7 @@ public class Education {
         this.degree = degree;
     }
 
-    public int getGpa() {
+    public float getGpa() {
         return gpa;
     }
 

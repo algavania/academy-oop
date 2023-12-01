@@ -19,13 +19,13 @@ public class User {
     private String email;
     private String password;
     private String photoUrl;
-    private double balance;
+    private int balance;
     
     public User() {}
 
     //for register purpose
     public User(String username, String name, String gender, Date birthdate, 
-            String email, String password) {
+            String email, String password, String photoUrl, int balance) {
         this.username = username;
         this.name = name;
         this.gender = gender;
@@ -90,11 +90,11 @@ public class User {
         this.photoUrl = photoUrl;
     }
 
-    public double getBalance() {
+    public int getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(int balance) {
         this.balance = balance;
     }
 
