@@ -18,8 +18,17 @@ public class Teacher extends Student {
     private String personalWebsiteUrl;
     private List<Course> courses;
 
-    public Teacher(String username, String name, String gender, Date birthdate, String email, String password, String photoUrl, double balance) {
-        super(username, name, gender, birthdate, email, password, photoUrl, balance);
+    public Teacher(String username, String name, String gender, Date birthdate, 
+            String email, String password, String photoUrl, int balance) {
+        super(username, name, gender, birthdate, email, password,
+                photoUrl, balance);
+    }
+    
+    public Teacher(User user) {
+        super(user.getUsername(), user.getName(), 
+                user.getGender(), user.getBirthdate(), 
+                user.getEmail(), user.getPassword(), 
+                user.getPhotoUrl(), user.getBalance());
     }
 
     public List<Education> getEducations() {

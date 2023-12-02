@@ -25,7 +25,7 @@ public class User {
 
     //for register purpose
     public User(String username, String name, String gender, Date birthdate, 
-            String email, String password) {
+            String email, String password, String photoUrl, int balance) {
         this.username = username;
         this.name = name;
         this.gender = gender;
