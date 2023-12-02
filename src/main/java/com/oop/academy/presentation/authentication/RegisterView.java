@@ -236,7 +236,7 @@ public class RegisterView extends javax.swing.JPanel {
 
         try {
             authRepository.register(new User(username, name, gender, birthdate,
-                    email, password));
+                    email, password, "", 0));
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(
