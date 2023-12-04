@@ -41,7 +41,7 @@ public class DetailCourseView extends javax.swing.JPanel {
             }
         }
         
-        int submissionSize = course.getListStudentSubmission().size();
+        int submissionSize = course.getListSubmission().size();
 
         if (submissionSize > 0) {
             double result = (double) submissionSize / 3.0;

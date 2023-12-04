@@ -21,14 +21,14 @@ public class Course {
     private Teacher teacher;
     private Category category;
     private List<CourseContent> listCourseContent;
-    private List<StudentSubmission> listStudentSubmission;
+    private List<Submission> listSubmission;
     private LocalDateTime createdAt;
     
     public Course()
     {
         this.listStudent = new ArrayList<>();
         this.listCourseContent = new ArrayList<>();
-        this.listStudentSubmission = new ArrayList<>();
+        this.listSubmission = new ArrayList<>();
     }
     
     public void setTeacher(Teacher teacher)
@@ -71,10 +71,14 @@ public class Course {
         return listCourseContent;
     }
 
-    public List<StudentSubmission> getListStudentSubmission() {
-        return listStudentSubmission;
+    public List<Submission> getListSubmission() {
+        return listSubmission;
     }
 
+    public void setListSubmission(List<Submission> listSubmission) {
+        this.listSubmission = listSubmission;
+    }
+    
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
