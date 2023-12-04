@@ -4,6 +4,7 @@
  */
 package com.oop.academy.presentation.profile;
 
+import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.dashboard.UserDashboardView;
 
@@ -14,14 +15,16 @@ import com.oop.academy.presentation.dashboard.UserDashboardView;
 public class TopupView extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
+    private User currentUser;
 
     /**
      * Creates new form TopupView
      *
      * @param mainFrame
      */
-    public TopupView(MainFrame mainFrame) {
+    public TopupView(MainFrame mainFrame, User currentUser) {
         this.mainFrame = mainFrame;
+        this.currentUser = currentUser;
         initComponents();
     }
 
@@ -140,8 +143,7 @@ public class TopupView extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        mainFrame.showView(new UserDashboardView(mainFrame, new ProfileView(mainFrame)));
-
+       mainFrame.showView(new UserDashboardView(mainFrame, new ProfileView(mainFrame, currentUser)));
     }//GEN-LAST:event_btnBackActionPerformed
 
 

@@ -324,6 +324,7 @@ public class UserDashboardView extends javax.swing.JPanel {
             MenuLabel.setText("");
         } else {
             MenuLabel.setText("Profile");
+             changeInternalFrame(new ProfileView(mainFrame, currentUser));
         }
     }//GEN-LAST:event_Menu3MouseClicked
 
