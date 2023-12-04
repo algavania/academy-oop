@@ -71,6 +71,7 @@ public class SubmissionTeacherView extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("List Registration Teacher");
 
+        table.setModel(this.tableContent);
         jScrollPane1.setViewportView(table);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
