@@ -11,6 +11,7 @@ import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.authentication.LoginView;
 import com.oop.academy.presentation.course.CoursesView;
+import com.oop.academy.presentation.dashboard.admin.ApprovalTeacherView;
 import com.oop.academy.presentation.dashboard.admin.CategoryManagementView;
 import com.oop.academy.presentation.dashboard.admin.UserManagementView;
 import com.oop.academy.presentation.profile.ProfileView;
@@ -269,7 +270,7 @@ public class UserDashboardView extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (currentUser instanceof Admin) {
             MenuLabel.setText("User Management");
-            changeInternalFrame(new UserManagementView(mainFrame));
+            changeInternalFrame(new UserManagementView());
         } else if (currentUser instanceof Teacher) {
             MenuLabel.setText("My Lecture");
         } else {
@@ -287,7 +288,7 @@ public class UserDashboardView extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (currentUser instanceof Admin) {
             MenuLabel.setText("Category Management");
-            changeInternalFrame(new CategoryManagementView(mainFrame));
+            changeInternalFrame(new CategoryManagementView());
         } else if (currentUser instanceof Teacher) {
         } else {
             MenuLabel.setText("My Course");
@@ -331,6 +332,7 @@ public class UserDashboardView extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (currentUser instanceof Admin) {
             MenuLabel.setText("Approval");
+            changeInternalFrame(new ApprovalTeacherView());
         } else if (currentUser instanceof Teacher) {
             MenuLabel.setText("");
         } else {

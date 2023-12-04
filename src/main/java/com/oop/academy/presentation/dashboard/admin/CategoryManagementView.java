@@ -6,7 +6,6 @@ package com.oop.academy.presentation.dashboard.admin;
 
 import com.oop.academy.InjectionContainer;
 import com.oop.academy.models.Category;
-import com.oop.academy.presentation.MainFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,15 +14,12 @@ import javax.swing.table.DefaultTableModel;
  * @author MSI
  */
 public class CategoryManagementView extends javax.swing.JInternalFrame {
-    private final MainFrame mainFrame;
     private final DefaultTableModel tableContent;
 
     /**
      * Creates new form CategoryManagementView
-     * @param mainFrame
      */
-    public CategoryManagementView(MainFrame mainFrame) {
-        this.mainFrame = mainFrame;
+    public CategoryManagementView() {
         tableContent = new DefaultTableModel(new Object[][]{}, new String[]{
             "No", "Category"
         });
@@ -209,7 +205,7 @@ public class CategoryManagementView extends javax.swing.JInternalFrame {
                 InjectionContainer.categoryRepository.updateCategory(category, new Category(newCategoryName));
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(
-                    mainFrame,
+                    this,
                     e.getMessage(),
                     "Error",
                     JOptionPane.INFORMATION_MESSAGE
