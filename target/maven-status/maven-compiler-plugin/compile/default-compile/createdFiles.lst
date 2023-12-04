@@ -1,11 +1,14 @@
 com\oop\academy\presentation\dashboard\admin\CategoryManagementView$4.class
 com\oop\academy\presentation\profile\ProfileView$2.class
+com\oop\academy\application\repositories\teacher\submit\BaseSubmitTeacherRepository.class
 com\oop\academy\presentation\dashboard\admin\UserManagementView$2.class
 com\oop\academy\presentation\dashboard\UserDashboardView$4.class
 com\oop\academy\presentation\course\AddCourseContentView$2.class
 com\oop\academy\presentation\course\UpdateCourseView$1.class
 com\oop\academy\presentation\submission\SubmissionDetailView.class
 com\oop\academy\application\repositories\category\CategoryRepository.class
+com\oop\academy\application\repositories\teacher\submit\SubmitTeacherRepository.class
+com\oop\academy\presentation\teacher\submission\detailRegistTeacherView.class
 com\oop\academy\application\repositories\user\BaseUserRepository.class
 com\oop\academy\presentation\course\MaterialDetail$2.class
 com\oop\academy\presentation\profile\TopupView$1.class
@@ -18,6 +21,7 @@ com\oop\academy\presentation\dashboard\admin\UserManagementView$11.class
 com\oop\academy\application\repositories\course\BaseCourseContentRepository.class
 com\oop\academy\presentation\course\AddCourseView$4.class
 com\oop\academy\presentation\profile\EditProfileView$2.class
+com\oop\academy\presentation\dashboard\admin\ApprovalTeacherView$3.class
 com\oop\academy\presentation\course\AddCourseView$1.class
 com\oop\academy\application\repositories\course\BaseSubmissionRepository.class
 com\oop\academy\presentation\MainFrame.class
@@ -45,6 +49,7 @@ com\oop\academy\InjectionContainer.class
 com\oop\academy\application\repositories\course\CourseContentRepository.class
 com\oop\academy\presentation\course\CourseContentCard.class
 com\oop\academy\util\NumericDocumentFilter.class
+com\oop\academy\presentation\dashboard\admin\ApprovalTeacherView$1.class
 com\oop\academy\models\StudentSubmission.class
 com\oop\academy\presentation\course\UpdateCourseView.class
 com\oop\academy\presentation\course\AddCourseView$3.class
@@ -63,6 +68,7 @@ com\oop\academy\models\Education.class
 com\oop\academy\presentation\dashboard\admin\CategoryManagementView$3.class
 com\oop\academy\presentation\profile\ProfileView$1.class
 com\oop\academy\presentation\dashboard\admin\CategoryManagementView$5.class
+com\oop\academy\presentation\dashboard\admin\ApprovalTeacherView.class
 com\oop\academy\presentation\course\AddCourseView.class
 com\oop\academy\presentation\dashboard\UserDashboardView$6.class
 com\oop\academy\presentation\course\MaterialDetail$1.class
@@ -86,6 +92,7 @@ com\oop\academy\presentation\course\MyCourseView.class
 com\oop\academy\presentation\dashboard\admin\UserManagementView$4.class
 com\oop\academy\models\Submission.class
 com\oop\academy\application\repositories\authentication\AuthRepository.class
+com\oop\academy\presentation\dashboard\admin\ApprovalTeacherView$2.class
 com\oop\academy\presentation\course\AddCourseView$2.class
 com\oop\academy\presentation\course\CoursesView$1.class
 com\oop\academy\presentation\dashboard\admin\UserManagementView.class

@@ -7,6 +7,7 @@ package com.oop.academy.presentation.dashboard.admin;
 import com.oop.academy.InjectionContainer;
 import com.oop.academy.application.repositories.teacher.submit.SubmitTeacherRepository;
 import com.oop.academy.models.Teacher;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,7 +17,10 @@ import javax.swing.table.DefaultTableModel;
 public class ApprovalTeacherView extends javax.swing.JInternalFrame {
 
     private final DefaultTableModel tableContent;
-    private final SubmitTeacherRepository submitTeacherRepository = InjectionContainer.submitTeacherRepository;
+    private final SubmitTeacherRepository submitTeacherRepository
+            = InjectionContainer.submitTeacherRepository;
+    int selectedRow = 0;
+
     /**
      * Creates new form ApprovalTeacherView
      */
@@ -24,18 +28,18 @@ public class ApprovalTeacherView extends javax.swing.JInternalFrame {
         tableContent = new DefaultTableModel(new Object[][]{}, new String[]{
             "No", "Nama User", "Nama Sekolah", "periode", "GPA", "Gelar"
         });
-        
+
         renderTable();
         initComponents();
     }
-    
+
     private void renderTable() {
         tableContent.getDataVector().removeAllElements();
         tableContent.fireTableDataChanged();
         tableContent.setRowCount(0);
 
         int i = 1;
-        for (Teacher teacherRegistration: InjectionContainer.submitTeacherRepository.getAllUserTeacherRequest()) {
+        for (Teacher teacherRegistration : InjectionContainer.submitTeacherRepository.getAllUserTeacherRequest()) {
             this.tableContent.addRow(new Object[]{
                 i,
                 teacherRegistration.getUsername(),
@@ -59,23 +63,38 @@ public class ApprovalTeacherView extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        table = new javax.swing.JTable();
+        btnAccept = new javax.swing.JButton();
+        btnReject = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(873, 545));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("List Registration Teacher");
 
-        jTable1.setModel(this.tableContent);
-        jScrollPane1.setViewportView(jTable1);
+        table.setModel(this.tableContent);
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(table);
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Accept");
+        btnAccept.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAccept.setText("Accept");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setText("Reject");
+        btnReject.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnReject.setText("Reject");
+        btnReject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRejectActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,9 +105,9 @@ public class ApprovalTeacherView extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(jButton1)
+                            .addComponent(btnAccept)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton2))
+                            .addComponent(btnReject))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(41, 41, 41)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -106,20 +125,54 @@ public class ApprovalTeacherView extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnAccept)
+                    .addComponent(btnReject))
                 .addGap(37, 37, 37))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        if (selectedRow >= 0) {
+            submitTeacherRepository.acceptNewTeacher(selectedRow);
+        }else {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "pilih di tabel, mana yang ingin anda Terima",
+                    "Error",
+                    JOptionPane.INFORMATION_MESSAGE
+                );
+        }
+        selectedRow = -1;
+        renderTable();
+    }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        selectedRow = this.table.getSelectedRow();
+    }//GEN-LAST:event_tableMouseClicked
+
+    private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
+        if (selectedRow >= 0) {
+            submitTeacherRepository.rejectNewTeacher(selectedRow);
+        }else {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "pilih di tabel, mana yang ingin anda Terima",
+                    "Error",
+                    JOptionPane.INFORMATION_MESSAGE
+                );
+        }
+        selectedRow = -1;
+        renderTable();
+    }//GEN-LAST:event_btnRejectActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAccept;
+    private javax.swing.JButton btnReject;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

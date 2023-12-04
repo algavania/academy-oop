@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface BaseSubmitTeacherRepository {
 
-    public void acceptNewTeacher(Teacher user_teacher);
+    public void acceptNewTeacher(int selectedRow);
 
-    public void rejectNewTeacher(Teacher user_teacher);
+    public void rejectNewTeacher(int selectedRow);
     
     public List<Teacher> getAllUserTeacherRequest();
 }
