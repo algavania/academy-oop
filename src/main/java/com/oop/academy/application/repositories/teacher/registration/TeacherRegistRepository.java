@@ -19,7 +19,8 @@ public class TeacherRegistRepository implements BaseTeacherRegistRepository {
 
     private final User currentUser = DatabaseService.currentUser;
     private List<Education> educations;
-    private final List<User> userTeacherRequests = DatabaseService.getUserTeacherRequests();
+    private final List<Teacher> userTeacherRequests = DatabaseService.
+            getUserTeacherRequests();
     private int selectedRow = 0;
 
     public int getSelectedRow() {

@@ -4,17 +4,52 @@
  */
 package com.oop.academy.presentation.teacher.submission;
 
+import com.oop.academy.InjectionContainer;
+import com.oop.academy.application.repositories.teacher.submit.SubmitTeacherRepository;
+import com.oop.academy.models.Teacher;
+import com.oop.academy.presentation.MainFrame;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author mamir
  */
 public class SubmissionTeacherView extends javax.swing.JPanel {
 
-    /**
-     * Creates new form SubmissionTeacherView
-     */
-    public SubmissionTeacherView() {
+    private final MainFrame mainFrame;
+    private final DefaultTableModel tableContent;
+    private final SubmitTeacherRepository submitTeacherRepository
+            = InjectionContainer.submitTeacherRepository;
+
+    
+    public SubmissionTeacherView(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
+        tableContent = new DefaultTableModel(new Object[][]{}, new String[]{
+            "No", "Nama User", "Nama Sekolah", "periode", "GPA", "Gelar"
+        });
+        
+        renderTable();
         initComponents();
+    }
+
+    private void renderTable() {
+        tableContent.getDataVector().removeAllElements();
+        tableContent.fireTableDataChanged();
+        tableContent.setRowCount(0);
+
+        int i = 1;
+        for (Teacher teacherRegistration : InjectionContainer.submitTeacherRepository.
+                getAllUserTeacherRequest()) {
+            this.tableContent.addRow(new Object[]{
+                i,
+                teacherRegistration.getUsername(),
+                teacherRegistration.getEducations().get(0).getName(),
+                teacherRegistration.getEducations().get(0).getAttendPeriod(),
+                teacherRegistration.getEducations().get(0).getGpa(),
+                teacherRegistration.getEducations().get(0).getDegree()
+            });
+            i++;
+        }
     }
 
     /**
@@ -28,7 +63,7 @@ public class SubmissionTeacherView extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -36,18 +71,7 @@ public class SubmissionTeacherView extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("List Registration Teacher");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton1.setText("Accept");
@@ -104,6 +128,6 @@ public class SubmissionTeacherView extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
