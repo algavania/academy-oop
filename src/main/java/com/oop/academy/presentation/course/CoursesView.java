@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class CoursesView extends javax.swing.JInternalFrame {
 
-    List<Course> courses = new ArrayList();
+    private List<Course> courses = new ArrayList();
     private MainFrame mainFrame;
 
     /**
@@ -31,36 +31,24 @@ public class CoursesView extends javax.swing.JInternalFrame {
     public CoursesView(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
-        Course course = new Course();
-        Date date = new Date();
-        Teacher teacher = new Teacher("john", "John Doe", "Laki-laki", date, "john@gmail.com", "password", "", 50000);
-        course.setCategory(new Category("Programming"));
-        course.setName("Belajar Pemrogramman");
-        course.setTeacher(teacher);
-        course.setCreatedAt();
-        course.setPrice(50000);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
-        courses.add(course);
+        courses = DatabaseService.getCourses();
         
         int courseSize = courses.size();
 
         if (courseSize > 0) {
-            double result = (double) courseSize / 2.0;
+            double result = (double) courseSize / 3.0;
             int rows = (int) Math.round(result);
             if (rows == 0) {
                 rows = 1;
             }
-            this.cardPanels.setLayout(new GridLayout(rows, 2, 8, 8));
+            this.cardPanels.setLayout(new GridLayout(rows, 3, 8, 8));
             for (int i = 0; i < courseSize; i++) {
-                CourseCard courseCard = new CourseCard(course);
+                CourseCard courseCard = new CourseCard(courses.get(i), mainFrame);
                 this.cardPanels.add(courseCard);
             }
         }
         
+        lblIntroUser.setText("Halo, "+DatabaseService.currentUser.getName());
         btnAddCourse.setVisible(DatabaseService.currentUser instanceof Teacher);
     }
 
@@ -75,10 +63,9 @@ public class CoursesView extends javax.swing.JInternalFrame {
 
         lblIntroUser = new javax.swing.JLabel();
         cardPanels = new javax.swing.JPanel();
-        lblBalance = new javax.swing.JLabel();
         btnAddCourse = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(760, 496));
+        setPreferredSize(new java.awt.Dimension(873, 537));
 
         lblIntroUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblIntroUser.setText("Halo, User!");
@@ -87,14 +74,12 @@ public class CoursesView extends javax.swing.JInternalFrame {
         cardPanels.setLayout(cardPanelsLayout);
         cardPanelsLayout.setHorizontalGroup(
             cardPanelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 695, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         cardPanelsLayout.setVerticalGroup(
             cardPanelsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 362, Short.MAX_VALUE)
+            .addGap(0, 397, Short.MAX_VALUE)
         );
-
-        lblBalance.setText("Saldo: Rp50.000,00");
 
         btnAddCourse.setText("Tambah Course");
         btnAddCourse.addActionListener(new java.awt.event.ActionListener() {
@@ -107,30 +92,26 @@ public class CoursesView extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblBalance)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(lblIntroUser)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAddCourse))
-                        .addComponent(cardPanels, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, 0))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cardPanels, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(lblIntroUser)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 643, Short.MAX_VALUE)
+                        .addComponent(btnAddCourse)))
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblIntroUser)
-                    .addComponent(btnAddCourse))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblBalance)
-                .addGap(18, 18, 18)
+                    .addComponent(btnAddCourse)
+                    .addComponent(lblIntroUser))
+                .addGap(40, 40, 40)
                 .addComponent(cardPanels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -145,7 +126,6 @@ public class CoursesView extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCourse;
     private javax.swing.JPanel cardPanels;
-    private javax.swing.JLabel lblBalance;
     private javax.swing.JLabel lblIntroUser;
     // End of variables declaration//GEN-END:variables
 }

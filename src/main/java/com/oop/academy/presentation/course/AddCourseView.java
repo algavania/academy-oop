@@ -4,8 +4,21 @@
  */
 package com.oop.academy.presentation.course;
 
+import com.oop.academy.InjectionContainer;
+import com.oop.academy.util.NumericDocumentFilter;
+import com.oop.academy.application.repositories.category.CategoryRepository;
+import com.oop.academy.application.repositories.course.CourseRepository;
+import com.oop.academy.application.service.DatabaseService;
+import com.oop.academy.models.Category;
+import com.oop.academy.models.Course;
+import com.oop.academy.models.Teacher;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.dashboard.UserDashboardView;
+import java.text.NumberFormat;
+import java.util.Currency;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument;
 
 /**
  *
@@ -13,14 +26,33 @@ import com.oop.academy.presentation.dashboard.UserDashboardView;
  */
 public class AddCourseView extends javax.swing.JPanel {
 
-    private MainFrame mainFrame;
+    private final MainFrame mainFrame;
+    private final CourseRepository repository = InjectionContainer.courseReposiotory;
+    private final CategoryRepository categoryRepository = InjectionContainer.categoryRepository;
+    private final NumberFormat format;
+
     /**
      * Creates new form AddCourseView
+     *
      * @param mainFrame
      */
     public AddCourseView(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
+
+        DefaultListModel<String> model = new DefaultListModel<>();
+        categoryList.setModel(model);
+
+        for (Category data : DatabaseService.getCategories()) {
+            model.addElement(data.getName());
+        }
+        categoryList.setSelectedIndex(0);
+
+        ((AbstractDocument) tfPrice.getDocument()).setDocumentFilter(new NumericDocumentFilter());
+        format = NumberFormat.getInstance();
+        format.setMaximumFractionDigits(0);
+        format.setCurrency(Currency.getInstance("IDR"));
+
     }
 
     /**
@@ -36,13 +68,15 @@ public class AddCourseView extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        NameField = new javax.swing.JTextField();
-        SubmitButton = new javax.swing.JButton();
+        tfName = new javax.swing.JTextField();
+        btnAdd = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        KategoriList = new javax.swing.JList<>();
+        categoryList = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        DeskripsiField = new javax.swing.JTextArea();
+        tfDesc = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        tfPrice = new javax.swing.JTextField();
 
         btnBack.setBackground(new java.awt.Color(153, 153, 153));
         btnBack.setText("<");
@@ -61,28 +95,37 @@ public class AddCourseView extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel5.setText("Kategori      :");
 
-        SubmitButton.setBackground(new java.awt.Color(102, 255, 51));
-        SubmitButton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        SubmitButton.setText("TAMBAH");
-        SubmitButton.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setBackground(new java.awt.Color(102, 255, 51));
+        btnAdd.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        btnAdd.setText("TAMBAH");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitButtonActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setText("                                                                    TAMBAH KELAS");
 
-        KategoriList.setModel(new javax.swing.AbstractListModel<String>() {
+        categoryList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(KategoriList);
+        jScrollPane1.setViewportView(categoryList);
 
-        DeskripsiField.setColumns(20);
-        DeskripsiField.setRows(5);
-        jScrollPane2.setViewportView(DeskripsiField);
+        tfDesc.setColumns(20);
+        tfDesc.setRows(5);
+        jScrollPane2.setViewportView(tfDesc);
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel3.setText("Harga          :");
+
+        tfPrice.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfPriceKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -99,21 +142,24 @@ public class AddCourseView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NameField)
+                            .addComponent(tfName)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(253, 253, 253)
-                                        .addComponent(SubmitButton)))
+                                .addGap(253, 253, 253)
+                                .addComponent(btnAdd)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2))))
+                            .addComponent(jScrollPane2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(25, 25, 25)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfPrice)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -126,45 +172,97 @@ public class AddCourseView extends javax.swing.JPanel {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
+                        .addGap(8, 8, 8)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addComponent(SubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SubmitButtonActionPerformed
-
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        mainFrame.showView(new UserDashboardView(mainFrame, new CoursesView(mainFrame)));
+        goBack();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void goBack() {
+        mainFrame.showView(new UserDashboardView(mainFrame, new CoursesView(mainFrame)));
+    }
+
+    private int getPriceValue() {
+        String defaultAmount = tfPrice.getText();
+        String amountText = defaultAmount.replaceAll("\\,", "");
+        return amountText.isBlank() ? 0 : Integer.parseInt(amountText);
+    }
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        try {
+            String name = tfName.getText();
+            String description = tfDesc.getText();
+            String priceText = tfPrice.getText();
+            if (name.isBlank() || description.isBlank() || priceText.isBlank()) {
+                throw new Exception("Field tidak boleh kosong!");
+            }
+            Course course = new Course();
+            Category category = DatabaseService.getCategories().get(categoryList.getSelectedIndex());
+            course.setCategory(category);
+            course.setName(name);
+            course.setTeacher((Teacher) DatabaseService.currentUser);
+            course.setPrice(getPriceValue());
+            course.setCreatedAt();
+
+            repository.addCourse(course);
+            goBack();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.toString());
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void tfPriceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPriceKeyReleased
+        if (evt.getKeyChar() == ',') {
+            String text = tfPrice.getText();
+            text = text.substring(0, text.lastIndexOf(','));
+            tfPrice.setText(text);
+        } else {
+            String amountText = tfPrice.getText().replaceAll("\\,", "");
+            if (amountText.isEmpty()) {
+                tfPrice.setText("");
+            } else {
+                double amount = Double.parseDouble(amountText);
+                tfPrice.setText(format.format(amount));
+            }
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfPriceKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea DeskripsiField;
-    private javax.swing.JList<String> KategoriList;
-    private javax.swing.JTextField NameField;
-    private javax.swing.JButton SubmitButton;
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JList<String> categoryList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea tfDesc;
+    private javax.swing.JTextField tfName;
+    private javax.swing.JTextField tfPrice;
     // End of variables declaration//GEN-END:variables
 }

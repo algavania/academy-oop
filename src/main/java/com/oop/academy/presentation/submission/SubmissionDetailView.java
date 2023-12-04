@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.oop.academy.presentation.dashboard.course;
+package com.oop.academy.presentation.submission;
 
 /**
  *
- * @author mapam
+ * @author asus
  */
-public class MyCourseView extends javax.swing.JPanel {
+public class SubmissionDetailView extends javax.swing.JPanel {
 
     /**
-     * Creates new form MyCourseView
+     * Creates new form SubmissionDetailView
      */
-    public MyCourseView() {
+    public SubmissionDetailView() {
         initComponents();
     }
 
@@ -30,11 +30,11 @@ public class MyCourseView extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 808, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 496, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

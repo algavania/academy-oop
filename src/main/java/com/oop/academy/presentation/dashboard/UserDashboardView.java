@@ -43,15 +43,8 @@ public class UserDashboardView extends javax.swing.JPanel {
             Menu3.setText("Courses List");
             Menu4.setText("Approval");
             Menu5.setVisible(false);
-        } else if (currentUser instanceof Teacher) {
-            LoginLabel.setText("Login sebagai Teacher.");
-            Menu1.setText("My Lecture");
-            Menu2.setText("Add Course");
-            Menu3.setVisible(false);
-            Menu4.setVisible(false);
-            Menu5.setVisible(false);
         } else {
-            LoginLabel.setText("Login sebagai Student.");
+            LoginLabel.setText(currentUser instanceof Teacher ? "Login sebagai Teacher." : "Login sebagai Student.");
             Menu1.setText("Home");
             Menu2.setText("My Course");
             Menu3.setText("Profile");
@@ -273,6 +266,7 @@ public class UserDashboardView extends javax.swing.JPanel {
             changeInternalFrame(new UserManagementView());
         } else if (currentUser instanceof Teacher) {
             MenuLabel.setText("My Lecture");
+            changeInternalFrame(new UserManagementView());
         } else {
             changeInternalFrame(new CoursesView(mainFrame));
             MenuLabel.setText("Home");
@@ -290,6 +284,7 @@ public class UserDashboardView extends javax.swing.JPanel {
             MenuLabel.setText("Category Management");
             changeInternalFrame(new CategoryManagementView());
         } else if (currentUser instanceof Teacher) {
+            changeInternalFrame(new CategoryManagementView());
         } else {
             MenuLabel.setText("My Course");
         }
@@ -321,10 +316,9 @@ public class UserDashboardView extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (currentUser instanceof Admin) {
             MenuLabel.setText("Courses List");
-        } else if (currentUser instanceof Teacher) {
-            MenuLabel.setText("");
         } else {
             MenuLabel.setText("Profile");
+             changeInternalFrame(new ProfileView(mainFrame, currentUser));
         }
     }//GEN-LAST:event_Menu3MouseClicked
 

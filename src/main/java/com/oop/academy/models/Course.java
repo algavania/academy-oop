@@ -17,19 +17,18 @@ import javax.swing.ImageIcon;
 public class Course {
     private String name;
     private int price;
-    private String image;
     private List<Student> listStudent;
     private Teacher teacher;
     private Category category;
     private List<CourseContent> listCourseContent;
-    private List<StudentSubmission> listStudentSubmission;
+    private List<Submission> listSubmission;
     private LocalDateTime createdAt;
     
     public Course()
     {
-        this.listStudent = new ArrayList<Student>();
-        this.listCourseContent = new ArrayList<CourseContent>();
-        this.listStudentSubmission = new ArrayList<StudentSubmission>();
+        this.listStudent = new ArrayList<>();
+        this.listCourseContent = new ArrayList<>();
+        this.listSubmission = new ArrayList<>();
     }
     
     public void setTeacher(Teacher teacher)
@@ -56,14 +55,6 @@ public class Course {
         this.price = price;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public List<Student> getListStudent() {
         return listStudent;
     }
@@ -80,10 +71,14 @@ public class Course {
         return listCourseContent;
     }
 
-    public List<StudentSubmission> getListStudentSubmission() {
-        return listStudentSubmission;
+    public List<Submission> getListSubmission() {
+        return listSubmission;
     }
 
+    public void setListSubmission(List<Submission> listSubmission) {
+        this.listSubmission = listSubmission;
+    }
+    
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }

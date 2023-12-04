@@ -228,7 +228,7 @@ public class RegisterView extends javax.swing.JPanel {
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         String username = inputUsername.getText();
         String name = inputFullname.getText();
-        String gender = comboGender.getName();
+        String gender = comboGender.getItemAt(comboGender.getSelectedIndex());
         Date birthdate = dateChooser.getDate();
         String email = inputEmail.getText();
         String password = String.valueOf(inputPassword.getPassword());
