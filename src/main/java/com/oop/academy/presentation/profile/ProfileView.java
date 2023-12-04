@@ -255,7 +255,6 @@ public class ProfileView extends javax.swing.JInternalFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         mainFrame.showView(new EditProfileView(mainFrame, currentUser));
-
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditActionPerformed
 
