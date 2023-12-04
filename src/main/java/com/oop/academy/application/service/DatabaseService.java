@@ -82,7 +82,7 @@ public class DatabaseService {
         userTeacherRequests.add(new Teacher("teacher", "Pak Amir",
                 "Laki-Laki", new Date(), "teacher@email.com",
                 "teacher", "teacherUrl", 1000));
-        userTeacherRequests.add(new Teacher("teacher", "Pak Nasir",
+        userTeacherRequests.add(new Teacher("bangziz", "Pak Nasir",
                 "Laki-Laki", new Date(), "teacher@email.com",
                 "teacher", "teacherUrl", 1000));
 

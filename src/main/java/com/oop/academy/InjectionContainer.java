@@ -9,6 +9,7 @@ import com.oop.academy.application.repositories.category.CategoryRepository;
 import com.oop.academy.application.repositories.teacher.registration.TeacherRegistRepository;
 import com.oop.academy.application.repositories.teacher.submit.SubmitTeacherRepository;
 import com.oop.academy.application.repositories.user.UserRepository;
+import com.oop.academy.application.repositories.user.topup.TopUpRepository;
 
 /**
  *
@@ -21,6 +22,7 @@ public class InjectionContainer {
     public static UserRepository userRepository;
     public static TeacherRegistRepository teacherRegistRepository;
     public static SubmitTeacherRepository submitTeacherRepository;
+    public static TopUpRepository topUpRepository;
 
     public void init() {
         categoryRepository = new CategoryRepository();
@@ -28,6 +30,6 @@ public class InjectionContainer {
         userRepository = new UserRepository();
         teacherRegistRepository = new TeacherRegistRepository();
         submitTeacherRepository = new SubmitTeacherRepository();
-
+        topUpRepository = new TopUpRepository();
     }
 }
