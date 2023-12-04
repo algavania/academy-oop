@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author mamir
  */
-public class Teacher extends Student {
+public class Teacher extends User {
     private List<Education> educations;
     private String coverLetter;
     private String personalWebsiteUrl;

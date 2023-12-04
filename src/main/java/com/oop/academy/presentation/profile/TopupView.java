@@ -216,7 +216,7 @@ public class TopupView extends javax.swing.JPanel {
             if (tfAmount.getText().isBlank()) {
                 throw new Exception("Nominal tidak boleh kosong");
             }
-            InjectionContainer.userReposiotory.topUp(getAmountValue());
+            InjectionContainer.userRepository.topUp(getAmountValue());
             setBalance();
             tfAmount.setText("");
         } catch (Exception e) {

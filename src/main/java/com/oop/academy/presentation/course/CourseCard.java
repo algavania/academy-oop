@@ -4,20 +4,27 @@
  */
 package com.oop.academy.presentation.course;
 
+import com.oop.academy.InjectionContainer;
+import com.oop.academy.application.repositories.course.CourseRepository;
+import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.util.CurrencyHelper;
 import com.oop.academy.models.Course;
 import com.oop.academy.presentation.MainFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author MSI
  */
 public class CourseCard extends javax.swing.JPanel {
-    private MainFrame mainFrame;
-    private Course course;
+
+    private final MainFrame mainFrame;
+    private final Course course;
+    private final CourseRepository repository = InjectionContainer.courseRepository;
 
     /**
      * Creates new form CourseCard
+     *
      * @param course
      * @param mainFrame
      */
@@ -25,10 +32,22 @@ public class CourseCard extends javax.swing.JPanel {
         this.mainFrame = mainFrame;
         this.course = course;
         initComponents();
+        initDefaultData();
+    }
+
+    private void initDefaultData() {
         lblCategory.setText(course.getCategory().getName());
         lblPrice.setText(CurrencyHelper.convertToRupiah(course.getPrice()));
         lblTeacherName.setText(course.getTeacher().getName());
         lblTitle.setText(course.getName());
+
+        if (course.getTeacher() == DatabaseService.currentUser || checkHasEnrolled()) {
+            btnEnroll.setVisible(false);
+        }
+    }
+    
+    private boolean checkHasEnrolled() {
+        return course.getListStudent().contains(DatabaseService.currentUser);
     }
 
     /**
@@ -44,6 +63,7 @@ public class CourseCard extends javax.swing.JPanel {
         lblTeacherName = new javax.swing.JLabel();
         lblPrice = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
+        btnEnroll = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(230, 165));
@@ -65,6 +85,13 @@ public class CourseCard extends javax.swing.JPanel {
         lblTitle.setText("Belajar Pemrograman dengan Java");
         lblTitle.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
+        btnEnroll.setText("Enroll");
+        btnEnroll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnrollActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,6 +111,10 @@ public class CourseCard extends javax.swing.JPanel {
                                 .addComponent(lblCategory)
                                 .addGap(0, 255, Short.MAX_VALUE)))
                         .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEnroll)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,22 +122,37 @@ public class CourseCard extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(lblCategory)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTeacherName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPrice)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEnroll)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        mainFrame.showView(new DetailCourseView(mainFrame, course));
+        if (course.getTeacher() == DatabaseService.currentUser || checkHasEnrolled()) {
+            mainFrame.showView(new DetailCourseView(mainFrame, course));
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_formMousePressed
 
+    private void btnEnrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnrollActionPerformed
+        try {
+            repository.enroll(course);
+            initDefaultData();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEnrollActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEnroll;
     private javax.swing.JLabel lblCategory;
     private javax.swing.JLabel lblPrice;
     private javax.swing.JLabel lblTeacherName;

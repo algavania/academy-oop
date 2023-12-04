@@ -6,7 +6,9 @@ package com.oop.academy;
 
 import com.oop.academy.application.repositories.authentication.AuthRepository;
 import com.oop.academy.application.repositories.category.CategoryRepository;
+import com.oop.academy.application.repositories.course.CourseContentRepository;
 import com.oop.academy.application.repositories.course.CourseRepository;
+import com.oop.academy.application.repositories.course.SubmissionRepository;
 import com.oop.academy.application.repositories.teacher.registration.TeacherRegistRepository;
 import com.oop.academy.application.repositories.user.UserRepository;
 
@@ -18,16 +20,19 @@ public class InjectionContainer {
 
     public static CategoryRepository categoryRepository;
     public static AuthRepository authRepository;
-    public static UserRepository userReposiotory;
-    public static CourseRepository courseReposiotory;
+    public static UserRepository userRepository;
+    public static CourseRepository courseRepository;
+    public static CourseContentRepository courseContentRepository;
     public static TeacherRegistRepository teacherRegistRepository;
+    public static SubmissionRepository submissionRepository;
 
     public void init() {
         categoryRepository = new CategoryRepository();
         authRepository = new AuthRepository();
-        userReposiotory = new UserRepository();
-        courseReposiotory = new CourseRepository();
+        userRepository = new UserRepository();
+        courseRepository = new CourseRepository();
         teacherRegistRepository = new TeacherRegistRepository();
-
+        courseContentRepository = new CourseContentRepository();
+        submissionRepository = new SubmissionRepository();
     }
 }

@@ -5,6 +5,7 @@
 package com.oop.academy.application.repositories.course;
 
 import com.oop.academy.models.Course;
+import com.oop.academy.models.StudentSubmission;
 import com.oop.academy.models.Submission;
 
 /**
@@ -12,7 +13,16 @@ import com.oop.academy.models.Submission;
  * @author asus
  */
 public interface BaseSubmissionRepository {
+
     public void addSubmission(Course course, Submission tugas);
-    public void updateSubmission(Course course, Submission tugas, Submission newTugas)throws Exception;
+
+    public void updateSubmission(Course course, Submission tugas, Submission newTugas) throws Exception;
+
     public void deleteSubmission(Course course, Submission tugas);
+
+    public void addStudentSubmission(Submission submission, StudentSubmission data);
+
+    public void updateStudentSubmission(Submission submission, StudentSubmission data, StudentSubmission newData) throws Exception;
+
+    public void deleteStudentSubmission(Submission submission, StudentSubmission data);
 }
