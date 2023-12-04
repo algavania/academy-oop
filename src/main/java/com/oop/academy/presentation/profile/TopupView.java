@@ -4,11 +4,18 @@
  */
 package com.oop.academy.presentation.profile;
 
+import com.oop.academy.util.CurrencyHelper;
 import com.oop.academy.InjectionContainer;
 import com.oop.academy.application.repositories.user.topup.TopUpRepository;
+import com.oop.academy.util.NumericDocumentFilter;
+import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.dashboard.UserDashboardView;
+import java.text.NumberFormat;
+import java.util.Currency;
+import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument;
 
 /**
  *
@@ -17,6 +24,7 @@ import com.oop.academy.presentation.dashboard.UserDashboardView;
 public class TopupView extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
+    private final NumberFormat format;
     private User currentUser;
     private final TopUpRepository topUpRepository
             = InjectionContainer.topUpRepository;
@@ -30,9 +38,24 @@ public class TopupView extends javax.swing.JPanel {
         this.mainFrame = mainFrame;
         this.currentUser = currentUser;
         initComponents();
-        lblName.setText(currentUser.getName());
-        lblBalance.setText(String.valueOf(currentUser.getBalance()));
+        ((AbstractDocument) tfAmount.getDocument()).setDocumentFilter(new NumericDocumentFilter());
+        format = NumberFormat.getInstance();
+        format.setMaximumFractionDigits(0);
+        format.setCurrency(Currency.getInstance("IDR"));
+        lblName.setText(DatabaseService.currentUser.getName());
+        setBalance();
 
+    }
+
+    private void setBalance() {
+        lblBalance.setText(CurrencyHelper.convertToRupiah(DatabaseService.currentUser.getBalance()));
+
+    }
+
+    private int getAmountValue() {
+        String defaultAmount = tfAmount.getText();
+        String amountText = defaultAmount.replaceAll("\\,", "");
+        return amountText.isBlank() ? 0 : Integer.parseInt(amountText);
     }
 
     /**
@@ -48,11 +71,11 @@ public class TopupView extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         lblBalance = new javax.swing.JLabel();
-        inputBalance = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
-        btnSimpan = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
+        tfAmount = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Name        :");
@@ -63,8 +86,6 @@ public class TopupView extends javax.swing.JPanel {
         lblName.setText("...");
 
         lblBalance.setText("...");
-
-        inputBalance.setBackground(new java.awt.Color(153, 153, 153));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -101,12 +122,22 @@ public class TopupView extends javax.swing.JPanel {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        btnSimpan.setBackground(new java.awt.Color(51, 204, 255));
-        btnSimpan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnSimpan.setText("Simpan");
-        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setBackground(new java.awt.Color(51, 204, 255));
+        btnSave.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSave.setText("Simpan");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSimpanActionPerformed(evt);
+                btnSaveActionPerformed(evt);
+            }
+        });
+
+        tfAmount.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tfAmount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfAmountKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfAmountKeyReleased(evt);
             }
         });
 
@@ -119,24 +150,20 @@ public class TopupView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSimpan))
+                        .addComponent(btnSave))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lblName))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lblBalance))))
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblName))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(inputBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 46, Short.MAX_VALUE)))
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblBalance))
+                            .addComponent(tfAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -151,10 +178,10 @@ public class TopupView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(lblBalance))
-                .addGap(30, 30, 30)
-                .addComponent(inputBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(btnSimpan)
+                .addGap(35, 35, 35)
+                .addComponent(tfAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(btnSave)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -164,24 +191,53 @@ public class TopupView extends javax.swing.JPanel {
         mainFrame.showView(new UserDashboardView(mainFrame, new ProfileView(mainFrame, currentUser)));
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-        // TODO add your handling code here:
-        int balance = Integer.parseInt(inputBalance.getText());
-        topUpRepository.topUp(balance, currentUser);
-        mainFrame.showView(new UserDashboardView(mainFrame, new ProfileView(mainFrame, currentUser)));
+    private void tfAmountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfAmountKeyPressed
 
-    }//GEN-LAST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfAmountKeyPressed
+
+    private void tfAmountKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfAmountKeyReleased
+
+        if (evt.getKeyChar() == ',') {
+            String text = tfAmount.getText();
+            text = text.substring(0, text.lastIndexOf(','));
+            tfAmount.setText(text);
+        } else {
+            String amountText = tfAmount.getText().replaceAll("\\,", "");
+            if (amountText.isEmpty()) {
+                tfAmount.setText("");
+            } else {
+                double amount = Double.parseDouble(amountText);
+                tfAmount.setText(format.format(amount));
+            }
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfAmountKeyReleased
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        try {
+            if (tfAmount.getText().isBlank()) {
+                throw new Exception("Nominal tidak boleh kosong");
+            }
+            InjectionContainer.userRepository.topUp(getAmountValue());
+            setBalance();
+            tfAmount.setText("");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnSimpan;
-    private javax.swing.JTextField inputBalance;
+    private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBalance;
     private javax.swing.JLabel lblName;
+    private javax.swing.JTextField tfAmount;
     // End of variables declaration//GEN-END:variables
 }

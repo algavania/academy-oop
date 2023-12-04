@@ -16,4 +16,5 @@ public interface BaseUserRepository {
     public void add(User user);
     public User getByUsername(String username) throws Exception;
     public void delete(User user) throws Exception;
+    public void topUp(int balance);
 }

@@ -4,17 +4,75 @@
  */
 package com.oop.academy.presentation.course;
 
+import com.oop.academy.application.service.DatabaseService;
+import com.oop.academy.models.Course;
+import com.oop.academy.models.CourseContent;
+import com.oop.academy.models.Teacher;
+import com.oop.academy.presentation.MainFrame;
+import com.oop.academy.presentation.dashboard.UserDashboardView;
+import com.oop.academy.presentation.submission.AddSubmissionView;
+import com.oop.academy.presentation.submission.SubmissionCard;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author MSI
  */
 public class DetailCourseView extends javax.swing.JPanel {
 
+    private MainFrame mainFrame;
+    private Course course;
+
     /**
      * Creates new form DetailCourseView
+     *
+     * @param mainFrame
+     * @param course
      */
-    public DetailCourseView() {
+    public DetailCourseView(MainFrame mainFrame, Course course) {
+        this.mainFrame = mainFrame;
+        this.course = course;
         initComponents();
+        this.mainFrame = mainFrame;
+        this.course = course;
+
+        int courseSize = course.getListCourseContent().size();
+
+        if (courseSize > 0) {
+            double result = (double) courseSize / 3.0;
+            int rows = (int) Math.round(result);
+            if (rows == 0) {
+                rows = 1;
+            }
+            this.coursePanel.setLayout(new GridLayout(rows, 3, 8, 8));
+            for (int i = 0; i < courseSize; i++) {
+                CourseContentCard courseCard = new CourseContentCard(mainFrame, course.getListCourseContent().get(i));
+                this.coursePanel.add(courseCard);
+            }
+        }
+
+        int submissionSize = course.getListSubmission().size();
+
+        if (submissionSize > 0) {
+            double result = (double) submissionSize / 3.0;
+            int rows = (int) Math.round(result);
+            if (rows == 0) {
+                rows = 1;
+            }
+            this.submissionPanel.setLayout(new GridLayout(rows, 3, 8, 8));
+            for (int i = 0; i < submissionSize; i++) {
+                SubmissionCard card = new SubmissionCard(mainFrame, course.getListSubmission().get(i));
+                this.submissionPanel.add(card);
+            }
+        }
+        
+        if (course.getTeacher() != DatabaseService.currentUser) {
+            btnAddCourseContent.setVisible(false);
+            btnAddSubmission.setVisible(false);
+        }
+
     }
 
     /**
@@ -26,19 +84,129 @@ public class DetailCourseView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnBack = new javax.swing.JButton();
+        coursePanel = new javax.swing.JPanel();
+        submissionPanel = new javax.swing.JPanel();
+        btnAddCourseContent = new javax.swing.JButton();
+        btnAddSubmission = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        setMinimumSize(new java.awt.Dimension(563, 509));
+        setPreferredSize(new java.awt.Dimension(563, 509));
+
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout coursePanelLayout = new javax.swing.GroupLayout(coursePanel);
+        coursePanel.setLayout(coursePanelLayout);
+        coursePanelLayout.setHorizontalGroup(
+            coursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        coursePanelLayout.setVerticalGroup(
+            coursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 172, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout submissionPanelLayout = new javax.swing.GroupLayout(submissionPanel);
+        submissionPanel.setLayout(submissionPanelLayout);
+        submissionPanelLayout.setHorizontalGroup(
+            submissionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        submissionPanelLayout.setVerticalGroup(
+            submissionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 172, Short.MAX_VALUE)
+        );
+
+        btnAddCourseContent.setText("Add Course Content");
+        btnAddCourseContent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddCourseContentActionPerformed(evt);
+            }
+        });
+
+        btnAddSubmission.setText("Add Submission");
+        btnAddSubmission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddSubmissionActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("Materi");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setText("Tugas");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnBack)
+                            .addGap(197, 197, 197)
+                            .addComponent(btnAddSubmission)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnAddCourseContent))
+                        .addComponent(coursePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addComponent(submissionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack)
+                    .addComponent(btnAddCourseContent)
+                    .addComponent(btnAddSubmission))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(coursePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(submissionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAddSubmissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSubmissionActionPerformed
+        mainFrame.showView(new AddSubmissionView(course, null, mainFrame));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddSubmissionActionPerformed
+
+    private void btnAddCourseContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCourseContentActionPerformed
+        mainFrame.showView(new AddCourseContentView(course, null, mainFrame));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddCourseContentActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        mainFrame.showView(new UserDashboardView(mainFrame, new CoursesView(mainFrame)));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddCourseContent;
+    private javax.swing.JButton btnAddSubmission;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JPanel coursePanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel submissionPanel;
     // End of variables declaration//GEN-END:variables
 }

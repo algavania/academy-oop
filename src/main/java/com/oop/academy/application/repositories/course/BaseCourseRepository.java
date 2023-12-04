@@ -13,6 +13,7 @@ import com.oop.academy.models.Course;
  */
 public interface BaseCourseRepository {
     public void addCourse(Course course);
-    public void updateCourse(Course course,int indeks);
-    public void deleteCourse(int indeks);
+    public void updateCourse(Course course,Course newCourse) throws Exception;
+    public void deleteCourse(Course course);
+    public void enroll(Course course) throws Exception;
 }

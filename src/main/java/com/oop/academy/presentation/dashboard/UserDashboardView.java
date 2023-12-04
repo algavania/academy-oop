@@ -11,9 +11,13 @@ import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.authentication.LoginView;
 import com.oop.academy.presentation.course.CoursesView;
+import com.oop.academy.presentation.dashboard.admin.AllCoursesList;
 import com.oop.academy.presentation.dashboard.admin.CategoryManagementView;
 import com.oop.academy.presentation.dashboard.admin.UserManagementView;
 import com.oop.academy.presentation.profile.ProfileView;
+import com.oop.academy.presentation.profile.ProfileView;
+import com.oop.academy.presentation.teacher.registration.RegistrationTeacherView;
+import com.oop.academy.presentation.teacher.submission.SubmissionTeacherViewNew;
 import javax.swing.JInternalFrame;
 
 /**
@@ -41,21 +45,21 @@ public class UserDashboardView extends javax.swing.JPanel {
             Menu2.setText("Category Management");
             Menu3.setText("Courses List");
             Menu4.setText("Approval");
-            Menu5.setVisible(false);
+            Menu5.setText("Profile");
         } else if (currentUser instanceof Teacher) {
             LoginLabel.setText("Login sebagai Teacher.");
-            Menu1.setText("My Lecture");
-            Menu2.setText("Add Course");
+            Menu1.setText("Home");
+            Menu2.setText("Profile");
             Menu3.setVisible(false);
             Menu4.setVisible(false);
             Menu5.setVisible(false);
         } else {
             LoginLabel.setText("Login sebagai Student.");
             Menu1.setText("Home");
-            Menu2.setText("My Course");
-            Menu3.setText("Profile");
+            Menu2.setText("Profile");
+            Menu3.setVisible(false);
             Menu4.setVisible(false);
-            Menu5.setVisible(false);
+            Menu5.setText("Be a Teacher!");
         }
         if (initialFrame != null) {
             changeInternalFrame(initialFrame);
@@ -270,8 +274,6 @@ public class UserDashboardView extends javax.swing.JPanel {
         if (currentUser instanceof Admin) {
             MenuLabel.setText("User Management");
             changeInternalFrame(new UserManagementView(mainFrame));
-        } else if (currentUser instanceof Teacher) {
-            MenuLabel.setText("My Lecture");
         } else {
             changeInternalFrame(new CoursesView(mainFrame));
             MenuLabel.setText("Home");
@@ -288,9 +290,9 @@ public class UserDashboardView extends javax.swing.JPanel {
         if (currentUser instanceof Admin) {
             MenuLabel.setText("Category Management");
             changeInternalFrame(new CategoryManagementView(mainFrame));
-        } else if (currentUser instanceof Teacher) {
         } else {
-            MenuLabel.setText("My Course");
+            MenuLabel.setText("Profile");
+            changeInternalFrame(new ProfileView(mainFrame, currentUser));
         }
     }//GEN-LAST:event_Menu2MouseClicked
 
@@ -308,6 +310,7 @@ public class UserDashboardView extends javax.swing.JPanel {
 
     private void Menu5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu5MousePressed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_Menu5MousePressed
 
     private void LogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutButtonActionPerformed
@@ -320,11 +323,7 @@ public class UserDashboardView extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (currentUser instanceof Admin) {
             MenuLabel.setText("Courses List");
-        } else if (currentUser instanceof Teacher) {
-            MenuLabel.setText("");
-        } else {
-            MenuLabel.setText("Profile");
-             changeInternalFrame(new ProfileView(mainFrame, currentUser));
+            changeInternalFrame(new AllCoursesList(mainFrame));
         }
     }//GEN-LAST:event_Menu3MouseClicked
 
@@ -332,6 +331,7 @@ public class UserDashboardView extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (currentUser instanceof Admin) {
             MenuLabel.setText("Approval");
+            changeInternalFrame(new SubmissionTeacherViewNew(mainFrame));
         } else if (currentUser instanceof Teacher) {
             MenuLabel.setText("");
         } else {
@@ -343,10 +343,12 @@ public class UserDashboardView extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (currentUser instanceof Admin) {
             MenuLabel.setText("");
+            changeInternalFrame(new ProfileView(mainFrame, currentUser));
         } else if (currentUser instanceof Teacher) {
             MenuLabel.setText("");
         } else {
-            MenuLabel.setText("");
+            MenuLabel.setText("Be a Teacher");
+            mainFrame.showView(new RegistrationTeacherView(mainFrame, currentUser));
         }
     }//GEN-LAST:event_Menu5MouseClicked
 
