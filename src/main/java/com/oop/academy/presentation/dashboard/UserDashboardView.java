@@ -323,10 +323,10 @@ public class UserDashboardView extends javax.swing.JPanel {
             MenuLabel.setText("Courses List");
         } else if (currentUser instanceof Teacher) {
             MenuLabel.setText("Profile");
-            changeInternalFrame(new ProfileView(mainFrame));
+            changeInternalFrame(new ProfileView(mainFrame, currentUser));
         } else {
             MenuLabel.setText("Profile");
-            changeInternalFrame(new ProfileView(mainFrame));
+            changeInternalFrame(new ProfileView(mainFrame, currentUser));
         }
     }//GEN-LAST:event_Menu3MouseClicked
 

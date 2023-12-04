@@ -25,15 +25,16 @@ public class ProfileView extends javax.swing.JInternalFrame {
      *
      * @param mainFrame
      */
-    public ProfileView(MainFrame mainFrame) {
+    public ProfileView(MainFrame mainFrame, User currentUser) {
         this.mainFrame = mainFrame;
-        currentUser = DatabaseService.currentUser;
+        this.currentUser = currentUser;
         initComponents();
-        
+    }
+    
+    private void showProfile(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
         String formattedDate = dateFormat.format(currentUser.getBirthdate());
-        String formattedBalance = String.valueOf(currentUser.getBalance());        
-        
+        String formattedBalance = String.valueOf(currentUser.getBalance());  
         usernameLabel.setText(currentUser.getUsername());
         nameLabel.setText(currentUser.getName());
         birthdateLabel.setText(formattedDate);
@@ -256,13 +257,13 @@ public class ProfileView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        mainFrame.showView(new EditProfileView(mainFrame));
+        mainFrame.showView(new EditProfileView(mainFrame, currentUser));
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        mainFrame.showView(new TopupView(mainFrame));
+        mainFrame.showView(new TopupView(mainFrame, currentUser));
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 

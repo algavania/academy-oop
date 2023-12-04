@@ -4,6 +4,7 @@
  */
 package com.oop.academy.presentation.profile;
 
+import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.dashboard.UserDashboardView;
 
@@ -13,13 +14,14 @@ import com.oop.academy.presentation.dashboard.UserDashboardView;
  */
 public class EditProfileView extends javax.swing.JPanel {
     private MainFrame mainFrame;
-
+    private User currentUser;
     /**
      * Creates new form EditProfileView
      * @param mainFrame
      */
-    public EditProfileView(MainFrame mainFrame) {
+    public EditProfileView(MainFrame mainFrame, User currentUser) {
         this.mainFrame = mainFrame;
+        this.currentUser = currentUser;
         initComponents();
     }
 
@@ -220,7 +222,7 @@ public class EditProfileView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        mainFrame.showView(new UserDashboardView(mainFrame, new ProfileView(mainFrame)));
+        mainFrame.showView(new UserDashboardView(mainFrame, new ProfileView(mainFrame, currentUser)));
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBackActionPerformed
 
