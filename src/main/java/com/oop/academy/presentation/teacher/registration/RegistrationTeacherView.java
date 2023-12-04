@@ -6,10 +6,12 @@ package com.oop.academy.presentation.teacher.registration;
 
 import com.oop.academy.InjectionContainer;
 import com.oop.academy.application.repositories.teacher.registration.TeacherRegistRepository;
+import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.models.Education;
 import com.oop.academy.models.Teacher;
 import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
+import com.oop.academy.presentation.dashboard.UserDashboardView;
 import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
@@ -97,6 +99,7 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
         inputGelar = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -173,6 +176,13 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
             }
         });
 
+        btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -243,15 +253,22 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
                         .addComponent(btnRegistration)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(136, 204, Short.MAX_VALUE)
+                .addGap(136, 207, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(179, 179, 179))
+                .addGap(77, 77, 77)
+                .addComponent(btnExit)
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(btnExit)))
                 .addGap(43, 43, 43)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
@@ -363,11 +380,11 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
 
         String filename = f.getAbsolutePath();
         inputCertificate.setText(filename);
-        
+
     }//GEN-LAST:event_btnUploadCertificateActionPerformed
 
     private void btnRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrationActionPerformed
-        User currentUser = teacherRegistRepository.getCurrentUser();
+        User currentUser = DatabaseService.currentUser;
         List<Education> educations = InjectionContainer.teacherRegistRepository.getAllEducation();
         String coverLetter = inputCL.getText();
         String personalWebsite = inputPersonalWeb.getText();
@@ -412,10 +429,16 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
         clearInputEducation();
     }//GEN-LAST:event_btnCancelActionPerformed
 
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        mainFrame.showView(new UserDashboardView(mainFrame, null));
+
+    }//GEN-LAST:event_btnExitActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEducation;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnRegistration;
     private javax.swing.JButton btnUploadCL;
     private javax.swing.JButton btnUploadCertificate;

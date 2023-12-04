@@ -79,10 +79,10 @@ public class DatabaseService {
         List<Education> educations = new ArrayList();
         educations.add(new Education("SMAN 1 Cibadak", 3, "SMA", 96,
                 "www.amir.com"));
-        userTeacherRequests.add(new Teacher("teacher", "Pak Amir",
+        userTeacherRequests.add(new Teacher("teacher1", "Pak Amir",
                 "Laki-Laki", new Date(), "teacher@email.com",
                 "teacher", "teacherUrl", 1000));
-        userTeacherRequests.add(new Teacher("teacher", "Pak Nasir",
+        userTeacherRequests.add(new Teacher("teacher2", "Pak Nasir",
                 "Laki-Laki", new Date(), "teacher@email.com",
                 "teacher", "teacherUrl", 1000));
 

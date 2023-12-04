@@ -6,6 +6,7 @@ package com.oop.academy.presentation.dashboard;
 
 import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.models.Admin;
+import com.oop.academy.models.Student;
 import com.oop.academy.models.Teacher;
 import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
@@ -15,6 +16,7 @@ import com.oop.academy.presentation.dashboard.admin.ApprovalTeacherView;
 import com.oop.academy.presentation.dashboard.admin.CategoryManagementView;
 import com.oop.academy.presentation.dashboard.admin.UserManagementView;
 import com.oop.academy.presentation.profile.ProfileView;
+import com.oop.academy.presentation.teacher.registration.RegistrationTeacherView;
 import javax.swing.JInternalFrame;
 
 /**
@@ -43,6 +45,7 @@ public class UserDashboardView extends javax.swing.JPanel {
             Menu3.setText("Courses List");
             Menu4.setText("Approval");
             Menu5.setVisible(false);
+            Menu6.setVisible(false);
         } else {
             LoginLabel.setText(currentUser instanceof Teacher ? "Login sebagai Teacher." : "Login sebagai Student.");
             Menu1.setText("Home");
@@ -50,6 +53,15 @@ public class UserDashboardView extends javax.swing.JPanel {
             Menu3.setText("Profile");
             Menu4.setVisible(false);
             Menu5.setVisible(false);
+
+            if (currentUser instanceof Teacher) {
+                Menu6.setText("");
+                Menu6.setVisible(false);
+                
+            } else {
+                Menu6.setText("Daftar Menjadi Guru");
+
+            }
         }
         if (initialFrame != null) {
             changeInternalFrame(initialFrame);
@@ -82,6 +94,7 @@ public class UserDashboardView extends javax.swing.JPanel {
         Menu4 = new javax.swing.JLabel();
         Menu5 = new javax.swing.JLabel();
         LogoutButton = new javax.swing.JButton();
+        Menu6 = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
 
         jLabel9.setText("jLabel9");
@@ -196,6 +209,18 @@ public class UserDashboardView extends javax.swing.JPanel {
             }
         });
 
+        Menu6.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        Menu6.setText(" Menu 6");
+        Menu6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Menu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Menu6MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Menu6MousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -209,6 +234,7 @@ public class UserDashboardView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(LogoutButton)
                 .addContainerGap(65, Short.MAX_VALUE))
+            .addComponent(Menu6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,6 +250,8 @@ public class UserDashboardView extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(Menu5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Menu6)
+                .addGap(57, 57, 57)
                 .addComponent(LogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -318,7 +346,7 @@ public class UserDashboardView extends javax.swing.JPanel {
             MenuLabel.setText("Courses List");
         } else {
             MenuLabel.setText("Profile");
-             changeInternalFrame(new ProfileView(mainFrame, currentUser));
+            changeInternalFrame(new ProfileView(mainFrame, currentUser));
         }
     }//GEN-LAST:event_Menu3MouseClicked
 
@@ -345,6 +373,16 @@ public class UserDashboardView extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_Menu5MouseClicked
 
+    private void Menu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu6MouseClicked
+        // TODO add your handling code here:
+        mainFrame.showView(new RegistrationTeacherView(mainFrame));
+
+    }//GEN-LAST:event_Menu6MouseClicked
+
+    private void Menu6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu6MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Menu6MousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AcademyLabel;
@@ -355,6 +393,7 @@ public class UserDashboardView extends javax.swing.JPanel {
     private javax.swing.JLabel Menu3;
     private javax.swing.JLabel Menu4;
     private javax.swing.JLabel Menu5;
+    private javax.swing.JLabel Menu6;
     private javax.swing.JLabel MenuLabel;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel9;

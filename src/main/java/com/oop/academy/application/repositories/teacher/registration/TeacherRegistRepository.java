@@ -17,7 +17,6 @@ import java.util.List;
  */
 public class TeacherRegistRepository implements BaseTeacherRegistRepository {
 
-    private final User currentUser = DatabaseService.currentUser;
     private List<Education> educations;
     private final List<Teacher> userTeacherRequests = DatabaseService.
             getUserTeacherRequests();
@@ -66,8 +65,5 @@ public class TeacherRegistRepository implements BaseTeacherRegistRepository {
         return educations.get(id);
     }
 
-    public User getCurrentUser() {
-        return currentUser;
-    }
 
 }
