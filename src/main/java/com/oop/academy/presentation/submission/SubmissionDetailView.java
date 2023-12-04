@@ -8,6 +8,7 @@ import com.oop.academy.InjectionContainer;
 import com.oop.academy.application.repositories.course.SubmissionRepository;
 import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.models.Course;
+import com.oop.academy.models.StudentSubmission;
 import com.oop.academy.models.Submission;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.course.DetailCourseView;
@@ -98,6 +99,11 @@ public class SubmissionDetailView extends javax.swing.JPanel {
         lblDate.setText("12 Desember 2023");
 
         btnMySubmission.setText("Lihat Tugas Saya");
+        btnMySubmission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMySubmissionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -159,6 +165,23 @@ public class SubmissionDetailView extends javax.swing.JPanel {
         goBack();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnMySubmissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMySubmissionActionPerformed
+        if (course.getTeacher() == DatabaseService.currentUser) {
+            mainFrame.showView(new StudentSubmissionListView(mainFrame, submission));
+        } else {
+            StudentSubmission data = null;
+            for (StudentSubmission item : submission.getStudentSubmissions()) {
+                if (item.getStudent() == DatabaseService.currentUser) {
+                    data = item;
+                    break;
+                }
+            }
+            mainFrame.showView(new StudentSubmissionDetailView(mainFrame, 
+                    submission, data));
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMySubmissionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

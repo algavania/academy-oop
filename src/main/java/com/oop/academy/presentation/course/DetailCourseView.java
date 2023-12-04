@@ -9,6 +9,7 @@ import com.oop.academy.models.Course;
 import com.oop.academy.models.CourseContent;
 import com.oop.academy.models.Teacher;
 import com.oop.academy.presentation.MainFrame;
+import com.oop.academy.presentation.dashboard.UserDashboardView;
 import com.oop.academy.presentation.submission.AddSubmissionView;
 import com.oop.academy.presentation.submission.SubmissionCard;
 import java.awt.GridLayout;
@@ -65,7 +66,7 @@ public class DetailCourseView extends javax.swing.JPanel {
             }
         }
         
-        if (course.getTeacher() == DatabaseService.currentUser) {
+        if (course.getTeacher() != DatabaseService.currentUser) {
             btnAddCourseContent.setVisible(false);
             btnAddSubmission.setVisible(false);
         }
@@ -89,7 +90,15 @@ public class DetailCourseView extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
+        setMinimumSize(new java.awt.Dimension(563, 509));
+        setPreferredSize(new java.awt.Dimension(563, 509));
+
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout coursePanelLayout = new javax.swing.GroupLayout(coursePanel);
         coursePanel.setLayout(coursePanelLayout);
@@ -182,6 +191,11 @@ public class DetailCourseView extends javax.swing.JPanel {
         mainFrame.showView(new AddCourseContentView(course, null, mainFrame));
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddCourseContentActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        mainFrame.showView(new UserDashboardView(mainFrame, new CoursesView(mainFrame)));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

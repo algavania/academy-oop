@@ -7,6 +7,7 @@ package com.oop.academy.presentation.authentication;
 import com.oop.academy.InjectionContainer;
 import com.oop.academy.application.repositories.authentication.AuthRepository;
 import com.oop.academy.presentation.MainFrame;
+import com.oop.academy.presentation.course.CoursesView;
 import com.oop.academy.presentation.dashboard.UserDashboardView;
 import javax.swing.JOptionPane;
 
@@ -178,8 +179,9 @@ public class LoginView extends javax.swing.JPanel {
 
         try {
             authRepository.login(username, password);
-            mainFrame.showView(new UserDashboardView(mainFrame, null));
+            mainFrame.showView(new UserDashboardView(mainFrame, new CoursesView(mainFrame)));
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(
                     mainFrame,
                     e.getMessage(),

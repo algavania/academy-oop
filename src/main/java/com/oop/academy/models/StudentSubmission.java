@@ -13,12 +13,12 @@ import java.util.Date;
  */
 public class StudentSubmission {
     private Submission submission;
-    private Student student;
+    private User student;
     private File file;
-    private double score;
+    private Double score;
     private Date createdAt;
 
-    public StudentSubmission(Submission submission, Student student, File file, double score, Date createdAt) {
+    public StudentSubmission(Submission submission, User student, File file, Double score, Date createdAt) {
         this.submission = submission;
         this.student = student;
         this.file = file;
@@ -44,19 +44,19 @@ public class StudentSubmission {
         this.submission = submission;
     }
 
-    public Student getStudent() {
+    public User getStudent() {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(User student) {
         this.student = student;
     }
 
-    public double getScore() {
+    public Double getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(Double score) {
         this.score = score;
     }
 

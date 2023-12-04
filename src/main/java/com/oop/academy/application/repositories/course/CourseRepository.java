@@ -6,7 +6,6 @@ package com.oop.academy.application.repositories.course;
 
 import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.models.Course;
-import com.oop.academy.models.Student;
 import com.oop.academy.models.User;
 import java.util.List;
 
@@ -41,7 +40,12 @@ public class CourseRepository implements BaseCourseRepository {
 
     @Override
     public void enroll(Course course) throws Exception {
-        
-//        course.getListStudent().add(user);
+        User user = DatabaseService.currentUser;
+        if (user.getBalance() < course.getPrice()) {
+            throw new Exception("Saldo kamu gak cukup");
+        }
+        user.setBalance(user.getBalance() - course.getPrice());
+        course.getTeacher().setBalance(course.getTeacher().getBalance() + course.getPrice());
+        course.getListStudent().add(user);
     }
 }

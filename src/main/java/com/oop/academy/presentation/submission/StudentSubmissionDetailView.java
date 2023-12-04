@@ -6,7 +6,6 @@ package com.oop.academy.presentation.submission;
 
 import com.oop.academy.application.repositories.course.SubmissionRepository;
 import com.oop.academy.application.service.DatabaseService;
-import com.oop.academy.models.Student;
 import com.oop.academy.models.StudentSubmission;
 import com.oop.academy.models.Submission;
 import com.oop.academy.models.User;
@@ -23,7 +22,7 @@ import javax.swing.JOptionPane;
  */
 public class StudentSubmissionDetailView extends javax.swing.JPanel {
 
-    private final StudentSubmission studentSubmission;
+    private StudentSubmission studentSubmission = null;
     private final Submission submission;
     private final MainFrame mainFrame;
     private final SubmissionRepository repository = new SubmissionRepository();
@@ -34,22 +33,24 @@ public class StudentSubmissionDetailView extends javax.swing.JPanel {
      * Creates new form StudentSubmissionDetailView
      *
      * @param mainFrame
+     * @param submission
      * @param studentSubmission
      */
-    public StudentSubmissionDetailView(MainFrame mainFrame, StudentSubmission studentSubmission) {
+    public StudentSubmissionDetailView(MainFrame mainFrame, Submission submission, StudentSubmission studentSubmission) {
         this.mainFrame = mainFrame;
         this.studentSubmission = studentSubmission;
-        this.submission = studentSubmission.getSubmission();
+        this.submission = submission;
         initComponents();
 
         lblTitle.setText(submission.getName());
         tfName.setText(user.getName());
         if (studentSubmission != null) {
             tfFile.setText(studentSubmission.getFile().getAbsolutePath());
-            tfScore.setText(String.valueOf(studentSubmission.getScore()));
+            Double score = studentSubmission.getScore();
+            tfScore.setText(score == null ? "" : String.valueOf(score));
         }
 
-        isTeacher = user == studentSubmission.getSubmission().getCourse().getTeacher();
+        isTeacher = user == submission.getCourse().getTeacher();
 
         if (isTeacher) {
             tfScore.setEnabled(true);
@@ -129,41 +130,42 @@ public class StudentSubmissionDetailView extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(51, 51, 51)
-                        .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnBack)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tfScore, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnDownload)
+                                .addComponent(jLabel2)
+                                .addGap(51, 51, 51)
+                                .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnBack)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnUpload))
-                            .addComponent(tfFile, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnSave, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(tfScore, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnDownload)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnUpload))
+                                    .addComponent(tfFile, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnSave, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(lblTitle)))
                 .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTitle)
-                .addGap(141, 141, 141))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(btnBack)
-                .addGap(17, 17, 17)
+                .addGap(16, 16, 16)
                 .addComponent(lblTitle)
-                .addGap(26, 26, 26)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -208,18 +210,18 @@ public class StudentSubmissionDetailView extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         String name = tfFile.getText();
         String score = tfScore.getText();
-        boolean isScoreValid = score.isBlank();
+        boolean isScoreValid = !score.isBlank();
         if (!isTeacher) {
             isScoreValid = true;
         }
         try {
-            if (name.isBlank() || isScoreValid) {
+            if (name.isBlank() || !isScoreValid) {
                 throw new Exception("Field tidak boleh kosong");
             }
-            double scoreValue = Double.parseDouble(score);
+            Double scoreValue = score.trim().isEmpty() ? null : Double.valueOf(score);
             File file = new File(tfFile.getText());
             if (studentSubmission == null) {
-                StudentSubmission data = new StudentSubmission(submission, (Student) user, file, scoreValue, new Date());
+                StudentSubmission data = new StudentSubmission(submission, user, file, scoreValue, new Date());
                 repository.addStudentSubmission(submission, data);
             } else {
                 StudentSubmission oldContent = studentSubmission;
@@ -227,7 +229,9 @@ public class StudentSubmissionDetailView extends javax.swing.JPanel {
                 studentSubmission.setScore(scoreValue);
                 repository.updateStudentSubmission(submission, oldContent, studentSubmission);
             }
+            JOptionPane.showMessageDialog(this, "Berhasil disimpan!");
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         // TODO add your handling code here:

@@ -32,12 +32,14 @@ public class StudentSubmissionListView extends javax.swing.JPanel {
                 submission.getStudentSubmissions());
         initComponents();
         lblTitle.setText(submission.getName());
+        listTable.setModel(tableModel);
         listTable.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent mouseEvent) {
                 Point point = mouseEvent.getPoint();
                 int selectedRow = listTable.getSelectedRow();
                 if (mouseEvent.getClickCount() == 2 && selectedRow != -1) {
-                    mainFrame.showView(new StudentSubmissionDetailView(mainFrame, tableModel.getDataAt(selectedRow)));
+                    mainFrame.showView(new StudentSubmissionDetailView(mainFrame,
+                            submission, tableModel.getDataAt(selectedRow)));
                 }
             }
 

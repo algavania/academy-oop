@@ -25,6 +25,9 @@ public class Submission {
     }
 
     public List<StudentSubmission> getStudentSubmissions() {
+        if (studentSubmissions == null) {
+            studentSubmissions = new ArrayList();
+        }
         return studentSubmissions;
     }
 

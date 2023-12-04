@@ -6,10 +6,7 @@ package com.oop.academy.models;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author asus
@@ -17,7 +14,7 @@ import javax.swing.ImageIcon;
 public class Course {
     private String name;
     private int price;
-    private List<Student> listStudent;
+    private List<User> listStudent;
     private Teacher teacher;
     private Category category;
     private List<CourseContent> listCourseContent;
@@ -55,7 +52,7 @@ public class Course {
         this.price = price;
     }
 
-    public List<Student> getListStudent() {
+    public List<User> getListStudent() {
         return listStudent;
     }
 

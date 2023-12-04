@@ -40,7 +40,7 @@ public class AddSubmissionView extends javax.swing.JPanel {
 
         if (submission != null) {
             tfName.setText(submission.getName());
-            tfDescription.setText(submission.getDescription());
+            taDesc.setText(submission.getDescription());
             lblTitle.setText("Ubah Tugas");
             btnSubmit.setText("Simpan");
         }
@@ -61,7 +61,8 @@ public class AddSubmissionView extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         tfName = new javax.swing.JTextField();
-        tfDescription = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taDesc = new javax.swing.JTextArea();
 
         btnSubmit.setBackground(new java.awt.Color(102, 255, 51));
         btnSubmit.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -89,6 +90,10 @@ public class AddSubmissionView extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel4.setText("Deskripsi      :");
 
+        taDesc.setColumns(20);
+        taDesc.setRows(5);
+        jScrollPane1.setViewportView(taDesc);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,7 +112,7 @@ public class AddSubmissionView extends javax.swing.JPanel {
                         .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfName)
-                            .addComponent(tfDescription))))
+                            .addComponent(jScrollPane1))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -125,14 +130,11 @@ public class AddSubmissionView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(tfDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(54, 54, 54)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
                 .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -140,7 +142,7 @@ public class AddSubmissionView extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         String name = tfName.getText();
-        String desc = tfDescription.getText();
+        String desc = taDesc.getText();
         try {
             if (name.isBlank() || desc.isBlank()) {
                 throw new Exception("Field tidak boleh kosong");
@@ -154,7 +156,7 @@ public class AddSubmissionView extends javax.swing.JPanel {
                 repository.addSubmission(course, data);
 
                 tfName.setText("");
-                tfDescription.setText("");
+                taDesc.setText("");
             } else {
                 Submission oldContent = submission;
                 submission.setName(name);
@@ -180,8 +182,9 @@ public class AddSubmissionView extends javax.swing.JPanel {
     private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JTextField tfDescription;
+    private javax.swing.JTextArea taDesc;
     private javax.swing.JTextField tfName;
     // End of variables declaration//GEN-END:variables
 }

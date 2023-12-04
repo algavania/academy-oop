@@ -221,6 +221,7 @@ public class AddCourseView extends javax.swing.JPanel {
             course.setCategory(category);
             course.setName(name);
             course.setTeacher((Teacher) DatabaseService.currentUser);
+            System.out.println("course teacher: "+course.getTeacher().getName());
             course.setPrice(getPriceValue());
             course.setCreatedAt();
 
