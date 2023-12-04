@@ -6,22 +6,24 @@ package com.oop.academy.application.repositories.course;
 
 import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.models.Course;
-import com.oop.academy.models.CourseContent;
 import com.oop.academy.models.Student;
-import com.oop.academy.models.StudentSubmission;
+import com.oop.academy.models.User;
 import java.util.List;
 
 /**
  *
  * @author asus
  */
-public class CourseRepository {
+public class CourseRepository implements BaseCourseRepository {
+
     private final List<Course> courses = DatabaseService.getCourses();
-    
-    public void addCourse(Course course)
-    {
+
+    @Override
+    public void addCourse(Course course) {
         courses.add(course);
     }
+
+    @Override
     public void updateCourse(Course course, Course newCourse) throws Exception {
         for (int i = 0; i < courses.size(); i++) {
             if (courses.get(i) == course) {
@@ -31,10 +33,15 @@ public class CourseRepository {
         }
         throw new Exception("Course tidak ditemukan");
     }
-    public void deleteCourse(Course course)
-    {
+
+    @Override
+    public void deleteCourse(Course course) {
         courses.remove(course);
     }
-   
-   
+
+    @Override
+    public void enroll(Course course) throws Exception {
+        
+//        course.getListStudent().add(user);
+    }
 }

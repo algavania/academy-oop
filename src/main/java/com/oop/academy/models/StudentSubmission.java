@@ -4,6 +4,7 @@
  */
 package com.oop.academy.models;
 
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -13,18 +14,28 @@ import java.util.Date;
 public class StudentSubmission {
     private Submission submission;
     private Student student;
-    private String file;
-    private int score;
-    private Date createAt;
+    private File file;
+    private double score;
+    private Date createdAt;
 
-    public StudentSubmission(Submission submission, Student student, String file, int score, Date createAt) {
+    public StudentSubmission(Submission submission, Student student, File file, double score, Date createdAt) {
         this.submission = submission;
         this.student = student;
         this.file = file;
         this.score = score;
-        this.createAt = createAt;
+        this.createdAt = createdAt;
     }
 
+    
+    
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+    
     public Submission getSubmission() {
         return submission;
     }
@@ -41,27 +52,19 @@ public class StudentSubmission {
         this.student = student;
     }
 
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
-
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(double score) {
         this.score = score;
     }
 
-    public Date getCreateAt() {
-        return createAt;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

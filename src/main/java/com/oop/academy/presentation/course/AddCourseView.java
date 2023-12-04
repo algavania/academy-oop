@@ -27,7 +27,7 @@ import javax.swing.text.AbstractDocument;
 public class AddCourseView extends javax.swing.JPanel {
 
     private final MainFrame mainFrame;
-    private final CourseRepository repository = InjectionContainer.courseReposiotory;
+    private final CourseRepository repository = InjectionContainer.courseRepository;
     private final CategoryRepository categoryRepository = InjectionContainer.categoryRepository;
     private final NumberFormat format;
 

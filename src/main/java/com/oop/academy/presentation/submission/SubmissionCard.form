@@ -24,11 +24,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lblContent" pref="236" max="32767" attributes="0"/>
+                  <Component id="lblDescription" pref="236" max="32767" attributes="0"/>
                   <Component id="lblTitle" max="32767" attributes="0"/>
+                  <Component id="lblDeadline" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -40,7 +41,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblTitle" min="-2" pref="32" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblContent" min="-2" pref="60" max="-2" attributes="0"/>
+              <Component id="lblDescription" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lblDeadline" min="-2" pref="32" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -52,14 +55,20 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Pemrograman Java"/>
+        <Property name="text" type="java.lang.String" value="Submission Title"/>
         <Property name="verticalAlignment" type="int" value="1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblContent">
+    <Component class="javax.swing.JLabel" name="lblDescription">
       <Properties>
-        <Property name="text" type="java.lang.String" value="This is course content"/>
+        <Property name="text" type="java.lang.String" value="This is submission description"/>
         <Property name="verticalAlignment" type="int" value="1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDeadline">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="12 Desember 2023"/>
+        <Property name="verticalTextPosition" type="int" value="1"/>
       </Properties>
     </Component>
   </SubComponents>

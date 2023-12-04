@@ -37,7 +37,7 @@ public class UserManagementView extends javax.swing.JInternalFrame {
         tableContent.setRowCount(0);
 
         int i = 1;
-        for (User user: InjectionContainer.userReposiotory.getAllUser()) {
+        for (User user: InjectionContainer.userRepository.getAllUser()) {
             this.tableContent.addRow(new Object[]{
                 i,
                 user.getUsername(),
@@ -274,7 +274,7 @@ public class UserManagementView extends javax.swing.JInternalFrame {
         if (selectedRow >= 0) {
             String username = (String) tableContent.getValueAt(selectedRow, 1);
             try {
-                InjectionContainer.userReposiotory.delete(InjectionContainer.userReposiotory.getByUsername(username));
+                InjectionContainer.userRepository.delete(InjectionContainer.userRepository.getByUsername(username));
                 this.inputUsername.setText("");
                 this.inputName.setText("");
                 this.inputGender.setText("");
