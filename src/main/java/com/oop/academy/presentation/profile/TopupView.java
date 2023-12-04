@@ -8,6 +8,7 @@ import com.oop.academy.util.CurrencyHelper;
 import com.oop.academy.InjectionContainer;
 import com.oop.academy.util.NumericDocumentFilter;
 import com.oop.academy.application.service.DatabaseService;
+import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.dashboard.UserDashboardView;
 import java.text.NumberFormat;
@@ -23,14 +24,16 @@ public class TopupView extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
     private final NumberFormat format;
+    private User currentUser;
 
     /**
      * Creates new form TopupView
      *
      * @param mainFrame
      */
-    public TopupView(MainFrame mainFrame) {
+    public TopupView(MainFrame mainFrame, User currentUser) {
         this.mainFrame = mainFrame;
+        this.currentUser = currentUser;
         initComponents();
         ((AbstractDocument) tfAmount.getDocument()).setDocumentFilter(new NumericDocumentFilter());
         format = NumberFormat.getInstance();
@@ -182,8 +185,7 @@ public class TopupView extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        mainFrame.showView(new UserDashboardView(mainFrame, new ProfileView(mainFrame)));
-
+       mainFrame.showView(new UserDashboardView(mainFrame, new ProfileView(mainFrame, currentUser)));
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void tfAmountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfAmountKeyPressed
