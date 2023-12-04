@@ -7,6 +7,9 @@ package com.oop.academy.presentation.course;
 import com.oop.academy.models.Course;
 import com.oop.academy.models.CourseContent;
 import com.oop.academy.presentation.MainFrame;
+import com.oop.academy.presentation.dashboard.UserDashboardView;
+import com.oop.academy.presentation.submission.AddSubmissionView;
+import com.oop.academy.presentation.course.AddCourseContentView;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +19,8 @@ import java.util.List;
  * @author MSI
  */
 public class DetailCourseView extends javax.swing.JPanel {
-
+    private MainFrame mainFrame;
+    private Course course;
     /**
      * Creates new form DetailCourseView
      *
@@ -25,6 +29,8 @@ public class DetailCourseView extends javax.swing.JPanel {
      */
     public DetailCourseView(MainFrame mainFrame, Course course) {
         initComponents();
+        this.mainFrame = mainFrame;
+        this.course = course;
 
         int courseSize = course.getListCourseContent().size();
 
@@ -74,6 +80,11 @@ public class DetailCourseView extends javax.swing.JPanel {
         btnAddSubmission = new javax.swing.JButton();
 
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout coursePanelLayout = new javax.swing.GroupLayout(coursePanel);
         coursePanel.setLayout(coursePanelLayout);
@@ -98,8 +109,18 @@ public class DetailCourseView extends javax.swing.JPanel {
         );
 
         btnAddCourseContent.setText("Add Course Content");
+        btnAddCourseContent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddCourseContentActionPerformed(evt);
+            }
+        });
 
         btnAddSubmission.setText("Add Submission");
+        btnAddSubmission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddSubmissionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -133,6 +154,21 @@ public class DetailCourseView extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        mainFrame.showView(new UserDashboardView(mainFrame, null));
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnAddSubmissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSubmissionActionPerformed
+        // TODO add your handling code here:
+        mainFrame.showView(new AddSubmissionView(mainFrame, course));
+    }//GEN-LAST:event_btnAddSubmissionActionPerformed
+
+    private void btnAddCourseContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCourseContentActionPerformed
+        // TODO add your handling code here:
+        mainFrame.showView(new AddCourseContentPanelView(mainFrame, course));
+    }//GEN-LAST:event_btnAddCourseContentActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

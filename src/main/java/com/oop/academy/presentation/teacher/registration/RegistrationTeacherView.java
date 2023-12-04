@@ -10,6 +10,7 @@ import com.oop.academy.models.Education;
 import com.oop.academy.models.Teacher;
 import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
+import com.oop.academy.presentation.dashboard.UserDashboardView;
 import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,12 +22,14 @@ import javax.swing.table.DefaultTableModel;
 public class RegistrationTeacherView extends javax.swing.JPanel {
 
     private final MainFrame mainFrame;
+    private final User currentUser;
     private final DefaultTableModel tableContent;
     private final TeacherRegistRepository teacherRegistRepository
             = InjectionContainer.teacherRegistRepository;
 
-    public RegistrationTeacherView(MainFrame mainFrame) {
+    public RegistrationTeacherView(MainFrame mainFrame, User currentUser) {
         this.mainFrame = mainFrame;
+        this.currentUser = currentUser;
         tableContent = new DefaultTableModel(new Object[][]{}, new String[]{
             "No", "Nama Sekolah", "periode", "GPA", "Gelar"
         });
@@ -97,6 +100,7 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
         inputGelar = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -173,10 +177,21 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(136, 204, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(179, 179, 179))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -240,17 +255,18 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
                                             .addGap(20, 20, 20)))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(233, 233, 233)
-                        .addComponent(btnRegistration)))
+                        .addComponent(btnRegistration))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(136, 204, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(179, 179, 179))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(14, 14, 14)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(43, 43, 43)
                 .addComponent(jLabel2)
@@ -412,6 +428,11 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
         clearInputEducation();
     }//GEN-LAST:event_btnCancelActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        mainFrame.showView(new UserDashboardView(mainFrame, null));
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEducation;
@@ -428,6 +449,7 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
     private javax.swing.JTextField inputPeriod;
     private javax.swing.JTextField inputPersonalWeb;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

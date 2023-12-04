@@ -56,6 +56,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="coursePanel">
 
@@ -91,11 +94,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Add Course Content"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddCourseContentActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAddSubmission">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add Submission"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddSubmissionActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

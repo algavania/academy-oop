@@ -4,17 +4,26 @@
  */
 package com.oop.academy.presentation.submission;
 
+import com.oop.academy.models.Course;
+import com.oop.academy.presentation.MainFrame;
+import com.oop.academy.presentation.dashboard.UserDashboardView;
+
 /**
  *
  * @author mapam
  */
 public class AddSubmissionView extends javax.swing.JPanel {
-
+    private MainFrame mainFrame;
+    private Course course;
     /**
      * Creates new form AddSubmissionView
+     * * @param mainFrame
+     * @param course
      */
-    public AddSubmissionView() {
+    public AddSubmissionView(MainFrame mainFrame, Course course) {
         initComponents();
+        this.mainFrame = mainFrame;
+        this.course = course;
     }
 
     /**
@@ -40,6 +49,11 @@ public class AddSubmissionView extends javax.swing.JPanel {
 
         jButton1.setBackground(new java.awt.Color(153, 153, 153));
         jButton1.setText("<");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel1.setText("                     TAMBAH TUGAS");
@@ -98,6 +112,11 @@ public class AddSubmissionView extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        mainFrame.showView(new UserDashboardView(mainFrame, null));
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
