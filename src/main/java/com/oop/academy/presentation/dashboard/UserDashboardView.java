@@ -14,6 +14,7 @@ import com.oop.academy.presentation.course.CoursesView;
 import com.oop.academy.presentation.dashboard.admin.CategoryManagementView;
 import com.oop.academy.presentation.dashboard.admin.UserManagementView;
 import com.oop.academy.presentation.profile.ProfileView;
+import com.oop.academy.presentation.teacher.registration.RegistrationTeacherView;
 import javax.swing.JInternalFrame;
 
 /**
@@ -46,7 +47,7 @@ public class UserDashboardView extends javax.swing.JPanel {
             LoginLabel.setText("Login sebagai Teacher.");
             Menu1.setText("My Lecture");
             Menu2.setText("Add Course");
-            Menu3.setVisible(false);
+            Menu3.setText("Profile");
             Menu4.setVisible(false);
             Menu5.setVisible(false);
         } else {
@@ -55,7 +56,7 @@ public class UserDashboardView extends javax.swing.JPanel {
             Menu2.setText("My Course");
             Menu3.setText("Profile");
             Menu4.setVisible(false);
-            Menu5.setVisible(false);
+            Menu5.setText("Be a Teacher!");
         }
         if (initialFrame != null) {
             changeInternalFrame(initialFrame);
@@ -321,9 +322,11 @@ public class UserDashboardView extends javax.swing.JPanel {
         if (currentUser instanceof Admin) {
             MenuLabel.setText("Courses List");
         } else if (currentUser instanceof Teacher) {
-            MenuLabel.setText("");
+            MenuLabel.setText("Profile");
+            changeInternalFrame(new ProfileView(mainFrame));
         } else {
             MenuLabel.setText("Profile");
+            changeInternalFrame(new ProfileView(mainFrame));
         }
     }//GEN-LAST:event_Menu3MouseClicked
 
@@ -345,7 +348,8 @@ public class UserDashboardView extends javax.swing.JPanel {
         } else if (currentUser instanceof Teacher) {
             MenuLabel.setText("");
         } else {
-            MenuLabel.setText("");
+            MenuLabel.setText("Be a Teacher!");
+            mainFrame.showView(new RegistrationTeacherView(mainFrame));
         }
     }//GEN-LAST:event_Menu5MouseClicked
 
