@@ -4,6 +4,13 @@
  */
 package com.oop.academy.presentation.course;
 
+import com.oop.academy.models.Course;
+import com.oop.academy.models.CourseContent;
+import com.oop.academy.presentation.MainFrame;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author MSI
@@ -12,9 +19,43 @@ public class DetailCourseView extends javax.swing.JPanel {
 
     /**
      * Creates new form DetailCourseView
+     *
+     * @param mainFrame
+     * @param course
      */
-    public DetailCourseView() {
+    public DetailCourseView(MainFrame mainFrame, Course course) {
         initComponents();
+
+        int courseSize = course.getListCourseContent().size();
+
+        if (courseSize > 0) {
+            double result = (double) courseSize / 3.0;
+            int rows = (int) Math.round(result);
+            if (rows == 0) {
+                rows = 1;
+            }
+            this.coursePanel.setLayout(new GridLayout(rows, 3, 8, 8));
+            for (int i = 0; i < courseSize; i++) {
+                CourseContentCard courseCard = new CourseContentCard(course.getListCourseContent().get(i));
+                this.coursePanel.add(courseCard);
+            }
+        }
+        
+        int submissionSize = course.getListStudentSubmission().size();
+
+        if (submissionSize > 0) {
+            double result = (double) submissionSize / 3.0;
+            int rows = (int) Math.round(result);
+            if (rows == 0) {
+                rows = 1;
+            }
+            this.coursePanel.setLayout(new GridLayout(rows, 3, 8, 8));
+            for (int i = 0; i < submissionSize; i++) {
+//                CourseContentCard courseCard = new CourseContentCard(course.getListCourseContent().get(i));
+//                this.coursePanel.add(courseCard);
+            }
+        }
+
     }
 
     /**
@@ -26,19 +67,79 @@ public class DetailCourseView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnBack = new javax.swing.JButton();
+        coursePanel = new javax.swing.JPanel();
+        submissionPanel = new javax.swing.JPanel();
+        btnAddCourseContent = new javax.swing.JButton();
+        btnAddSubmission = new javax.swing.JButton();
+
+        btnBack.setText("Back");
+
+        javax.swing.GroupLayout coursePanelLayout = new javax.swing.GroupLayout(coursePanel);
+        coursePanel.setLayout(coursePanelLayout);
+        coursePanelLayout.setHorizontalGroup(
+            coursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        coursePanelLayout.setVerticalGroup(
+            coursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 203, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout submissionPanelLayout = new javax.swing.GroupLayout(submissionPanel);
+        submissionPanel.setLayout(submissionPanelLayout);
+        submissionPanelLayout.setHorizontalGroup(
+            submissionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        submissionPanelLayout.setVerticalGroup(
+            submissionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 176, Short.MAX_VALUE)
+        );
+
+        btnAddCourseContent.setText("Add Course Content");
+
+        btnAddSubmission.setText("Add Submission");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addGap(185, 185, 185)
+                        .addComponent(btnAddSubmission)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addComponent(btnAddCourseContent))
+                    .addComponent(coursePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(submissionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack)
+                    .addComponent(btnAddCourseContent)
+                    .addComponent(btnAddSubmission))
+                .addGap(31, 31, 31)
+                .addComponent(coursePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(submissionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddCourseContent;
+    private javax.swing.JButton btnAddSubmission;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JPanel coursePanel;
+    private javax.swing.JPanel submissionPanel;
     // End of variables declaration//GEN-END:variables
 }
