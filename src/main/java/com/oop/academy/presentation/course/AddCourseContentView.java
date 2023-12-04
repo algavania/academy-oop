@@ -9,6 +9,7 @@ import com.oop.academy.application.repositories.course.CourseContentRepository;
 import com.oop.academy.models.Course;
 import com.oop.academy.models.CourseContent;
 import com.oop.academy.presentation.MainFrame;
+import com.oop.academy.presentation.dashboard.UserDashboardView;
 import javax.swing.JOptionPane;
 
 /**
@@ -70,7 +71,7 @@ public class AddCourseContentView extends javax.swing.JPanel {
         });
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel2.setText("Nama Kelas :");
+        jLabel2.setText("Judul");
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel4.setText("Deskripsi     :");
@@ -177,6 +178,10 @@ public class AddCourseContentView extends javax.swing.JPanel {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

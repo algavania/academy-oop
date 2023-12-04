@@ -78,8 +78,6 @@ public class LoginView extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("UserName :");
 
-        inputUsername.setForeground(new java.awt.Color(0, 0, 0));
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Password   :");
 
@@ -98,8 +96,12 @@ public class LoginView extends javax.swing.JPanel {
 
         jLabel5.setForeground(new java.awt.Color(51, 102, 255));
         jLabel5.setText("Register");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
-        showPassword.setForeground(new java.awt.Color(0, 0, 0));
         showPassword.setText("Show Password");
         showPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,7 +164,6 @@ public class LoginView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        mainFrame.showView(new RegisterView(mainFrame));
     }//GEN-LAST:event_formMouseClicked
 
     private void showPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordActionPerformed
@@ -191,6 +192,12 @@ public class LoginView extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        mainFrame.showView(new RegisterView(mainFrame));
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel5MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

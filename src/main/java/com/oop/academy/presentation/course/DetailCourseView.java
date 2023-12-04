@@ -35,6 +35,8 @@ public class DetailCourseView extends javax.swing.JPanel {
         this.mainFrame = mainFrame;
         this.course = course;
         initComponents();
+        this.mainFrame = mainFrame;
+        this.course = course;
 
         int courseSize = course.getListCourseContent().size();
 
