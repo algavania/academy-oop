@@ -6,6 +6,7 @@ package com.oop.academy.presentation.profile;
 
 import com.oop.academy.util.CurrencyHelper;
 import com.oop.academy.InjectionContainer;
+import com.oop.academy.application.repositories.user.topup.TopUpRepository;
 import com.oop.academy.util.NumericDocumentFilter;
 import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.models.User;
@@ -25,6 +26,8 @@ public class TopupView extends javax.swing.JPanel {
     private MainFrame mainFrame;
     private final NumberFormat format;
     private User currentUser;
+    private final TopUpRepository topUpRepository
+            = InjectionContainer.topUpRepository;
 
     /**
      * Creates new form TopupView
@@ -105,9 +108,9 @@ public class TopupView extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(btnBack)
-                .addGap(81, 81, 81)
+                .addGap(98, 98, 98)
                 .addComponent(jLabel5)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +188,7 @@ public class TopupView extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-       mainFrame.showView(new UserDashboardView(mainFrame, new ProfileView(mainFrame, currentUser)));
+        mainFrame.showView(new UserDashboardView(mainFrame, new ProfileView(mainFrame, currentUser)));
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void tfAmountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfAmountKeyPressed
@@ -220,7 +223,7 @@ public class TopupView extends javax.swing.JPanel {
             setBalance();
             tfAmount.setText("");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.toString());
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSaveActionPerformed

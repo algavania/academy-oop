@@ -1,13 +1,17 @@
 com\oop\academy\presentation\dashboard\admin\CategoryManagementView$4.class
 com\oop\academy\presentation\profile\ProfileView$2.class
+com\oop\academy\application\repositories\teacher\submit\BaseSubmitTeacherRepository.class
 com\oop\academy\presentation\submission\AddSubmissionView$1.class
 com\oop\academy\presentation\submission\SubmissionCard.class
 com\oop\academy\presentation\profile\ProfileView1.class
+com\oop\academy\application\repositories\user\topup\TopUpRepository.class
 com\oop\academy\presentation\dashboard\admin\UserManagementView$2.class
 com\oop\academy\presentation\dashboard\UserDashboardView$4.class
 com\oop\academy\presentation\course\AddCourseContentView$2.class
 com\oop\academy\presentation\submission\SubmissionDetailView.class
 com\oop\academy\application\repositories\category\CategoryRepository.class
+com\oop\academy\application\repositories\teacher\submit\SubmitTeacherRepository.class
+com\oop\academy\presentation\teacher\submission\detailRegistTeacherView.class
 com\oop\academy\presentation\profile\ProfileView1$1.class
 com\oop\academy\application\repositories\user\BaseUserRepository.class
 com\oop\academy\presentation\profile\TopupView$1.class
@@ -19,6 +23,7 @@ com\oop\academy\application\repositories\course\BaseCourseRepository.class
 com\oop\academy\models\Category.class
 com\oop\academy\models\User.class
 com\oop\academy\presentation\dashboard\admin\UserManagementView$11.class
+com\oop\academy\presentation\teacher\submission\SubmissionTeacherView$3.class
 com\oop\academy\application\repositories\course\BaseCourseContentRepository.class
 com\oop\academy\presentation\submission\SubmissionDetailView$4.class
 com\oop\academy\presentation\teacher\registration\RegistrationTeacherView$2.class
@@ -38,10 +43,12 @@ com\oop\academy\presentation\teacher\registration\RegistrationTeacherView.class
 com\oop\academy\presentation\dashboard\admin\UserManagementView$10.class
 com\oop\academy\presentation\submission\SubmissionCard$1.class
 com\oop\academy\util\DateHelper.class
+com\oop\academy\application\repositories\user\topup\BaseTopUpRepository.class
 com\oop\academy\presentation\dashboard\admin\UserManagementView$7.class
 com\oop\academy\presentation\dashboard\admin\UserManagementView$1.class
 com\oop\academy\models\CourseContent.class
 com\oop\academy\presentation\authentication\LoginView.class
+com\oop\academy\presentation\teacher\submission\SubmissionTeacherView$1.class
 com\oop\academy\presentation\submission\StudentSubmissionDetailView$3.class
 com\oop\academy\presentation\dashboard\UserDashboardView$2.class
 com\oop\academy\presentation\course\AddCourseContentPanelView$1.class
@@ -71,6 +78,7 @@ com\oop\academy\presentation\authentication\LoginView$4.class
 com\oop\academy\util\NumericDocumentFilter.class
 com\oop\academy\presentation\teacher\registration\RegistrationTeacherView$6.class
 com\oop\academy\models\StudentSubmission.class
+com\oop\academy\presentation\teacher\submission\SubmissionTeacherView$2.class
 com\oop\academy\presentation\course\AddCourseView$3.class
 com\oop\academy\presentation\submission\StudentSubmissionListTableModel.class
 com\oop\academy\presentation\submission\StudentSubmissionListView$1.class

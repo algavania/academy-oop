@@ -228,7 +228,7 @@ public class AddCourseView extends javax.swing.JPanel {
             repository.addCourse(course);
             goBack();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.toString());
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddActionPerformed

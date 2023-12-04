@@ -8,6 +8,7 @@ import com.oop.academy.models.Admin;
 import com.oop.academy.models.Category;
 import com.oop.academy.models.User;
 import com.oop.academy.models.Course;
+import com.oop.academy.models.Education;
 import com.oop.academy.models.Teacher;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +22,7 @@ public class DatabaseService {
 
     public static User currentUser = null;
     private static List<User> users;
-    private static List<User> userTeacherRequests;
+    private static List<Teacher> userTeacherRequests;
     private static List<Category> categories;
     private static List<Course> courses;
 
@@ -72,11 +73,30 @@ public class DatabaseService {
             categories.add(new Category(categoryName));
         }
     }
-    
-    public static List<User> getUserTeacherRequests() {
+
+    private static void seederTeacherRequest() {
+        List<Education> educations = new ArrayList();
+        educations.add(new Education("SMAN 1 Cibadak", 3, "SMA", 96,
+                "www.amir.com"));
+        userTeacherRequests.add(new Teacher("teacher", "Pak Amir",
+                "Laki-Laki", new Date(), "teacher@email.com",
+                "teacher", "teacherUrl", 1000));
+        userTeacherRequests.add(new Teacher("bangziz", "Pak Nasir",
+                "Laki-Laki", new Date(), "teacher@email.com",
+                "teacher", "teacherUrl", 1000));
+
+        userTeacherRequests.get(0).setEducations(educations);
+        userTeacherRequests.get(1).setEducations(educations);
+
+    }
+
+    public static List<Teacher> getUserTeacherRequests() {
         if (userTeacherRequests == null) {
             userTeacherRequests = new ArrayList();
+            seederTeacherRequest();
+
         }
+
         return userTeacherRequests;
     }
 

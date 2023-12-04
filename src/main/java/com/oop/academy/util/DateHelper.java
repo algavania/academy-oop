@@ -13,9 +13,17 @@ import java.util.Date;
  */
 public class DateHelper {
 
+    private final String pattern = "yyyy-MM-dd HH:mm:ss";
+    private final String birthdayPattern = "dd-MM-yyyy";
+
     public String formatDate(Date date) {
-        String pattern = "yyyy-MM-dd HH:mm:ss";
         SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+        String formattedDate = dateFormat.format(date);
+        return formattedDate;
+    }
+
+    public String formatBirthday(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(birthdayPattern);
         String formattedDate = dateFormat.format(date);
         return formattedDate;
     }

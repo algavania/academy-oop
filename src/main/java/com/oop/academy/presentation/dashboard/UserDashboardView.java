@@ -15,7 +15,7 @@ import com.oop.academy.presentation.dashboard.admin.AllCoursesList;
 import com.oop.academy.presentation.dashboard.admin.CategoryManagementView;
 import com.oop.academy.presentation.dashboard.admin.UserManagementView;
 import com.oop.academy.presentation.profile.ProfileView;
-import com.oop.academy.presentation.profile.ProfileView1;
+import com.oop.academy.presentation.profile.ProfileView;
 import com.oop.academy.presentation.teacher.registration.RegistrationTeacherView;
 import com.oop.academy.presentation.teacher.submission.SubmissionTeacherViewNew;
 import javax.swing.JInternalFrame;
@@ -292,7 +292,7 @@ public class UserDashboardView extends javax.swing.JPanel {
             changeInternalFrame(new CategoryManagementView(mainFrame));
         } else {
             MenuLabel.setText("Profile");
-            changeInternalFrame(new ProfileView1(mainFrame, currentUser));
+            changeInternalFrame(new ProfileView(mainFrame, currentUser));
         }
     }//GEN-LAST:event_Menu2MouseClicked
 

@@ -41,7 +41,7 @@ public class EditProfileView extends javax.swing.JPanel {
             setGenderComboBox(currentUser.getGender());
         }
         txtEmail.setText(currentUser.getEmail());
-        labelBalance.setText("Balance: " + currentUser.getBalance());
+        labelBalance.setText("Rp." + currentUser.getBalance());
         updateUserData();
     }
 
