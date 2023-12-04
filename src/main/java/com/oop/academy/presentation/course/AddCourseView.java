@@ -5,7 +5,7 @@
 package com.oop.academy.presentation.course;
 
 import com.oop.academy.InjectionContainer;
-import com.oop.academy.NumericDocumentFilter;
+import com.oop.academy.util.NumericDocumentFilter;
 import com.oop.academy.application.repositories.category.CategoryRepository;
 import com.oop.academy.application.repositories.course.CourseRepository;
 import com.oop.academy.application.service.DatabaseService;

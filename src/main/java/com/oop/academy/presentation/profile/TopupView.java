@@ -4,9 +4,9 @@
  */
 package com.oop.academy.presentation.profile;
 
-import com.oop.academy.CurrencyHelper;
+import com.oop.academy.util.CurrencyHelper;
 import com.oop.academy.InjectionContainer;
-import com.oop.academy.NumericDocumentFilter;
+import com.oop.academy.util.NumericDocumentFilter;
 import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.dashboard.UserDashboardView;

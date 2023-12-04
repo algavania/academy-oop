@@ -4,6 +4,7 @@
  */
 package com.oop.academy.presentation.profile;
 
+import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.dashboard.UserDashboardView;
 import javax.swing.JOptionPane;
@@ -24,6 +25,8 @@ public class ProfileView extends javax.swing.JInternalFrame {
     public ProfileView(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         initComponents();
+        System.out.println("Test "+DatabaseService.currentUser.getGender());
+        lblGender.setText(DatabaseService.currentUser.getGender());
     }
 
     /**
@@ -45,7 +48,7 @@ public class ProfileView extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblGender = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -91,7 +94,7 @@ public class ProfileView extends javax.swing.JInternalFrame {
 
         jLabel9.setText("-");
 
-        jLabel10.setText("-");
+        lblGender.setText("-");
 
         jLabel11.setText("-");
 
@@ -164,7 +167,7 @@ public class ProfileView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 13, Short.MAX_VALUE)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(lblGender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -195,7 +198,7 @@ public class ProfileView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel10))
+                    .addComponent(lblGender))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -255,7 +258,6 @@ public class ProfileView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -270,5 +272,6 @@ public class ProfileView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblGender;
     // End of variables declaration//GEN-END:variables
 }

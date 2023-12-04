@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.oop.academy.presentation.dashboard.submission;
+package com.oop.academy.presentation.submission;
 
 /**
  *
  * @author mapam
  */
-public class UpdateSubmission extends javax.swing.JPanel {
+public class AddSubmissionView extends javax.swing.JPanel {
 
     /**
      * Creates new form AddSubmissionView
      */
-    public UpdateSubmission() {
+    public AddSubmissionView() {
         initComponents();
     }
 
@@ -36,13 +36,13 @@ public class UpdateSubmission extends javax.swing.JPanel {
 
         SubmitButton.setBackground(new java.awt.Color(102, 255, 51));
         SubmitButton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        SubmitButton.setText("EDIT");
+        SubmitButton.setText("TAMBAH");
 
         jButton1.setBackground(new java.awt.Color(153, 153, 153));
         jButton1.setText("<");
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel1.setText("                            EDIT TUGAS");
+        jLabel1.setText("                     TAMBAH TUGAS");
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel2.setText("Nama Tugas : ");
@@ -73,7 +73,7 @@ public class UpdateSubmission extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(SubmitButton)
-                .addGap(104, 104, 104))
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

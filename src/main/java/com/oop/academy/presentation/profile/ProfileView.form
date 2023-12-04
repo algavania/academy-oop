@@ -79,7 +79,7 @@
                               <Component id="jLabel9" alignment="0" min="-2" pref="13" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="jLabel11" alignment="0" pref="13" max="32767" attributes="0"/>
-                                  <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lblGender" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jLabel12" alignment="0" min="-2" pref="13" max="-2" attributes="0"/>
                               <Component id="jLabel13" alignment="0" min="-2" pref="13" max="-2" attributes="0"/>
@@ -120,7 +120,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblGender" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -221,7 +221,7 @@
             <Property name="text" type="java.lang.String" value="-"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel10">
+        <Component class="javax.swing.JLabel" name="lblGender">
           <Properties>
             <Property name="text" type="java.lang.String" value="-"/>
           </Properties>

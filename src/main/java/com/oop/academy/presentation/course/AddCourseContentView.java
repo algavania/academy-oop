@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package com.oop.academy.presentation.dashboard.course;
+package com.oop.academy.presentation.course;
 
 /**
  *
@@ -136,6 +136,7 @@ public class AddCourseContentView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
+
         // TODO add your handling code here:
     }//GEN-LAST:event_SubmitButtonActionPerformed
 

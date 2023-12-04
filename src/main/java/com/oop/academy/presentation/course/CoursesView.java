@@ -43,7 +43,7 @@ public class CoursesView extends javax.swing.JInternalFrame {
             }
             this.cardPanels.setLayout(new GridLayout(rows, 3, 8, 8));
             for (int i = 0; i < courseSize; i++) {
-                CourseCard courseCard = new CourseCard(courses.get(i));
+                CourseCard courseCard = new CourseCard(courses.get(i), mainFrame);
                 this.cardPanels.add(courseCard);
             }
         }
