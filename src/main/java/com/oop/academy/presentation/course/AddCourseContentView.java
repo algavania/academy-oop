@@ -86,7 +86,7 @@ public class AddCourseContentView extends javax.swing.JPanel {
         });
 
         lblTitle.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        lblTitle.setText("TAMBAH KELAS");
+        lblTitle.setText("TAMBAH MATERI");
 
         tfDesc.setColumns(20);
         tfDesc.setRows(5);
@@ -112,7 +112,7 @@ public class AddCourseContentView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(168, 168, 168)
                         .addComponent(lblTitle)
-                        .addContainerGap(242, Short.MAX_VALUE))))
+                        .addContainerGap(230, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSubmit)

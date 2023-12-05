@@ -17,14 +17,16 @@ public class SubmitTeacherRepository implements BaseSubmitTeacherRepository {
 
     private final List<Teacher> userTeacherRequests = DatabaseService.
             getUserTeacherRequests();
-    private final List<User> user = DatabaseService.getUsers();
+    private final List<User> users = DatabaseService.getUsers();
 
     @Override
     public void acceptNewTeacher(int selectedRow) {
-        Teacher user_teacher = userTeacherRequests.get(selectedRow);
+        User data = userTeacherRequests.
+                get(selectedRow);
+        users.remove(data);
+        users.add(userTeacherRequests.get(selectedRow));
         userTeacherRequests.remove(selectedRow);
-        user.remove(user_teacher);
-        user.add(user_teacher);
+
     }
 
     @Override
@@ -36,5 +38,4 @@ public class SubmitTeacherRepository implements BaseSubmitTeacherRepository {
     public List<Teacher> getAllUserTeacherRequest() {
         return userTeacherRequests;
     }
-
 }

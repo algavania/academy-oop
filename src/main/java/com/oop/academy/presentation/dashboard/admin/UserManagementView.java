@@ -6,7 +6,6 @@ package com.oop.academy.presentation.dashboard.admin;
 
 import com.oop.academy.InjectionContainer;
 import com.oop.academy.models.User;
-import com.oop.academy.presentation.MainFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,15 +13,12 @@ import javax.swing.table.DefaultTableModel;
  * @author MSI
  */
 public class UserManagementView extends javax.swing.JInternalFrame {
-    private final MainFrame mainFrame;
     private final DefaultTableModel tableContent;
 
     /**
      * Creates new form UserManagementView
-     * @param mainFrame
      */
-    public UserManagementView(MainFrame mainFrame) {
-        this.mainFrame = mainFrame;
+    public UserManagementView() {
         tableContent = new DefaultTableModel(new Object[][]{}, new String[]{
             "No", "Username", "Name", "Gender", "Birth Date", "Email", "Balance"
         });
@@ -262,8 +258,7 @@ public class UserManagementView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE))
         );
 
         pack();

@@ -7,7 +7,6 @@ package com.oop.academy.application.repositories.teacher.registration;
 import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.models.Education;
 import com.oop.academy.models.Teacher;
-import com.oop.academy.models.User;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,6 @@ import java.util.List;
  */
 public class TeacherRegistRepository implements BaseTeacherRegistRepository {
 
-    private final User currentUser = DatabaseService.currentUser;
     private List<Education> educations;
     private final List<Teacher> userTeacherRequests = DatabaseService.
             getUserTeacherRequests();
@@ -66,8 +64,5 @@ public class TeacherRegistRepository implements BaseTeacherRegistRepository {
         return educations.get(id);
     }
 
-    public User getCurrentUser() {
-        return currentUser;
-    }
 
 }

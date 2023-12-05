@@ -77,11 +77,11 @@ public class DatabaseService {
     private static void seederTeacherRequest() {
         List<Education> educations = new ArrayList();
         educations.add(new Education("SMAN 1 Cibadak", 3, "SMA", 96,
-                "www.amir.com"));
-        userTeacherRequests.add(new Teacher("teacher", "Pak Amir",
+                null));
+        userTeacherRequests.add(new Teacher("teacher1", "Pak Amir",
                 "Laki-Laki", new Date(), "teacher@email.com",
                 "teacher", "teacherUrl", 1000));
-        userTeacherRequests.add(new Teacher("bangziz", "Pak Nasir",
+        userTeacherRequests.add(new Teacher("teacher2", "Pak Nasir",
                 "Laki-Laki", new Date(), "teacher@email.com",
                 "teacher", "teacherUrl", 1000));
 
@@ -93,8 +93,7 @@ public class DatabaseService {
     public static List<Teacher> getUserTeacherRequests() {
         if (userTeacherRequests == null) {
             userTeacherRequests = new ArrayList();
-            seederTeacherRequest();
-
+//            seederTeacherRequest();
         }
 
         return userTeacherRequests;

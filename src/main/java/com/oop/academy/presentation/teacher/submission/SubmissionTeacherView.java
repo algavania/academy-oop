@@ -21,9 +21,7 @@ public class SubmissionTeacherView extends javax.swing.JPanel {
     private final DefaultTableModel tableContent;
     private final SubmitTeacherRepository submitTeacherRepository
             = InjectionContainer.submitTeacherRepository;
-
-    private int selectedRow;
-
+    
     public SubmissionTeacherView(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
         tableContent = new DefaultTableModel(new Object[][]{}, new String[]{
@@ -136,30 +134,27 @@ public class SubmissionTeacherView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
-        selectedRow = this.table.getSelectedRow();
 
     }//GEN-LAST:event_tableMouseClicked
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
-        if (selectedRow >  0) {
-            submitTeacherRepository.acceptNewTeacher(selectedRow);
+        if (table.getSelectedRow() >= 0) {
+            submitTeacherRepository.acceptNewTeacher(table.getSelectedRow());
         } else {
             JOptionPane.showMessageDialog(this, "tolong pilih "
                     + "user yang ingin di terima");
         }
-        selectedRow = 0;
         renderTable();
 
     }//GEN-LAST:event_btnAcceptActionPerformed
 
     private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
-        if (selectedRow > 0) {
-            submitTeacherRepository.rejectNewTeacher(selectedRow);
+        if (table.getSelectedRow() >= 0) {
+            submitTeacherRepository.rejectNewTeacher(table.getSelectedRow());
         } else {
             JOptionPane.showMessageDialog(this, "tolong pilih "
                     + "user yang ingin di tolak");
         }
-        selectedRow = 0;
         renderTable();
 
     }//GEN-LAST:event_btnRejectActionPerformed

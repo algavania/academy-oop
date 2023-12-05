@@ -22,6 +22,7 @@ D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\models\Us
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\application\repositories\user\UserRepository.java
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\application\repositories\category\CategoryRepository.java
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\course\DetailCourseView.java
+D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\dashboard\admin\ApprovalTeacherView.java
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\application\repositories\course\CourseRepository.java
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\InjectionContainer.java
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\application\repositories\teacher\submit\SubmitTeacherRepository.java
@@ -34,7 +35,6 @@ D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\models\Co
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\submission\StudentSubmissionListView.java
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\application\repositories\category\BaseCategoryRepository.java
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\course\CoursesView.java
-D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\profile\ProfileView1.java
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\models\Course.java
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\application\repositories\course\BaseCourseContentRepository.java
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\authentication\LoginView.java
@@ -55,7 +55,6 @@ D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentat
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\components\TextComponent.java
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\teacher\submission\SubmissionTeacherViewNew.java
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\profile\TopupView.java
-D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\course\AddCourseContentPanelView.java
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\models\Teacher.java
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\course\AddCourseView.java
 D:\PENS\Semester_3\OOP\Praktikum\Academy\src\main\java\com\oop\academy\presentation\dashboard\admin\CategoryManagementView.java

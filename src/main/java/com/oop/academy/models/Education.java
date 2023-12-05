@@ -4,6 +4,8 @@
  */
 package com.oop.academy.models;
 
+import java.io.File;
+
 /**
  *
  * @author asus
@@ -13,10 +15,10 @@ public class Education {
     private int attendPeriod;
     private String degree;
     private float gpa;
-    private String certificateUrl;
+    private File certificateUrl;
 
     public Education(String name, int attendPeriod, String degree, float gpa, 
-            String certificateUrl) {
+            File certificateUrl) {
         this.name = name;
         this.attendPeriod = attendPeriod;
         this.degree = degree;
@@ -56,11 +58,11 @@ public class Education {
         this.gpa = gpa;
     }
 
-    public String getCertificateUrl() {
+    public File getCertificateUrl() {
         return certificateUrl;
     }
 
-    public void setCertificateUrl(String certificateUrl) {
+    public void setCertificateUrl(File certificateUrl) {
         this.certificateUrl = certificateUrl;
     }
     
