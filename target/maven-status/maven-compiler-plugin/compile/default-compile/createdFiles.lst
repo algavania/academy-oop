@@ -11,7 +11,6 @@ com\oop\academy\presentation\submission\SubmissionDetailView.class
 com\oop\academy\application\repositories\category\CategoryRepository.class
 com\oop\academy\presentation\dashboard\UserDashboardView$7.class
 com\oop\academy\application\repositories\teacher\submit\SubmitTeacherRepository.class
-com\oop\academy\presentation\teacher\submission\detailRegistTeacherView.class
 com\oop\academy\application\repositories\user\BaseUserRepository.class
 com\oop\academy\presentation\profile\TopupView$1.class
 com\oop\academy\presentation\submission\SubmissionDetailView$2.class
@@ -31,6 +30,7 @@ com\oop\academy\presentation\profile\EditProfileView$2.class
 com\oop\academy\presentation\dashboard\admin\ApprovalTeacherView$3.class
 com\oop\academy\presentation\course\AddCourseView$1.class
 com\oop\academy\presentation\dashboard\admin\AllCoursesList.class
+com\oop\academy\presentation\teacher\registration\RegistrationTeacherView$8.class
 com\oop\academy\application\repositories\course\BaseSubmissionRepository.class
 com\oop\academy\presentation\course\DetailCourseView$1.class
 com\oop\academy\presentation\MainFrame.class
@@ -83,6 +83,7 @@ com\oop\academy\presentation\submission\StudentSubmissionListTableModel.class
 com\oop\academy\presentation\submission\StudentSubmissionListView$1.class
 com\oop\academy\presentation\dashboard\admin\UserManagementView$6.class
 com\oop\academy\presentation\course\DetailCourseContentView$2.class
+com\oop\academy\presentation\dashboard\admin\ApprovalTeacherView$4.class
 com\oop\academy\application\repositories\course\SubmissionRepository.class
 com\oop\academy\application\repositories\authentication\BaseAuthRepository.class
 com\oop\academy\presentation\course\CoursesView.class
