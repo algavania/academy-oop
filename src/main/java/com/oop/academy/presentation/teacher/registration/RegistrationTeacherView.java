@@ -139,7 +139,7 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Form Pendaftaran Guru");
 
-        jLabel3.setText("Nama Sekolah :");
+        jLabel3.setText("Institusi :");
 
         jLabel4.setText("Lama Periode :");
 
@@ -243,7 +243,7 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(inputPersonalWeb))))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(29, Short.MAX_VALUE)
+                        .addContainerGap(40, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnDelete)
@@ -391,7 +391,7 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
             User currentUser = DatabaseService.currentUser;
             String coverLetter = inputCL.getText();
             String personalWebsite = inputPersonalWeb.getText();
-            
+
             if (coverLetter.isBlank() || personalWebsite.isBlank() || educations.isEmpty()) {
                 throw new Exception("Field tidak boleh kosong!");
             }
@@ -457,6 +457,8 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
         if (selectedRow != -1) {
             educations.remove(selectedRow);
         }
+        renderTable();
+        clearInputEducation();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteActionPerformed
 

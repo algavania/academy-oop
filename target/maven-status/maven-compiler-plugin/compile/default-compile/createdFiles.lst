@@ -122,7 +122,6 @@ com\oop\academy\presentation\submission\StudentSubmissionListView.class
 com\oop\academy\presentation\profile\EditProfileView$1.class
 com\oop\academy\presentation\course\CourseCard.class
 com\oop\academy\presentation\dashboard\admin\CategoryManagementView.class
-com\oop\academy\presentation\course\MyCourseView.class
 com\oop\academy\presentation\dashboard\admin\UserManagementView$4.class
 com\oop\academy\models\Submission.class
 com\oop\academy\application\repositories\authentication\AuthRepository.class
