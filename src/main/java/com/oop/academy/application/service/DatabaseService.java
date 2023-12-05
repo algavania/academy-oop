@@ -9,7 +9,6 @@ import com.oop.academy.models.Category;
 import com.oop.academy.models.User;
 import com.oop.academy.models.Course;
 import com.oop.academy.models.Education;
-import com.oop.academy.models.Student;
 import com.oop.academy.models.Teacher;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,7 +56,7 @@ public class DatabaseService {
         users.add(new Admin("admin", "Mas Maha",
                 "Laki-Laki", new Date(), "admin@email.com",
                 "admin", "adminPhoto", 10000));
-        users.add(new Student("student", "Adik Maha",
+        users.add(new User("student", "Adik Maha",
                 "Laki-Laki", new Date(), "student@email.com",
                 "student", "studentUrl", 10000));
     }
@@ -78,7 +77,7 @@ public class DatabaseService {
     private static void seederTeacherRequest() {
         List<Education> educations = new ArrayList();
         educations.add(new Education("SMAN 1 Cibadak", 3, "SMA", 96,
-                "www.amir.com"));
+                null));
         userTeacherRequests.add(new Teacher("teacher1", "Pak Amir",
                 "Laki-Laki", new Date(), "teacher@email.com",
                 "teacher", "teacherUrl", 1000));
@@ -94,8 +93,7 @@ public class DatabaseService {
     public static List<Teacher> getUserTeacherRequests() {
         if (userTeacherRequests == null) {
             userTeacherRequests = new ArrayList();
-            seederTeacherRequest();
-
+//            seederTeacherRequest();
         }
 
         return userTeacherRequests;

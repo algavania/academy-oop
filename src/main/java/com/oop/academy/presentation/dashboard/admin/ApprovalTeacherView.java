@@ -6,7 +6,13 @@ package com.oop.academy.presentation.dashboard.admin;
 
 import com.oop.academy.InjectionContainer;
 import com.oop.academy.application.repositories.teacher.submit.SubmitTeacherRepository;
+import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.models.Teacher;
+import com.oop.academy.presentation.MainFrame;
+import com.oop.academy.presentation.teacher.registration.RegistrationTeacherView;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,17 +26,39 @@ public class ApprovalTeacherView extends javax.swing.JInternalFrame {
     private final SubmitTeacherRepository submitTeacherRepository
             = InjectionContainer.submitTeacherRepository;
     int selectedRow = 0;
+    private final MainFrame mainFrame;
 
     /**
      * Creates new form ApprovalTeacherView
+     *
+     * @param mainFrame
      */
-    public ApprovalTeacherView() {
+    public ApprovalTeacherView(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
         tableContent = new DefaultTableModel(new Object[][]{}, new String[]{
             "No", "Nama User", "Nama Sekolah", "periode", "GPA", "Gelar"
         });
 
         renderTable();
         initComponents();
+
+        table.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent mouseEvent) {
+                Point point = mouseEvent.getPoint();
+                int selectedRow = table.getSelectedRow();
+                if (mouseEvent.getClickCount() == 2 && selectedRow != -1) {
+                    Teacher teacher = InjectionContainer.submitTeacherRepository
+                            .getAllUserTeacherRequest().get(selectedRow);
+                    System.out.println("Teacher name " + teacher.getName());
+                    System.out.println("Row " + selectedRow);
+
+                    mainFrame.showView(new RegistrationTeacherView(mainFrame,
+                            DatabaseService.currentUser,
+                            teacher));
+                }
+            }
+
+        });
     }
 
     private void renderTable() {
@@ -73,6 +101,7 @@ public class ApprovalTeacherView extends javax.swing.JInternalFrame {
         jLabel1.setText("List Registration Teacher");
 
         table.setModel(this.tableContent);
+        table.getTableHeader().setReorderingAllowed(false);
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableMouseClicked(evt);
@@ -136,13 +165,13 @@ public class ApprovalTeacherView extends javax.swing.JInternalFrame {
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         if (selectedRow >= 0) {
             submitTeacherRepository.acceptNewTeacher(selectedRow);
-        }else {
+        } else {
             JOptionPane.showMessageDialog(
                     this,
                     "pilih di tabel, mana yang ingin anda Terima",
                     "Error",
                     JOptionPane.INFORMATION_MESSAGE
-                );
+            );
         }
         selectedRow = -1;
         renderTable();
@@ -155,13 +184,13 @@ public class ApprovalTeacherView extends javax.swing.JInternalFrame {
     private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
         if (selectedRow >= 0) {
             submitTeacherRepository.rejectNewTeacher(selectedRow);
-        }else {
+        } else {
             JOptionPane.showMessageDialog(
                     this,
                     "pilih di tabel, mana yang ingin anda Terima",
                     "Error",
                     JOptionPane.INFORMATION_MESSAGE
-                );
+            );
         }
         selectedRow = -1;
         renderTable();

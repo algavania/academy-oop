@@ -7,7 +7,6 @@ package com.oop.academy.application.repositories.teacher.registration;
 import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.models.Education;
 import com.oop.academy.models.Teacher;
-import com.oop.academy.models.User;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -5,7 +5,6 @@
 package com.oop.academy.application.repositories.teacher.submit;
 
 import com.oop.academy.application.service.DatabaseService;
-import com.oop.academy.models.Student;
 import com.oop.academy.models.Teacher;
 import com.oop.academy.models.User;
 import java.util.List;
@@ -22,9 +21,9 @@ public class SubmitTeacherRepository implements BaseSubmitTeacherRepository {
 
     @Override
     public void acceptNewTeacher(int selectedRow) {
-        Student student = findStudentByUser(userTeacherRequests.
-                get(selectedRow));
-        users.remove(student);
+        User data = userTeacherRequests.
+                get(selectedRow);
+        users.remove(data);
         users.add(userTeacherRequests.get(selectedRow));
         userTeacherRequests.remove(selectedRow);
 
@@ -38,17 +37,5 @@ public class SubmitTeacherRepository implements BaseSubmitTeacherRepository {
     @Override
     public List<Teacher> getAllUserTeacherRequest() {
         return userTeacherRequests;
-    }
-
-    public Student findStudentByUser(User user) {
-        boolean isUserNameExist = false;
-        for (User data : users) {
-            isUserNameExist = data.getUsername().equalsIgnoreCase(user.getUsername());
-            if (isUserNameExist) {
-                return (Student) data;
-            }
-            
-        }
-        return null;
     }
 }

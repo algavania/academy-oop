@@ -2,30 +2,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.oop.academy.presentation.course;
+package com.oop.academy.presentation.submission;
 
 import com.oop.academy.models.CourseContent;
+import com.oop.academy.models.Submission;
 import com.oop.academy.presentation.MainFrame;
-import java.util.function.Function;
+import com.oop.academy.util.DateHelper;
 
 /**
  *
  * @author MSI
  */
-public class CourseContentCard extends javax.swing.JPanel {
+public class SubmissionCard extends javax.swing.JPanel {
     private MainFrame mainFrame;
-    private CourseContent courseContent;
+    private Submission submission;
     /**
      * Creates new form MaterialCard
      * @param mainFrame
-     * @param courseContent
+     * @param submission
      */
-    public CourseContentCard(MainFrame mainFrame, CourseContent courseContent) {
+    public SubmissionCard(MainFrame mainFrame, Submission submission) {
         this.mainFrame = mainFrame;
-        this.courseContent = courseContent;
+        this.submission = submission;
+        DateHelper dateHelper = new DateHelper();
         initComponents();
-        lblTitle.setText(courseContent.getName());
-        lblContent.setText(courseContent.getContent());
+        lblTitle.setText(submission.getName());
+        lblDescription.setText(submission.getDescription());
+        lblDeadline.setText(dateHelper.formatDate(submission.getCreatedAt()));
     }
 
     /**
@@ -38,7 +41,8 @@ public class CourseContentCard extends javax.swing.JPanel {
     private void initComponents() {
 
         lblTitle = new javax.swing.JLabel();
-        lblContent = new javax.swing.JLabel();
+        lblDescription = new javax.swing.JLabel();
+        lblDeadline = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -48,11 +52,14 @@ public class CourseContentCard extends javax.swing.JPanel {
         });
 
         lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblTitle.setText("Pemrograman Java");
+        lblTitle.setText("Submission Title");
         lblTitle.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        lblContent.setText("This is course content");
-        lblContent.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lblDescription.setText("This is submission description");
+        lblDescription.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        lblDeadline.setText("12 Desember 2023");
+        lblDeadline.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -61,8 +68,9 @@ public class CourseContentCard extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblContent, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblDeadline, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -71,19 +79,22 @@ public class CourseContentCard extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblContent, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblDeadline, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        mainFrame.showView(new DetailCourseContentView(mainFrame, courseContent.getCourse(), courseContent));
+        mainFrame.showView(new SubmissionDetailView(mainFrame, submission.getCourse(), submission));
         // TODO add your handling code here:
     }//GEN-LAST:event_formMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lblContent;
+    private javax.swing.JLabel lblDeadline;
+    private javax.swing.JLabel lblDescription;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }

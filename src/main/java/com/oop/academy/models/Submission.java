@@ -4,7 +4,9 @@
  */
 package com.oop.academy.models;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -12,18 +14,36 @@ import java.util.Date;
  */
 public class Submission {
 
-    private int id;
+    private Course course;
     private String name;
     private String description;
-    private Date created_at;
-
-    public int getId() {
-        return id;
+    private Date createdAt;
+    private List<StudentSubmission> studentSubmissions;
+    
+    public Submission() {
+        this.studentSubmissions = new ArrayList();
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public List<StudentSubmission> getStudentSubmissions() {
+        if (studentSubmissions == null) {
+            studentSubmissions = new ArrayList();
+        }
+        return studentSubmissions;
     }
+
+    public void setStudentSubmissions(List<StudentSubmission> studentSubmissions) {
+        this.studentSubmissions = studentSubmissions;
+    }
+    
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
 
     public String getName() {
         return name;
@@ -41,11 +61,11 @@ public class Submission {
         this.description = description;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

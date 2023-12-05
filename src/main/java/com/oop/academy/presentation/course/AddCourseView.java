@@ -27,7 +27,7 @@ import javax.swing.text.AbstractDocument;
 public class AddCourseView extends javax.swing.JPanel {
 
     private final MainFrame mainFrame;
-    private final CourseRepository repository = InjectionContainer.courseReposiotory;
+    private final CourseRepository repository = InjectionContainer.courseRepository;
     private final CategoryRepository categoryRepository = InjectionContainer.categoryRepository;
     private final NumberFormat format;
 
@@ -221,13 +221,14 @@ public class AddCourseView extends javax.swing.JPanel {
             course.setCategory(category);
             course.setName(name);
             course.setTeacher((Teacher) DatabaseService.currentUser);
+            System.out.println("course teacher: "+course.getTeacher().getName());
             course.setPrice(getPriceValue());
             course.setCreatedAt();
 
             repository.addCourse(course);
             goBack();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.toString());
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddActionPerformed

@@ -12,7 +12,9 @@ import com.oop.academy.models.Teacher;
 import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.dashboard.UserDashboardView;
+import java.awt.Desktop;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,18 +25,42 @@ import javax.swing.table.DefaultTableModel;
 public class RegistrationTeacherView extends javax.swing.JPanel {
 
     private final MainFrame mainFrame;
+    private final User currentUser;
     private final DefaultTableModel tableContent;
     private final TeacherRegistRepository teacherRegistRepository
             = InjectionContainer.teacherRegistRepository;
+    private final List<Education> educations = new ArrayList();
 
-    public RegistrationTeacherView(MainFrame mainFrame) {
+    public RegistrationTeacherView(MainFrame mainFrame, User currentUser, Teacher teacher) {
         this.mainFrame = mainFrame;
+        this.currentUser = currentUser;
         tableContent = new DefaultTableModel(new Object[][]{}, new String[]{
             "No", "Nama Sekolah", "periode", "GPA", "Gelar"
         });
 
+        if (teacher != null) {
+            educations.addAll(teacher.getEducations());
+        }
         renderTable();
         initComponents();
+
+        if (teacher != null) {
+            inputPersonalWeb.setText(teacher.getPersonalWebsiteUrl());
+            inputCL.setText(teacher.getCoverLetter());
+
+            inputName.setEnabled(false);
+            inputCL.setEnabled(false);
+            inputDegree.setEnabled(false);
+            inputGpa.setEnabled(false);
+            inputPeriod.setEnabled(false);
+            inputPersonalWeb.setEnabled(false);
+            inputGelar.setEnabled(false);
+            btnRegistration.setVisible(false);
+            btnUploadCertificate.setEnabled(false);
+            btnCancel.setEnabled(false);
+            btnDelete.setEnabled(false);
+            btnAddEducation.setEnabled(false);
+        }
     }
 
     private void clearInputEducation() {
@@ -43,7 +69,7 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
         this.inputGpa.setText("");
         this.inputPeriod.setText("");
         this.inputName.setText("");
-        this.inputCertificate.setText("");
+        this.tfCertificate.setText("");
         this.inputGelar.setText("");
     }
 
@@ -53,7 +79,7 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
         tableContent.setRowCount(0);
 
         int i = 1;
-        for (Education educations : teacherRegistRepository.getAllEducation()) {
+        for (Education educations : educations) {
             this.tableContent.addRow(new Object[]{
                 i,
                 educations.getName(),
@@ -62,6 +88,10 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
                 educations.getDegree()});
             i++;
         }
+    }
+
+    private void goBack() {
+        mainFrame.showView(new UserDashboardView(mainFrame, null));
     }
 
     /**
@@ -74,7 +104,6 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -82,32 +111,27 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
         inputPeriod = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         inputGpa = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        inputCertificate = new javax.swing.JTextField();
         btnUploadCertificate = new javax.swing.JButton();
         btnAddEducation = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        inputCL = new javax.swing.JTextField();
-        btnUploadCL = new javax.swing.JButton();
         btnRegistration = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         inputPersonalWeb = new javax.swing.JTextField();
         inputDegree = new javax.swing.JLabel();
         inputGelar = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        tfCertificate = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        inputCL = new javax.swing.JTextArea();
+        btnOpenFile = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Form Pendaftaran Guru");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Nambah List Education");
 
         jLabel3.setText("Nama Sekolah :");
 
@@ -117,9 +141,7 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
 
         jLabel6.setText("GPA :");
 
-        jLabel7.setText("years");
-
-        btnUploadCertificate.setText("upload");
+        btnUploadCertificate.setText("Upload");
         btnUploadCertificate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUploadCertificateActionPerformed(evt);
@@ -144,18 +166,9 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
         jLabel8.setText("Surat Lamaran :");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("List Education");
 
-        btnUploadCL.setText("upload");
-        btnUploadCL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUploadCLActionPerformed(evt);
-            }
-        });
-
         btnRegistration.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnRegistration.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistration.setText("Registration");
         btnRegistration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,7 +180,12 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
 
         inputDegree.setText("Gelar :");
 
-        jButton1.setText("Delete");
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -176,10 +194,24 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
             }
         });
 
-        btnExit.setText("Exit");
+        btnExit.setText("Back");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
+            }
+        });
+
+        tfCertificate.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        tfCertificate.setEnabled(false);
+
+        inputCL.setColumns(20);
+        inputCL.setRows(5);
+        jScrollPane2.setViewportView(inputCL);
+
+        btnOpenFile.setText("Lihat");
+        btnOpenFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpenFileActionPerformed(evt);
             }
         });
 
@@ -187,152 +219,122 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
+                                .addComponent(jLabel9)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(33, 33, 33)
+                                .addComponent(jScrollPane2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(inputPersonalWeb))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnExit)
+                                .addGap(170, 170, 170)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(29, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnDelete)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCancel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel6))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(12, 12, 12)
+                                                .addComponent(jLabel4)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(inputPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel6)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(inputGpa, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(btnAddEducation, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(tfCertificate, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnUploadCertificate)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnOpenFile)
                                         .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(inputCertificate)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(btnUploadCertificate))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(inputPeriod)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel7)
-                                                .addGap(115, 115, 115))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(inputGpa, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(90, 90, 90)
-                                                .addComponent(inputDegree)
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jButton1)
-                                                    .addComponent(inputGelar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(0, 35, Short.MAX_VALUE))))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel8)
-                                                .addComponent(jLabel10))
-                                            .addGap(25, 25, 25)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(inputCL, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(btnUploadCL))
-                                                .addComponent(inputPersonalWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(185, 185, 185)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(10, 10, 10)
-                                                    .addComponent(btnAddEducation))
-                                                .addComponent(jLabel9))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnCancel)
-                                            .addGap(20, 20, 20)))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(233, 233, 233)
-                        .addComponent(btnRegistration)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(inputDegree)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(inputGelar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addGap(20, 20, 20))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(136, 207, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(77, 77, 77)
-                .addComponent(btnExit)
-                .addGap(27, 27, 27))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnRegistration)
+                .addGap(300, 300, 300))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(btnExit)))
-                .addGap(43, 43, 43)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(btnExit)
+                    .addComponent(jLabel1))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inputPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(inputCertificate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnUploadCertificate)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(inputDegree)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(inputGpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(inputGelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddEducation)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(btnCancel))
+                    .addComponent(jLabel6)
+                    .addComponent(inputGpa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(inputCL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUploadCL))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUploadCertificate)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tfCertificate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnOpenFile)
+                        .addComponent(inputDegree)
+                        .addComponent(inputGelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)))
+                .addGap(18, 18, 18)
+                .addComponent(btnAddEducation)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDelete)
+                    .addComponent(btnCancel))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(inputPersonalWeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                .addGap(30, 30, 30)
                 .addComponent(btnRegistration)
-                .addGap(37, 37, 37))
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnUploadCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadCLActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        File f = chooser.getSelectedFile();
-
-        String filename = f.getAbsolutePath();
-        inputCL.setText(filename);
-    }//GEN-LAST:event_btnUploadCLActionPerformed
 
     private void btnAddEducationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEducationActionPerformed
         String name = inputName.getText();
         String degree = inputGelar.getText();
-        String certificate = inputCertificate.getText();
+        File certificate = new File(tfCertificate.getText());
         float Gpa = 0;
         int period = 0;
 
@@ -354,19 +356,13 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
                 Gpa, certificate);
         if ("Add".equals(btnAddEducation.getText())) {
             try {
-                teacherRegistRepository.addEducation(newEducation);
+                educations.add(newEducation);
             } catch (Exception ex) {
                 Logger.getLogger(RegistrationTeacherView.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else {
-            try {
-                teacherRegistRepository.
-                        updateEducation(teacherRegistRepository.
-                                getSelectedRow(), newEducation);
-            } catch (Exception ex) {
-                Logger.getLogger(RegistrationTeacherView.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            educations.set(teacherRegistRepository.getSelectedRow(), newEducation);
         }
         clearInputEducation();
         renderTable();
@@ -379,13 +375,12 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
         File f = chooser.getSelectedFile();
 
         String filename = f.getAbsolutePath();
-        inputCertificate.setText(filename);
+        tfCertificate.setText(filename);
 
     }//GEN-LAST:event_btnUploadCertificateActionPerformed
 
     private void btnRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrationActionPerformed
         User currentUser = DatabaseService.currentUser;
-        List<Education> educations = InjectionContainer.teacherRegistRepository.getAllEducation();
         String coverLetter = inputCL.getText();
         String personalWebsite = inputPersonalWeb.getText();
 
@@ -396,6 +391,8 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
 
         try {
             teacherRegistRepository.RegisterTeacher(registTeacher);
+            JOptionPane.showMessageDialog(this, "Pendaftaran berhasil!");
+            goBack();
         } catch (Exception ex) {
             Logger.getLogger(RegistrationTeacherView.class.getName()).
                     log(Level.SEVERE, null, ex);
@@ -410,18 +407,17 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
         int selectedRow = this.table.getSelectedRow();
         if (selectedRow >= 0) {
             teacherRegistRepository.setSelectedRow(selectedRow);
-            Gpa = String.valueOf(teacherRegistRepository.
-                    getEducationById(selectedRow).getGpa());
-            period = String.valueOf(teacherRegistRepository.
-                    getEducationById(selectedRow).getAttendPeriod());
+            Gpa = String.valueOf(educations.get(selectedRow).getGpa());
+            period = String.valueOf(educations.get(selectedRow).getAttendPeriod());
             this.inputGpa.setText((String) Gpa);
             this.inputPeriod.setText((String) period);
-            this.inputName.setText((String) teacherRegistRepository.
-                    getEducationById(selectedRow).getName());
-            this.inputCertificate.setText((String) teacherRegistRepository.
-                    getEducationById(selectedRow).getCertificateUrl());
-            this.inputGelar.setText((String) teacherRegistRepository.
-                    getEducationById(selectedRow).getDegree());
+            this.inputName.setText((String) educations.get(selectedRow).getName());
+            String path = "";
+            if (educations.get(selectedRow).getCertificateUrl() != null) {
+                path = educations.get(selectedRow).getCertificateUrl().getAbsolutePath();
+            }
+            this.tfCertificate.setText(path);
+            this.inputGelar.setText((String) educations.get(selectedRow).getDegree());
         }
     }//GEN-LAST:event_tableMouseClicked
 
@@ -430,39 +426,57 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        mainFrame.showView(new UserDashboardView(mainFrame, null));
+        goBack();
 
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnOpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenFileActionPerformed
+        try {
+            if (!tfCertificate.getText().isBlank()) {
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(new File(tfCertificate.getText()));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOpenFileActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int selectedRow = this.table.getSelectedRow();
+        if (selectedRow != -1) {
+            educations.remove(selectedRow);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEducation;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnOpenFile;
     private javax.swing.JButton btnRegistration;
-    private javax.swing.JButton btnUploadCL;
     private javax.swing.JButton btnUploadCertificate;
-    private javax.swing.JTextField inputCL;
-    private javax.swing.JTextField inputCertificate;
+    private javax.swing.JTextArea inputCL;
     private javax.swing.JLabel inputDegree;
     private javax.swing.JTextField inputGelar;
     private javax.swing.JTextField inputGpa;
     private javax.swing.JTextField inputName;
     private javax.swing.JTextField inputPeriod;
     private javax.swing.JTextField inputPersonalWeb;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable table;
+    private javax.swing.JTextField tfCertificate;
     // End of variables declaration//GEN-END:variables
 
 }

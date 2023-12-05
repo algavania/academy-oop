@@ -6,13 +6,13 @@ package com.oop.academy.presentation.dashboard;
 
 import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.models.Admin;
-import com.oop.academy.models.Student;
 import com.oop.academy.models.Teacher;
 import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.authentication.LoginView;
 import com.oop.academy.presentation.course.CoursesView;
 import com.oop.academy.presentation.dashboard.admin.ApprovalTeacherView;
+import com.oop.academy.presentation.dashboard.admin.AllCoursesList;
 import com.oop.academy.presentation.dashboard.admin.CategoryManagementView;
 import com.oop.academy.presentation.dashboard.admin.UserManagementView;
 import com.oop.academy.presentation.profile.ProfileView;
@@ -42,27 +42,25 @@ public class UserDashboardView extends javax.swing.JPanel {
             LoginLabel.setText("Login sebagai Admin.");
             Menu1.setText("User Management");
             Menu2.setText("Category Management");
-            Menu3.setText("Courses List");
+            Menu3.setVisible(false);
             Menu4.setText("Approval");
-            Menu5.setVisible(false);
-            Menu6.setVisible(false);
-        } else {
-            LoginLabel.setText(currentUser instanceof Teacher ? "Login sebagai Teacher." : "Login sebagai Student.");
+            Menu5.setText("Profile");
+        } else if (currentUser instanceof Teacher) {
+            LoginLabel.setText("Login sebagai Teacher.");
             Menu1.setText("Home");
-            Menu2.setText("My Course");
-            Menu3.setText("Profile");
+            Menu2.setText("Profile");
+            Menu3.setVisible(false);
             Menu4.setVisible(false);
             Menu5.setVisible(false);
-
-            if (currentUser instanceof Teacher) {
-                Menu6.setText("");
-                Menu6.setVisible(false);
-                
-            } else {
-                Menu6.setText("Daftar Menjadi Guru");
-
-            }
+        } else {
+            LoginLabel.setText("Login sebagai Student.");
+            Menu1.setText("Home");
+            Menu2.setText("Profile");
+            Menu3.setVisible(false);
+            Menu4.setVisible(false);
+            Menu5.setText("Be a Teacher!");
         }
+        Menu6.setVisible(false);
         if (initialFrame != null) {
             changeInternalFrame(initialFrame);
         }
@@ -292,12 +290,10 @@ public class UserDashboardView extends javax.swing.JPanel {
         if (currentUser instanceof Admin) {
             MenuLabel.setText("User Management");
             changeInternalFrame(new UserManagementView());
-        } else if (currentUser instanceof Teacher) {
-            MenuLabel.setText("My Lecture");
-            changeInternalFrame(new UserManagementView());
         } else {
             changeInternalFrame(new CoursesView(mainFrame));
             MenuLabel.setText("Home");
+
         }
     }//GEN-LAST:event_Menu1MouseClicked
 
@@ -311,10 +307,9 @@ public class UserDashboardView extends javax.swing.JPanel {
         if (currentUser instanceof Admin) {
             MenuLabel.setText("Category Management");
             changeInternalFrame(new CategoryManagementView());
-        } else if (currentUser instanceof Teacher) {
-            changeInternalFrame(new CategoryManagementView());
         } else {
-            MenuLabel.setText("My Course");
+            MenuLabel.setText("Profile");
+            changeInternalFrame(new ProfileView(mainFrame, currentUser));
         }
     }//GEN-LAST:event_Menu2MouseClicked
 
@@ -332,6 +327,7 @@ public class UserDashboardView extends javax.swing.JPanel {
 
     private void Menu5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu5MousePressed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_Menu5MousePressed
 
     private void LogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutButtonActionPerformed
@@ -344,9 +340,7 @@ public class UserDashboardView extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (currentUser instanceof Admin) {
             MenuLabel.setText("Courses List");
-        } else {
-            MenuLabel.setText("Profile");
-            changeInternalFrame(new ProfileView(mainFrame, currentUser));
+            changeInternalFrame(new AllCoursesList(mainFrame));
         }
     }//GEN-LAST:event_Menu3MouseClicked
 
@@ -354,7 +348,7 @@ public class UserDashboardView extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (currentUser instanceof Admin) {
             MenuLabel.setText("Approval");
-            changeInternalFrame(new ApprovalTeacherView());
+            changeInternalFrame(new ApprovalTeacherView(mainFrame));
         } else if (currentUser instanceof Teacher) {
             MenuLabel.setText("");
         } else {
@@ -366,16 +360,25 @@ public class UserDashboardView extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (currentUser instanceof Admin) {
             MenuLabel.setText("");
+            changeInternalFrame(new ProfileView(mainFrame, currentUser));
         } else if (currentUser instanceof Teacher) {
             MenuLabel.setText("");
         } else {
-            MenuLabel.setText("");
+            MenuLabel.setText("Be a Teacher");
+            Teacher teacher = null;
+            for (Teacher data : DatabaseService.getUserTeacherRequests()) {
+                if (data.getUsername().equals(currentUser.getUsername())) {
+                    teacher = data;
+                    break;
+                }
+            }
+            mainFrame.showView(new RegistrationTeacherView(mainFrame, currentUser, teacher));
         }
     }//GEN-LAST:event_Menu5MouseClicked
 
     private void Menu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu6MouseClicked
         // TODO add your handling code here:
-        mainFrame.showView(new RegistrationTeacherView(mainFrame));
+        mainFrame.showView(new RegistrationTeacherView(mainFrame, currentUser, null));
 
     }//GEN-LAST:event_Menu6MouseClicked
 

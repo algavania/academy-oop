@@ -4,17 +4,46 @@
  */
 package com.oop.academy.presentation.submission;
 
+import com.oop.academy.InjectionContainer;
+import com.oop.academy.application.repositories.course.SubmissionRepository;
+import com.oop.academy.models.Course;
+import com.oop.academy.models.CourseContent;
+import com.oop.academy.models.Submission;
+import com.oop.academy.presentation.MainFrame;
+import com.oop.academy.presentation.course.DetailCourseView;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mapam
  */
 public class AddSubmissionView extends javax.swing.JPanel {
 
+    private MainFrame mainFrame;
+    private Course course;
+    private Submission submission;
+    private SubmissionRepository repository = InjectionContainer.submissionRepository;
+
     /**
      * Creates new form AddSubmissionView
+     *
+     * @param course
+     * @param submission
+     * @param mainFrame
      */
-    public AddSubmissionView() {
+    public AddSubmissionView(Course course, Submission submission, MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
+        this.course = course;
+        this.submission = submission;
         initComponents();
+
+        if (submission != null) {
+            tfName.setText(submission.getName());
+            taDesc.setText(submission.getDescription());
+            lblTitle.setText("Ubah Tugas");
+            btnSubmit.setText("Simpan");
+        }
     }
 
     /**
@@ -26,29 +55,44 @@ public class AddSubmissionView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        SubmitButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnSubmit = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        lblTitle = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        NameField = new javax.swing.JTextField();
-        DeskripsiField = new javax.swing.JTextField();
+        tfName = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taDesc = new javax.swing.JTextArea();
 
-        SubmitButton.setBackground(new java.awt.Color(102, 255, 51));
-        SubmitButton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        SubmitButton.setText("TAMBAH");
+        btnSubmit.setBackground(new java.awt.Color(102, 255, 51));
+        btnSubmit.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        btnSubmit.setText("TAMBAH");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
 
-        jButton1.setBackground(new java.awt.Color(153, 153, 153));
-        jButton1.setText("<");
+        btnBack.setBackground(new java.awt.Color(153, 153, 153));
+        btnBack.setText("<");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel1.setText("                     TAMBAH TUGAS");
+        lblTitle.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblTitle.setText("                     TAMBAH TUGAS");
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel2.setText("Nama Tugas : ");
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel4.setText("Deskripsi      :");
+
+        taDesc.setColumns(20);
+        taDesc.setRows(5);
+        jScrollPane1.setViewportView(taDesc);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -58,21 +102,21 @@ public class AddSubmissionView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
+                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel2))
                         .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NameField)
-                            .addComponent(DeskripsiField))))
+                            .addComponent(tfName)
+                            .addComponent(jScrollPane1))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(SubmitButton)
+                .addComponent(btnSubmit)
                 .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
@@ -80,33 +124,67 @@ public class AddSubmissionView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(DeskripsiField, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(54, 54, 54)
-                .addComponent(SubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        String name = tfName.getText();
+        String desc = taDesc.getText();
+        try {
+            if (name.isBlank() || desc.isBlank()) {
+                throw new Exception("Field tidak boleh kosong");
+            }
+            if (submission == null) {
+                Submission data = new Submission();
+                data.setName(name);
+                data.setDescription(desc);
+                data.setCreatedAt(new Date());
+                data.setCourse(course);
+                repository.addSubmission(course, data);
+
+                tfName.setText("");
+                taDesc.setText("");
+            } else {
+                Submission oldContent = submission;
+                submission.setName(name);
+                submission.setDescription(desc);
+                repository.updateSubmission(course, oldContent, submission);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        if (submission == null) {
+            mainFrame.showView(new DetailCourseView(mainFrame, course));
+        } else {
+            mainFrame.showView(new SubmissionDetailView(mainFrame, course, submission));
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField DeskripsiField;
-    private javax.swing.JTextField NameField;
-    private javax.swing.JButton SubmitButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JTextArea taDesc;
+    private javax.swing.JTextField tfName;
     // End of variables declaration//GEN-END:variables
 }
