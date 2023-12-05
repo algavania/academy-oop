@@ -44,6 +44,9 @@ public class SubmissionDetailView extends javax.swing.JPanel {
 
         if (course.getTeacher() == DatabaseService.currentUser) {
             btnMySubmission.setText("Lihat Tugas Siswa");
+        } else {
+            btnEdit.setVisible(false);
+            btnDelete.setVisible(false);
         }
     }
 

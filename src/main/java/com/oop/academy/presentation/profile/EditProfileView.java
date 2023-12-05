@@ -7,6 +7,7 @@ package com.oop.academy.presentation.profile;
 import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.dashboard.UserDashboardView;
+import com.oop.academy.util.CurrencyHelper;
 import java.util.Date;
 
 /**
@@ -41,7 +42,7 @@ public class EditProfileView extends javax.swing.JPanel {
             setGenderComboBox(currentUser.getGender());
         }
         txtEmail.setText(currentUser.getEmail());
-        labelBalance.setText("Rp." + currentUser.getBalance());
+        labelBalance.setText(CurrencyHelper.convertToRupiah(currentUser.getBalance()));
         updateUserData();
     }
 

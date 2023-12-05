@@ -12,8 +12,10 @@ import com.oop.academy.models.Teacher;
 import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
 import com.oop.academy.presentation.dashboard.UserDashboardView;
+import com.oop.academy.util.NumericDocumentFilter;
 import java.awt.Desktop;
 import java.io.File;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,6 +23,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AbstractDocument;
 
 public class RegistrationTeacherView extends javax.swing.JPanel {
 
@@ -43,6 +46,9 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
         }
         renderTable();
         initComponents();
+
+        ((AbstractDocument) inputPeriod.getDocument()).setDocumentFilter(new NumericDocumentFilter());
+        ((AbstractDocument) inputGpa.getDocument()).setDocumentFilter(new NumericDocumentFilter());
 
         if (teacher != null) {
             inputPersonalWeb.setText(teacher.getPersonalWebsiteUrl());
@@ -235,12 +241,7 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addGap(18, 18, 18)
-                                .addComponent(inputPersonalWeb))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnExit)
-                                .addGap(170, 170, 170)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(inputPersonalWeb))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(29, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -251,32 +252,38 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel5))
-                                .addGap(18, 18, 18)
+                                    .addComponent(jLabel5)
+                                    .addComponent(btnExit))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(12, 12, 12)
-                                                .addComponent(jLabel4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(inputPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(inputName, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(12, 12, 12)
+                                                        .addComponent(jLabel4)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(inputPeriod, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(jLabel6)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(inputGpa, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(btnAddEducation, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(tfCertificate, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(btnUploadCertificate)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(btnOpenFile)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jLabel6)
+                                                .addComponent(inputDegree)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(inputGpa, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(btnAddEducation, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                                .addComponent(inputGelar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(tfCertificate, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnUploadCertificate)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnOpenFile)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(inputDegree)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(inputGelar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addGap(153, 153, 153)
+                                        .addComponent(jLabel1)))))))
                 .addGap(20, 20, 20))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -287,10 +294,10 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnExit)
-                    .addComponent(jLabel1))
-                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnExit))
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
@@ -380,22 +387,26 @@ public class RegistrationTeacherView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnUploadCertificateActionPerformed
 
     private void btnRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrationActionPerformed
-        User currentUser = DatabaseService.currentUser;
-        String coverLetter = inputCL.getText();
-        String personalWebsite = inputPersonalWeb.getText();
-
-        Teacher registTeacher = new Teacher(currentUser);
-        registTeacher.setEducations(educations);
-        registTeacher.setCoverLetter(coverLetter);
-        registTeacher.setPersonalWebsiteUrl(personalWebsite);
-
         try {
+            User currentUser = DatabaseService.currentUser;
+            String coverLetter = inputCL.getText();
+            String personalWebsite = inputPersonalWeb.getText();
+            
+            if (coverLetter.isBlank() || personalWebsite.isBlank() || educations.isEmpty()) {
+                throw new Exception("Field tidak boleh kosong!");
+            }
+
+            Teacher registTeacher = new Teacher(currentUser);
+            registTeacher.setEducations(educations);
+            registTeacher.setCoverLetter(coverLetter);
+            registTeacher.setPersonalWebsiteUrl(personalWebsite);
+
             teacherRegistRepository.RegisterTeacher(registTeacher);
             JOptionPane.showMessageDialog(this, "Pendaftaran berhasil!");
             goBack();
-        } catch (Exception ex) {
-            Logger.getLogger(RegistrationTeacherView.class.getName()).
-                    log(Level.SEVERE, null, ex);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_btnRegistrationActionPerformed
 
