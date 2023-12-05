@@ -21,9 +21,9 @@ public class SubmitTeacherRepository implements BaseSubmitTeacherRepository {
 
     @Override
     public void acceptNewTeacher(int selectedRow) {
-        User data = userTeacherRequests.
-                get(selectedRow);
-        users.remove(data);
+        User user = findStudentByUser(userTeacherRequests.
+                get(selectedRow));
+        users.remove(user);
         users.add(userTeacherRequests.get(selectedRow));
         userTeacherRequests.remove(selectedRow);
 
@@ -37,5 +37,17 @@ public class SubmitTeacherRepository implements BaseSubmitTeacherRepository {
     @Override
     public List<Teacher> getAllUserTeacherRequest() {
         return userTeacherRequests;
+    }
+    
+    public User findStudentByUser(User user) {
+        boolean isUserNameExist = false;
+        for (User data : users) {
+            isUserNameExist = data.getUsername().equalsIgnoreCase(user.getUsername());
+            if (isUserNameExist) {
+                return (User) data;
+            }
+            
+        }
+        return null;
     }
 }
