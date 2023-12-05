@@ -6,8 +6,10 @@ package com.oop.academy.presentation.course;
 
 import com.oop.academy.InjectionContainer;
 import com.oop.academy.application.repositories.course.CourseContentRepository;
+import com.oop.academy.application.service.DatabaseService;
 import com.oop.academy.models.Course;
 import com.oop.academy.models.CourseContent;
+import com.oop.academy.models.User;
 import com.oop.academy.presentation.MainFrame;
 
 /**
@@ -19,7 +21,6 @@ public class DetailCourseContentView extends javax.swing.JPanel {
     private CourseContent courseContent;
     private Course course;
     private CourseContentRepository repository = InjectionContainer.courseContentRepository;
-
     /**
      * Creates new form MaterialDetails
      * @param mainFrame
@@ -34,6 +35,11 @@ public class DetailCourseContentView extends javax.swing.JPanel {
         
         lblTitle.setText(courseContent.getName());
         taContent.setText(courseContent.getContent());
+        
+        if (DatabaseService.currentUser instanceof User){
+            btnEdit.setVisible(false);
+            btnDelete.setVisible(false);
+        }
     }
 
     private void goBack() {
@@ -132,6 +138,7 @@ public class DetailCourseContentView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        
         mainFrame.showView(new AddCourseContentView(course, courseContent, mainFrame));
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditActionPerformed
