@@ -4,10 +4,13 @@
  */
 package com.oop.academy.presentation;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import com.oop.academy.InjectionContainer;
 import com.oop.academy.presentation.authentication.LoginView;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -86,6 +89,12 @@ public class MainFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
