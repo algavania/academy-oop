@@ -233,7 +233,7 @@ public class ProfileView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnTopupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTopupActionPerformed
-        mainFrame.showView(new TopupView(mainFrame, currentUser));
+        mainFrame.showView(new TopupView(mainFrame));
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTopupActionPerformed
 
