@@ -36,7 +36,10 @@ public class DetailCourseContentView extends javax.swing.JPanel {
         lblTitle.setText(courseContent.getName());
         taContent.setText(courseContent.getContent());
         
-        
+        if (DatabaseService.currentUser instanceof User){
+            btnEdit.setVisible(false);
+            btnDelete.setVisible(false);
+        }
     }
 
     private void goBack() {
