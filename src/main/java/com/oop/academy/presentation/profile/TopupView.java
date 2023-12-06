@@ -25,7 +25,6 @@ public class TopupView extends javax.swing.JPanel {
 
     private MainFrame mainFrame;
     private final NumberFormat format;
-    private User currentUser;
     private final TopUpRepository topUpRepository
             = InjectionContainer.topUpRepository;
 
@@ -187,7 +186,7 @@ public class TopupView extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        mainFrame.showView(new UserDashboardView(mainFrame, new ProfileView(mainFrame, currentUser)));
+        mainFrame.showView(new UserDashboardView(mainFrame, new ProfileView(mainFrame, DatabaseService.currentUser)));
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void tfAmountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfAmountKeyPressed
