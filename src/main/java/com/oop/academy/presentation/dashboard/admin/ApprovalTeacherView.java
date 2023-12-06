@@ -47,7 +47,7 @@ public class ApprovalTeacherView extends javax.swing.JInternalFrame {
                 Point point = mouseEvent.getPoint();
                 int selectedRow = table.getSelectedRow();
                 if (mouseEvent.getClickCount() == 2 && selectedRow != -1) {
-                    Teacher teacher = InjectionContainer.submitTeacherRepository
+                        Teacher teacher = InjectionContainer.submitTeacherRepository
                             .getAllUserTeacherRequest().get(selectedRow);
                     System.out.println("Teacher name " + teacher.getName());
                     System.out.println("Row " + selectedRow);

@@ -34,9 +34,8 @@ public class TopupView extends javax.swing.JPanel {
      *
      * @param mainFrame
      */
-    public TopupView(MainFrame mainFrame, User currentUser) {
+    public TopupView(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
-        this.currentUser = currentUser;
         initComponents();
         ((AbstractDocument) tfAmount.getDocument()).setDocumentFilter(new NumericDocumentFilter());
         format = NumberFormat.getInstance();
