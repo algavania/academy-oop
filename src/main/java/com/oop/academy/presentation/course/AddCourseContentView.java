@@ -62,8 +62,7 @@ public class AddCourseContentView extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tfDesc = new javax.swing.JTextArea();
 
-        btnBack.setBackground(new java.awt.Color(153, 153, 153));
-        btnBack.setText("<");
+        btnBack.setText("Kembali");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -76,8 +75,8 @@ public class AddCourseContentView extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel4.setText("Deskripsi     :");
 
-        btnSubmit.setBackground(new java.awt.Color(102, 255, 51));
-        btnSubmit.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        btnSubmit.setBackground(new java.awt.Color(153, 255, 153));
+        btnSubmit.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         btnSubmit.setText("TAMBAH");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,7 +100,7 @@ public class AddCourseContentView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBack))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -123,7 +122,7 @@ public class AddCourseContentView extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack)
                     .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -135,7 +134,7 @@ public class AddCourseContentView extends javax.swing.JPanel {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

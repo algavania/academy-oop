@@ -32,6 +32,7 @@ public class User {
         this.birthdate = birthdate;
         this.email = email;
         this.password = password;
+        this.balance = balance;
     }
    
     public String getUsername() {

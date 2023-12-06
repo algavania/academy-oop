@@ -114,7 +114,7 @@ public class RegisterView extends javax.swing.JPanel {
             }
         });
 
-        comboGender.setForeground(new java.awt.Color(255, 255, 255));
+        comboGender.setForeground(new java.awt.Color(0, 0, 0));
         comboGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-laki", "Perempuan" }));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

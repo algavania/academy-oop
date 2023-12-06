@@ -121,7 +121,7 @@
                   <Component id="btnBack" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="221" max="32767" attributes="0"/>
+                  <EmptySpace pref="215" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -133,7 +133,7 @@
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace pref="16" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -155,7 +155,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnBack">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Back"/>
+            <Property name="text" type="java.lang.String" value="Kembali"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>

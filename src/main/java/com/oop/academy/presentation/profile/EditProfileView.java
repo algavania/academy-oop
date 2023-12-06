@@ -80,7 +80,7 @@ public class EditProfileView extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Edit Profile");
 
-        btnBack.setText("Back");
+        btnBack.setText("Kembali");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -96,7 +96,7 @@ public class EditProfileView extends javax.swing.JPanel {
                 .addComponent(btnBack)
                 .addGap(115, 115, 115)
                 .addComponent(jLabel1)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,7 +105,7 @@ public class EditProfileView extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(btnBack))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

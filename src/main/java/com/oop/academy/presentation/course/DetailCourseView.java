@@ -95,7 +95,7 @@ public class DetailCourseView extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(563, 509));
         setPreferredSize(new java.awt.Dimension(563, 509));
 
-        btnBack.setText("Back");
+        btnBack.setText("Kembali");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -124,14 +124,14 @@ public class DetailCourseView extends javax.swing.JPanel {
             .addGap(0, 172, Short.MAX_VALUE)
         );
 
-        btnAddCourseContent.setText("Add Course Content");
+        btnAddCourseContent.setText("Tambah Materi");
         btnAddCourseContent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddCourseContentActionPerformed(evt);
             }
         });
 
-        btnAddSubmission.setText("Add Submission");
+        btnAddSubmission.setText("Tambah Tugas");
         btnAddSubmission.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddSubmissionActionPerformed(evt);
@@ -153,16 +153,16 @@ public class DetailCourseView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnBack)
-                            .addGap(197, 197, 197)
-                            .addComponent(btnAddSubmission)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnAddCourseContent))
                         .addComponent(coursePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
-                        .addComponent(submissionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addComponent(submissionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addGap(197, 197, 197)
+                        .addComponent(btnAddSubmission)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAddCourseContent)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +180,7 @@ public class DetailCourseView extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(submissionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

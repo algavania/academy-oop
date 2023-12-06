@@ -64,7 +64,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="AcademyLabel" min="-2" pref="152" max="-2" attributes="0"/>
                       <Component id="LoginLabel" min="-2" pref="361" max="-2" attributes="0"/>
-                      <Component id="MenuLabel" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                      <Component id="MenuLabel" alignment="0" min="-2" pref="294" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
