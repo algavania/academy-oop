@@ -39,6 +39,9 @@ public class DetailCourseContentView extends javax.swing.JPanel {
         if (DatabaseService.currentUser instanceof User){
             btnEdit.setVisible(false);
             btnDelete.setVisible(false);
+        } else {
+            btnEdit.setVisible(true);
+            btnDelete.setVisible(true);
         }
     }
 
